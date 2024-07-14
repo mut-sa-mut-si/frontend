@@ -6,17 +6,16 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 import Header from './components/Layout';
 
+//1(user)
+import Login from './pages/user/login';
+
 function App() {
   return (
     <Router>
-      <div>
-          <div className='App bg-main-color' >
-
-          </div>
-        </div>
- 
+      
       <Header/>
       <Routes>
+      <Route path="/login" element={<Login />} />
         
       </Routes>
     </Router>
