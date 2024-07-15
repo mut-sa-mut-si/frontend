@@ -5,21 +5,24 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //0(home)
 
 import Header from './components/Layout';
+import Footer from './components/footer';
 
 //1(user)
 import Login from './pages/user/login';
-import SkinDetail from './pages/user/skin-detail';
+
+//2(write)
+import HealthWrite from './pages/health/healthwrite';
 
 function App() {
     return (
         <Router>
-            <Header />
-            <Routes>
-                <Route path='/login' element={<Login />} />
-                <Route path='/skin/detail' element={<SkinDetail />} />
-                <Route path='/health/detail' />
-                <Route path='/nutrients/detail' />
-            </Routes>
+            <div className='flex flex-col items-center min-h-screen bg-gray-100'>
+                <Routes>
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/health/write' element={<HealthWrite />} />
+                    {/* Add more routes for other pages */}
+                </Routes>
+            </div>
         </Router>
     );
 }

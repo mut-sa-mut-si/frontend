@@ -1,29 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Logo from '../assets/img/logo.png';
+import './Layout.css';
 function Header() {
     return (
-        <header className="fixed top-0 left-0 w-full h-[124px] ">
-         
-            <nav className="flex items-center space-x-4 ml-custom-left">
-                <Link className="nav_link font-bold text-main-color mt-10" to="/beauty">
-                    피부 미용
-                </Link>
-                <Link className="nav_link font-bold mt-10 text-main-color" to="/health">
-                    헬스
-                </Link>
-                <Link className="nav_link font-bold mt-10  text-main-color" to="/nutrients">
-                    영양제
-                </Link>
-            </nav>
-
-
-            <div className="header_login relative ml-[1050px] mt-[-27px]">
-                <button className="button_nickname  text-main-color border border-main-color rounded px-2 py-2 ">로그인</button>
-            
-            </div>
-            
-        </header>
+        <div className='fixed top-0 left-0 right-0 z-50 flex items-center justify-center bg-white'>
+            <header className='relative w-[512px] h-[92px]'>
+                <div className='absolute inset-0 flex items-center justify-center mb-[30px]'>
+                    <img src={Logo} alt='Logo' />
+                </div>
+                <nav className='absolute top-[69px] left-0 right-0 flex justify-center gap-10'>
+                    <Link className='nav_link font-bold text-[15px]' to='/beauty'>
+                        피부 미용
+                    </Link>
+                    <Link className='nav_link font-bold text-[15px]' to='/health'>
+                        헬스
+                    </Link>
+                    <Link className='nav_link font-bold text-[15px]' to='/nutrients'>
+                        영양제
+                    </Link>
+                </nav>
+            </header>
+        </div>
     );
 }
 

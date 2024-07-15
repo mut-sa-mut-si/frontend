@@ -5,7 +5,9 @@ module.exports = {
         extend: {
             colors: {
                 'main-color': '#FFBE98',
-                'gray-color': '#D9D9D9',
+            },
+            margin: {
+                'custom-left': '267px',
             },
         },
     },
