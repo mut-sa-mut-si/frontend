@@ -16,18 +16,18 @@ import HealthWrite from './pages/health/healthwrite';
 function App() {
   return (
     <Router>
-      
-      <Header/>
-    
-      <Routes>
-      <Route path="/login" element={<Login />} />
-
+      <div className="flex flex-col items-center min-h-screen bg-gray-100">
+ 
         
-      <Route path="/health/write" element={<HealthWrite />} />
-      </Routes>
-      <Footer/>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/health/write" element={<HealthWrite />} />
+            {/* Add more routes for other pages */}
+          </Routes>
+        </div>
+  
+      
     </Router>
-    
   );
 }
 

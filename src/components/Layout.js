@@ -4,7 +4,7 @@ import Logo from '../assets/img/logo.png';
 import  './Layout.css';
 function Header() {
     return (
-        <div className="flex items-center justify-center">
+        <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center bg-white">
             <header className="relative w-[512px] h-[92px]">
             <div className="absolute inset-0 flex items-center justify-center mb-[30px]">
                     <img src={Logo} alt="Logo"  /> 

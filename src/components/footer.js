@@ -5,8 +5,8 @@ import Footer2 from '../assets/img/footer2.png';
 import Footer3 from '../assets/img/footer3.png';
 function Footer() {
     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <footer className="relative w-[512px] h-[90px]  rounded-[15px] mt-auto">
+        <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center">
+            <footer className="relative w-[512px] h-[90px]   bg-white rounded-[15px] mt-auto">
       
                 <div className="absolute ml-[420px] mt-[30px]  w-[30px]  h-[30px]">
                  <img src={Footer1} alt="Footer1"  />

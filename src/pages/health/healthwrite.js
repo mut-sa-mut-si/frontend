@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import picAdd from '../../assets/img/picadd.png';
 import back from '../../assets/img/back.png';
-import Search from '../../assets/img/search.png';
 import ReactMarkdown from "react-markdown";
-
-
-
+import Header from "../../components/Layout";
+import Footer from "../../components/footer";
 
 function HealthWrite() {
     const [view, setView] = useState(true);
@@ -20,63 +17,72 @@ function HealthWrite() {
         }
     };
 
-    const handleClick = (e) => {
+    const handleClick = () => {
         setView(!view);
     }
 
     return (
-        <div className="flex items-center justify-center ml-[70px]">
-            <div className="relative w-[512px] h-[932px] ">
-                <button className="w-[100px] h-[100px] absolute top-[103px] right-[405px]">
-                    <img src={back} alt="Back" />
-                </button>
+        
+           
+    
+        <div className="relative w-[50vw] max-w-[512px] bg-white shadow-lg rounded-lg p-6 mb-[70px] mt-[90px] flex-grow">
+            <Header/>
+                <div className="flex items-center mb-6">
+                    <button className="w-8 h-8">
+                        <img src={back} alt="Back" />
+                    </button>
+                    <h1 className="text-2xl font-bold ml-4">피부 레시피 등록하기</h1>
+                </div>
 
-                <div className="text-[32px] absolute font-bold top-[130px] right-[160px]">헬스 레시피 등록하기</div>
+                <p className="font-semibold text-gray-600 mb-4">특별한 레시피를 공유해주세요</p>
 
-                <div className="absolute font-bold text-[#D9D9D9] top-[190px] right-[75px]">헬스 목적을 바꿔 여러가지 레시피를 공유할 수 있어요</div>
-
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder="제목을 입력하세요"
-                    className="rounded absolute top-[270px] right-[72px] w-[428px] h-[57px] bg-main-color bg-opacity-30 p-2" 
+                    className="w-full p-3 mb-4 border rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-main-color"
+                    style={{ fontSize: '14px' }}
                 />
 
                 <textarea
-                    placeholder="글을 입력하세요"
+                    placeholder="레시피를 입력하세요"
                     value={content}
                     onKeyDown={handleKeyPress}
                     onChange={(e) => setContent(e.target.value)}
-                    className="absolute top-[350px] right-[72px] w-[428px] h-[446px] rounded bg-main-color bg-opacity-30 p-2 resize-none"
+                    className="w-full p-3 mb-4 border rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-main-color resize-none"
+                    style={{ fontSize: '14px', height: '30vh' }}
                 />
-                   <div>
-                <ReactMarkdown>{content}</ReactMarkdown>
-            </div>
-
-                <div className="absolute top-[815px] right-[170px] font-bold text-[#D9D9D9]">사진을 추가해 더 좋은 레시피를 공유해주세요</div>
-
-                <button className="w-[100px] h-[100px] absolute top-[860px] right-[400px]">
-                    <img src={picAdd} alt="picAdd" />
-                </button>
-
-                <div className="absolute top-[990px] right-[80px] font-bold text-[#D9D9D9]">해시태그를 추가하면 다른 유저에게 레시피 노출이 잘 돼요</div>
-
-                <input 
-                    type="text" 
-                    placeholder="태그를 입력하세요"
-                    className="rounded absolute top-[1050px] right-[72px] w-[428px] h-[43px] bg-opacity-30 p-2 border border-main-color bold"
-                />
-
-                <button className="absolute rounded top-[1200px] right-[390px] w-[110px] h-[52px] p-2 border border-main-color text-main-color text-[18px] flex items-center justify-center cursor-pointer" onClick={handleClick}>
-                  {view ? "공개" : "비공개"}
-                </button>
-
-                <button className="absolute rounded top-[1200px] right-[70px] w-[300px] h-[52px] p-2 bg-main-color border border-main-color text-white text-bold text-[18px] flex items-center justify-center cursor-pointer">
-                    등록하기
-                </button>
                  
-              
+                <p className="font-semibold text-gray-600 mb-4">해시태그를 추가해 레시피를 알려보세요</p>
+
+                <input
+                    type="text"
+                    placeholder="태그를 입력하세요"
+                    className="w-full p-3 mb-4 border rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-main-color"
+                    style={{ fontSize: '14px' }}
+                />
+
+                <div className="flex justify-between mb-4">
+                    <button className="w-1/4 h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-dashed border-gray-400">
+                        <img src={picAdd} alt="Add" className="w-12 h-12" />
+                    </button>
+                </div>
+
+                <div className="flex justify-between mb-4">
+                    <button
+                        className="w-[45%] p-3 border border-main-color text-main-color font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-main-color"
+                        onClick={handleClick}
+                        style={{ fontSize: '14px' }}
+                    >
+                        {view ? "공개" : "비공개"}
+                    </button>
+
+                    <button className="w-[45%] p-3 bg-main-color text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-main-color" style={{ fontSize: '14px' }}>
+                        등록하기
+                    </button>
+                </div>
+                <Footer/>
             </div>
-        </div>
+      
     );
 }
 

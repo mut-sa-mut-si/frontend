@@ -4,6 +4,8 @@ import loginLine from '../../assets/img/loginLine.png';
 import kakaoImg from '../../assets/img/kakao.png';
 import googleImg from '../../assets/img/google.png'
 import axios from "axios";
+import Footer from "../../components/footer";
+import Header from "../../components/Layout";
 
 
 function Login() {
@@ -46,7 +48,8 @@ function Login() {
   //구글
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen ">
+    <div className="relative w-[50vw] h-[932px]  max-w-[512px] bg-white shadow-lg rounded-lg p-6 mb-[70px] mt-[90px] flex-grow">
+      
       <div className="text-2xl font-bold mb-4 mt-[50px] ">
         회원가입하기
       </div>
@@ -68,6 +71,7 @@ function Login() {
           <img src={googleImg} alt="Google"  />
         </button>
       </div>
+    
     </div>
   );
 }
