@@ -17,7 +17,7 @@
 
 # File management rule
 ```
-Java 파일 이외에는 절대 업로드 하지 않습니다.
+JavaScipt, Style 파일 이외에는 절대 업로드 하지 않습니다.
 ```
 
 # Git commit convention
