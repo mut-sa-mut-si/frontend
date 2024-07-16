@@ -9,9 +9,8 @@
       <td><a href="https://github.com/seohyun09"><img src="https://github.com/seohyun09.png" width="100" /></a></td>
     </tr>
     <tr>
-      <td align="center">고민석</td>
-      <td align="center">염아연</td>
-      <td align="center">임준식</td>
+      <td align="center">김태영</td>
+      <td align="center">이서현</td>
     </tr>
   </table>
 </div> </br> </br> </br>
