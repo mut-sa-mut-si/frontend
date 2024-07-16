@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //0(home)
 
@@ -14,21 +14,17 @@ import Login from './pages/user/login';
 import HealthWrite from './pages/health/healthwrite';
 
 function App() {
-  return (
-    <Router>
-      <div className="flex flex-col items-center min-h-screen bg-gray-100">
- 
-        
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/health/write" element={<HealthWrite />} />
-            {/* Add more routes for other pages */}
-          </Routes>
-        </div>
-  
-      
-    </Router>
-  );
+    return (
+        <Router>
+            <div className='flex flex-col items-center min-h-screen bg-gray-100'>
+                <Routes>
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/health/write' element={<HealthWrite />} />
+                    {/* Add more routes for other pages */}
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
