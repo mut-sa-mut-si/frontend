@@ -9,6 +9,11 @@ import Footer from './components/footer';
 
 //1(user)
 import Login from './pages/user/login';
+import Mypage from './pages/user/mypage';
+import MySubscription from './pages/user/mySubscription';
+import Subscription from './pages/user/subscription';
+import Cancellation from './pages/user/cancellation';
+import Search from './pages/user/search';
 
 //2(write)
 import HealthWrite from './pages/health/healthwrite';
@@ -22,7 +27,12 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/health/write" element={<HealthWrite />} />
-            {/* Add more routes for other pages */}
+            <Route path='/mypage' element={<Mypage/>}/>
+            <Route path='/mysubscription' element={<MySubscription/>}/>
+
+            <Route path='/subscription' element={<Subscription/>}/>
+            <Route path='/cancellation' element={<Cancellation/>}/>
+            <Route path='/search' element={<Search/>}/>
           </Routes>
         </div>
   
