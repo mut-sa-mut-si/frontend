@@ -10,8 +10,6 @@ function Login() {
 
   let api = 'http://27.96.134.123:8080';
   // 카카오
-  const code = window.location.search;
-
   const KakaoLogin = async () => {
     const accessToken = localStorage.getItem("token");
     try {

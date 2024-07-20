@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //0(home)
 
@@ -19,6 +19,7 @@ import Search from './pages/user/search';
 import HealthWrite from './pages/health/healthwrite';
 
 function App() {
+
   return (
     <Router>
       <div className="flex flex-col items-center min-h-screen bg-gray-100">
@@ -39,6 +40,9 @@ function App() {
       
     </Router>
   );
+
+
+
 }
 
 export default App;
