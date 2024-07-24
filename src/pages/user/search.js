@@ -18,7 +18,7 @@ function Search(){
 
   //검색어 추가
   const handleAddKeyword = (text) => {
-    if(keywords.length < 4){
+    if(keywords.length < 4&&text.length<=5){
       console.log('text', text)
       const newKeyword = {
           text: text,

@@ -4,7 +4,9 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'main-color': '#FFBE98',
+                'main-color': '#0E7B46',
+                'customGreen': '#0E7B46',
+        'customGray': '#A9A9A9',
             },
             margin: {
                 'custom-left': '267px',
