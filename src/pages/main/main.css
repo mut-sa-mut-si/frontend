@@ -1,0 +1,21 @@
+
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  /* Hide the Side component on smaller screens */
+
+  
+  /* Make sure the ³×¸ðÄ­ is positioned properly on smaller screens */
+  @media (max-width: 768px) {
+    .fixed {
+      left: 0;
+    }
+  }
+  

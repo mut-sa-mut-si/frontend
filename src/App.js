@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -6,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Layout';
 import Footer from './components/footer';
+import Main from './pages/main/main';
 
 //1(user)
 import Login from './pages/user/login';
@@ -16,7 +16,11 @@ import Cancellation from './pages/user/cancellation';
 import Search from './pages/user/search';
 
 //2(write)
-import HealthWrite from './pages/health/healthwrite';
+import Write from './pages/recipe/write';
+
+
+//3(payment)
+import Payment from './pages/payment/payments';
 
 function App() {
 
@@ -27,13 +31,16 @@ function App() {
         
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/health/write" element={<HealthWrite />} />
+            <Route path="/health/write" element={<Write />} />
             <Route path='/mypage' element={<Mypage/>}/>
             <Route path='/mysubscription' element={<MySubscription/>}/>
-
+            <Route path="/redirect" element={<Login />} />
             <Route path='/subscription' element={<Subscription/>}/>
             <Route path='/cancellation' element={<Cancellation/>}/>
             <Route path='/search' element={<Search/>}/>
+
+            <Route path='/payments' element={<Payment/>}/>
+            <Route path='/main' element={<Main/>}/>
           </Routes>
         </div>
   

@@ -1,26 +1,42 @@
-import React, { useEffect } from "react";
-import naverImg from '../../assets/img/naver.png';
+// login.js
+import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import loginLine from '../../assets/img/loginLine.png';
 import kakaoImg from '../../assets/img/kakao.png';
-import googleImg from '../../assets/img/google.png'
 import axios from "axios";
 
 
 function Login() {
-
-  let api = 'http://27.96.134.123:8080';
   // 카카오
-  const KakaoLogin = async () => {
-    const accessToken = localStorage.getItem("token");
-    try {
-      const response = await axios.get(`${api}/api/v1/login/kakao`,{
-        Authorization: `Bearer ${accessToken}`
-      });
-      window.location.href = response.data.loginUrl;
-    } catch (error) {
-      console.error('에러가 발생했습니다!', error);
-    }
+  const location = useLocation();
+  const [hasFetched, setHasFetched] = useState(false);
+
+  const KakaoLogin = () => {
+    window.location.href = "https://kauth.kakao.com/oauth/authorize?redirect_uri=http://localhost:3000/redirect&client_id=e3743c41d0df1be9ef7bdc6790434cde&response_type=code";
   };
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const code = query.get('code');
+
+    if (code) {
+      // 여기에 백엔드로 코드 보내기 로직 추가
+      axios.get(`http://27.96.134.123:8080/api/v1/login/kakao/redirect?code=${code}`)
+        .then((response) => {
+            console.log(response);
+            const jwt = response.headers['authorization']; // 소문자로 변경
+            if (jwt) {
+              localStorage.setItem('jwt', jwt);
+              console.log('JWT Token:', jwt);
+              setHasFetched(true); // 요청 완료 상태 업데이트
+              }
+        })
+        .catch(error => {
+          console.error('JWT를 가져오는데 실패했습니다!', error);
+          setHasFetched(true); // 에러 발생 시에도 상태 업데이트
+        });
+    }
+  }, [location]);
 
 
   return (
