@@ -15,8 +15,10 @@ import Subscription from './pages/user/subscription';
 import Cancellation from './pages/user/cancellation';
 import Search from './pages/user/search';
 
-//2(write)
+//2(recipe)
 import Write from './pages/recipe/write';
+import RecipeList from './pages/recipe/recipe_list';
+import RecipeDetail from './pages/recipe/recipe_detail';
 
 
 //3(payment)
@@ -41,6 +43,8 @@ function App() {
 
             <Route path='/payments' element={<Payment/>}/>
             <Route path='/main' element={<Main/>}/>
+            <Route path='/recipeList' element={<RecipeList/>}/>
+            <Route path='/recipeDetail/id' element={<RecipeDetail/>}/>
           </Routes>
         </div>
   

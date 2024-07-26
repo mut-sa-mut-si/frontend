@@ -21,13 +21,14 @@ function Login() {
 
     if (code) {
       // 여기에 백엔드로 코드 보내기 로직 추가
-      axios.get(`http://27.96.134.123:8080/api/v1/login/kakao/redirect?code=${code}`)
+      axios.get(`http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080/api/v1/login/kakao/redirect?code=${code}`)
         .then((response) => {
             console.log(response);
-            const jwt = response.headers['authorization']; // 소문자로 변경
+            const jwt = response.data;// 소문자로 변경
+
             if (jwt) {
               localStorage.setItem('jwt', jwt);
-              console.log('JWT Token:', jwt);
+              console.log('JWT', jwt);
               setHasFetched(true); // 요청 완료 상태 업데이트
               }
         })
