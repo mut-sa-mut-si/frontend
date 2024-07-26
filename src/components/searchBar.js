@@ -35,7 +35,7 @@ function SearchBar({onAddKeyword}){
       <input
         type="text"
         placeholder="검색어를 입력하세요..."
-        className={`w-full mr-80 p-3 mb-4 border rounded s focus:outline-none text-bold focus:ring-2 bg-[#FFE5D6]  font-bold focus:ring-main-color text-[#969696] ${hasKeyword ? 'pl-8' : ''}`}
+        className={`w-[400px] mr-[30px] p-3 mb-4 border rounded-[15px] focus:outline-none text-bold focus:ring-2 bg-[#E7F2EC]  font-bold focus:ring-[#56C08C] text-[#969696] ${hasKeyword ? 'pl-8' : ''}`}
         style={{ fontSize: '14px' }}
         value={keyword}
         onChange={handleKeyword}

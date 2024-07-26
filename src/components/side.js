@@ -37,6 +37,7 @@ function Side() {
       }, [location]);
   return (
     <div className="fixed w-screen h-screen bg-white ">
+          <div className="absolute w-[500px] h-[500px] bg-green-400 ml-[-600px]  rounded-full blur-3xl opacity-50 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
         <div className="w-28 h-28 mt-4 ml-4">
         <img src={Logo} alt='Logo' /> 
         </div>
@@ -45,16 +46,16 @@ function Side() {
             새로운 나를 위한
         </div>
 
-        <div className="text-[60px] mt-4 font-bold text-transparent ml-8 bg-clip-text bg-gradient-to-r from-customGreen to-customGreen">
+        <div className="text-[45px] mt-4 font-bold text-transparent ml-8 bg-clip-text bg-gradient-to-r from-customGreen to-customGreen">
             자기 관리 레시피 플랫폼
         </div>
 
-        <div className="text-[30px] mt-4 text-customGray ml-8 ml-indent">
+        <div className="text-[25px] mt-4 text-customGray ml-8 ml-indent">
             일일히 찾아다니지 않아도 괜찮아요
             
         </div>
 
-        <div className="text-[30px] text-customGray ml-8 ml-indent">
+        <div className="text-[25px] text-customGray ml-8 ml-indent">
            
             나만의 레시피를 만들어보세요!
         </div>
@@ -71,7 +72,10 @@ function Side() {
            
             카카오톡으로 회원가입 없이 그룸을 이용할 수 있어요
         </div>
-    
+        <div className="absolute w-[500px] h-[500px] ml-[550px] mt-[400px] bg-[#25CAAC] rounded-full blur-3xl opacity-50 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+
+
+
     </div>
   );
 }
