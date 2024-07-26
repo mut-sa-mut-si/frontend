@@ -95,15 +95,16 @@ function Write() {
         recipe: {
             title: '',
             category: '',
+            tag:'',
             content: '',
             isPublic: true,
-            hashtags: [],
+           
         },
-        tag: ''
+        
     });
 
-    const { recipe, tag } = groupBuyingRequestDto;
-    const { title, category, content, isPublic } = recipe;
+    const { recipe } = groupBuyingRequestDto;
+    const { title, category, content, tag} = recipe;
 
     const onChange = (e) => {
         const { value, name } = e.target;
@@ -116,12 +117,7 @@ function Write() {
         }));
     };
 
-    const handleTagChange = (e) => {
-        setGroupBuyingRequestDto(prevState => ({
-            ...prevState,
-            tag: e.target.value
-        }));
-    };
+   
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
@@ -158,13 +154,22 @@ function Write() {
         } else if (images.length === 0) {
             alert("사진을 업로드 해주세요");
         } else {
-            const dataToSend = {
-                recipe: {
-                    ...recipe,
-                    hashtags: hashtags.map(tag => ({ content: tag }))
-                }
-            };
 
+          
+          const {recipe } = groupBuyingRequestDto;
+
+           
+   
+           // `tag`를 제외한 `recipe` 객체 생성
+           const { tag, ...recipeWithoutTag } = recipe;
+
+           // `hashtags`를 `recipeWithoutTag` 안에 포함시킵니다.
+           recipeWithoutTag.hashtags = hashtags.map(tag => ({ content: tag }));
+   
+           // 최종 데이터 구조를 `dataToSend`에 저장합니다.
+           const dataToSend = { recipe: recipeWithoutTag };
+      
+      
             console.log(dataToSend);
            
 
@@ -172,20 +177,24 @@ function Write() {
             images.forEach((image) => {
                 form.append('images', image);
             });
-            form.append('groupBuyingRequestDto', new Blob([JSON.stringify(dataToSend)], {
-                type: "application/json"
-            }));
+            form.append('recipe', JSON.stringify(dataToSend));
 
+            console.log(dataToSend);
         
-            const token = localStorage.getItem('jwt');
-            console.log('저장된 JWT 토큰:', token); // 토큰 값 확인
+           // 토큰 값 확인
 
-            
-            const headers = {
-              'Content-Type': 'multipart/form-data',
-              'Authorization': `${localStorage.getItem('jwt')}`,
-          };
-          
+        // JWT 토큰을 localStorage에서 가져오기
+      const token = localStorage.getItem('jwt');
+
+      const cleanToken = token ? token.replace('Token: ', '') : '';
+
+      // 헤더 설정
+      const headers = {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `${cleanToken}`, // 'Token: ' 제거된 JWT 토큰
+      };
+
+      console.log('저장된 JWT 토큰:', cleanToken); // 수정된 토큰 값 확인
             axios.post(`${api}/api/v1/recipes`, form, { headers })
             
                 .then(function (response) {
@@ -299,7 +308,7 @@ function Write() {
                                     onKeyDown={handleKeyDown}
                                     placeholder={hashtags.length === 0 ? "엔터를 입력하여 태그를 등록해주세요" : ""}
                                     name="tag"
-                                    onChange={handleTagChange}
+                                    onChange={onChange}
                                     value={tag}
                                     className="w-full p-3 mb-4 border rounded-[30px] bg-[#E7F2EC]  focus:outline-none focus:ring-2 focus:ring-[#56C08C]"
                                     style={{ fontSize: '14px' }}
