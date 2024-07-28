@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const ChatPopup = ({ isOpen, onRequestClose, category }) => {
+const ChatPopup = ({ isOpen, onRequestClose, category, }) => {
   const popupRef = useRef();
   const navigate = useNavigate();
   const { memberId } = useParams(); // memberId 받아옴
-
+  console.log(memberId);
   const handleClickOutside = (event) => {
     if (popupRef.current && !popupRef.current.contains(event.target)) {
       onRequestClose();
@@ -36,7 +36,7 @@ const ChatPopup = ({ isOpen, onRequestClose, category }) => {
     try {
       const response = await axios.post(`http://${api}/api/v1/chats`, {}, {
         params: {
-          memberId: 1,
+          memberId: 2,
           category: finalCategory,
         },
         headers: {
@@ -78,7 +78,7 @@ const ChatPopup = ({ isOpen, onRequestClose, category }) => {
       }}
     >
       <div className="text-center mt-6">
-        <h2 className="font-bold text-[24px] mb-28">{`${1}님과의 1:1 채팅방에 입장하시겠어요?`}</h2>
+        <h2 className="font-bold text-[24px] mb-28">{`${2}님과의 1:1 채팅방에 입장하시겠어요?`}</h2>
         <button
           onClick={handleJoinChat}
           className=" px-10 py-2 text-white w-[300px] text-[20px] font-bold h-14 bg-[#56C08C] rounded-[20px]"

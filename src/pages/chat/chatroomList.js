@@ -80,7 +80,7 @@ function ChatroomList() {
               <button
                 key={chatroom.id}
                 className="flex items-center p-4 mb-4 bg-[#EDF7F2] rounded-[20px] w-full text-left"
-                onClick={() => openChatRoom(chatroom.id, chatroom.member.id)}
+                onClick={() => openChatRoom(chatroom.id)}
               >
                 <img src={profile} alt="avatar" className="w-10 h-10 rounded-full mr-4" />
                 <div>
