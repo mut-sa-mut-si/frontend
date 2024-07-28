@@ -4,7 +4,7 @@ import Sidebar from "../../components/sidebar";
 import Back from '../../assets/img/back_.png';
 import styled from 'styled-components';
 import numcomment from '../../assets/img/numcomment.png';
-
+import ChatPopup from "../../components/chat_popup";
 import {FaStar} from 'react-icons/fa';
 import imgDetail from '../../assets/img/img_detail.png';
 import Review from "../../components/review";
@@ -32,10 +32,19 @@ function RecipeDetail(){
     const Array = [0,1,2,3,4];
     const [review, setReview] = useState('');
     const [reviewList, setReviewList] = useState([]);
-
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const saveReview = e => {
         setReview(e.target.value);
     }
+
+    const buttonClick = () => {
+        setIsModalOpen(true);
+      };
+    
+      const closeModal = () => {
+        setIsModalOpen(false);
+      };
+    
 
     const pushReviewList = () => {
         if(review.trim()){
@@ -87,7 +96,7 @@ function RecipeDetail(){
 
         
         <div className="font-bold text-[18px] flex items-center justify-center w-28 h-12 mt-4 ml-[350px] border bg-[#E7F2EC] rounded-[10px]">
-          <button className="w-full h-full flex items-center justify-center">
+          <button onClick={buttonClick} className="w-full h-full flex items-center justify-center">
             1:1채팅
           </button>
         </div>
@@ -145,7 +154,7 @@ function RecipeDetail(){
                         등록
                     </button>
                 </div>
-
+                <ChatPopup isOpen={isModalOpen} onRequestClose={closeModal} />
 
 
         </div>
