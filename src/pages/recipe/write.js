@@ -4,7 +4,7 @@ import back from '../../assets/img/back_.png';
 import axios from "axios";
 import styled from 'styled-components';
 import ImgUpload from "../../components/imgUpload";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import Side from "../../components/side";
 import Sidebar from "../../components/sidebar";
 
@@ -73,38 +73,26 @@ const TagInputContainer = styled.div`
   }
 `;
 
-
 function Write() {
     const [view, setView] = useState(true);
-    const [contents, setContent] = useState('');
-    const [hashtags, setTags] = useState([]);
-
-    // 이미지 업로드
-    const [images, setPostImage] = useState([]); // 업로드된 이미지 저장
-    const [imgsrc, setImgsrc] = useState([]);
-
-    function handleImg(selectedImgs) {
-        setPostImage(selectedImgs);
-        setImgsrc(Array.from(selectedImgs).map(file => URL.createObjectURL(file)));
-    }
-
-    let api = 'http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
+    const [contents, setContents] = useState('');
+    const [hashtags, setHashtags] = useState([]);
+    const [images, setImages] = useState([]);
+    const [imgSrc, setImgSrc] = useState([]);
     const navigate = useNavigate();
 
     const [groupBuyingRequestDto, setGroupBuyingRequestDto] = useState({
         recipe: {
             title: '',
             category: '',
-            tag:'',
+            tag: '',
             content: '',
             isPublic: true,
-           
         },
-        
     });
 
     const { recipe } = groupBuyingRequestDto;
-    const { title, category, content, tag} = recipe;
+    const { title, category, content, tag } = recipe;
 
     const onChange = (e) => {
         const { value, name } = e.target;
@@ -117,19 +105,26 @@ function Write() {
         }));
     };
 
-   
+    const api = 'http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
 
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            const newValue = content + `\n• `;
-            setContent(newValue);
-        }
+    const handleImg = (selectedImgs) => {
+        setImages(Array.from(selectedImgs));
+        setImgSrc(Array.from(selectedImgs).map(file => URL.createObjectURL(file)));
     };
 
     const handleChange = (e) => {
-        onChange(e);  // 기존 onChange 함수 호출
-        setContent(e.target.value); 
+        const { name, value } = e.target;
+        setGroupBuyingRequestDto(prevState => ({
+            ...prevState,
+            recipe: {
+                ...prevState.recipe,
+                [name]: value,
+            },
+        }));
+
+        if (name === 'content') {
+            setContents(value);
+        }
     };
 
     const handleCategoryChange = (category) => {
@@ -137,74 +132,38 @@ function Write() {
             ...prevState,
             recipe: {
                 ...prevState.recipe,
-                category
-            }
+                category,
+            },
         }));
     };
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        if (title.length === 0) {
-            alert("제목을 입력해주세요");
-        } else if (category.length === 0) {
-            alert("카테고리를 선택해주세요");
-        } else if (content.length === 0) {
-            alert("글을 입력해주세요");
-        } else if (images.length === 0) {
-            alert("사진을 업로드 해주세요");
-        } else {
-
-          
-          const {recipe } = groupBuyingRequestDto;
-
-           
-   
-           // `tag`를 제외한 `recipe` 객체 생성
-           const { tag, ...recipeWithoutTag } = recipe;
-
-           // `hashtags`를 `recipeWithoutTag` 안에 포함시킵니다.
-           recipeWithoutTag.hashtags = hashtags.map(tag => ({ content: tag }));
-   
-           // 최종 데이터 구조를 `dataToSend`에 저장합니다.
-           const dataToSend = { recipe: recipeWithoutTag };
-      
-      
-            console.log(dataToSend);
-           
-
-            const form = new FormData();
-            images.forEach((image) => {
-                form.append('images', image);
-            });
-            form.append('recipe', JSON.stringify(dataToSend));
-
-            console.log(dataToSend);
-        
-           // 토큰 값 확인
-
-        // JWT 토큰을 localStorage에서 가져오기
-      const token = localStorage.getItem('jwt');
-
-      const cleanToken = token ? token.replace('Token: ', '') : '';
-
-      // 헤더 설정
-      const headers = {
-        'Content-Type': 'multipart/form-data',
-        'Authorization': `${cleanToken}`, // 'Token: ' 제거된 JWT 토큰
-      };
-
-      console.log('저장된 JWT 토큰:', cleanToken); // 수정된 토큰 값 확인
-            axios.post(`${api}/api/v1/recipes`, form, { headers })
-            
-                .then(function (response) {
-                    console.log(response);
-                    alert("등록되었습니다");
-                    navigate('/search');
-                }).catch(function (error) {
-                    console.log(error);
-                });
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            setContents(contents + '\n• ');
         }
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (tag.trim() !== '') {
+                const newTags = [...hashtags, tag.trim()];
+                setHashtags(newTags);
+                setGroupBuyingRequestDto(prevState => ({
+                    ...prevState,
+                    recipe: {
+                        ...prevState.recipe,
+                        tag: '',
+                    },
+                }));
+            }
+        }
+    };
+
+    const removeTag = (tagIdx) => {
+        const newTags = hashtags.filter((_, idx) => idx !== tagIdx);
+        setHashtags(newTags);
     };
 
     const handleClick = () => {
@@ -213,45 +172,68 @@ function Write() {
             ...prevState,
             recipe: {
                 ...prevState.recipe,
-                isPublic: !view
-            }
+                isPublic: !view,
+            },
         }));
     };
 
-  
+    const onSubmit = async (e) => {
+        e.preventDefault();
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            if (tag.trim() !== '') {
-                const newTags = [...hashtags, tag.trim()];
-                setTags(newTags);
-                setGroupBuyingRequestDto(prevState => ({
-                    ...prevState,
-                    recipe: {
-                        ...prevState.recipe,
-                        hashtags: newTags
-                    },
-                    tag: ''
-                }));
-            }
+        if (title.length === 0) {
+            alert("제목을 입력해주세요");
+            return;
+        }
+        if (category.length === 0) {
+            alert("카테고리를 선택해주세요");
+            return;
+        }
+        if (content.length === 0) {
+            alert("글을 입력해주세요");
+            return;
+        }
+        if (images.length === 0) {
+            alert("사진을 업로드 해주세요");
+            return;
+        }
+
+        const dataToSend = {
+            recipe: {
+                title,
+                content,
+                category,
+                isPublic: view,
+                hashtags: hashtags.map(tag => ({ content: tag })),
+            },
+            images: []
+        };
+
+        const formData = new FormData();
+        formData.append('recipe', new Blob([JSON.stringify(dataToSend.recipe)], { type: "application/json" }));
+
+        images.forEach(img => {
+            formData.append('images', img);
+        });
+
+        const token = localStorage.getItem('jwt');
+
+        const cleanToken = token ? token.replace('Token: ', '') : '';
+        try {
+            const response = await axios.post(`${api}/api/v1/recipes`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization':  `${cleanToken}`,
+                },
+            });
+            console.log(response);
+            alert("등록되었습니다");
+            navigate('/search');
+        } catch (error) {
+            console.error(error);
+            alert("등록 중 오류가 발생했습니다.");
         }
     };
 
-    // 태그 삭제
-    const removeTag = (tagIdx) => {
-        const newTags = hashtags.filter((_, idx) => idx !== tagIdx);
-        setTags(newTags);
-        setGroupBuyingRequestDto(prevState => ({
-            ...prevState,
-            recipe: {
-                ...prevState.recipe,
-                hashtags: newTags
-            }
-        }));
-    };
-
-   
     return (
         <div className="relative w-screen h-screen overflow-hidden">
             <Side />

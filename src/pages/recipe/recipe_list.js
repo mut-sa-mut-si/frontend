@@ -9,7 +9,7 @@ import ChatPopup from "../../components/chat_popup";
 
 function RecipeList() {
   const [selected, setSelected] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -17,13 +17,6 @@ function RecipeList() {
     setSelected(type);
   };
 
-  const buttonClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <div className="relative w-screen h-screen overflow-hidden">
@@ -59,12 +52,12 @@ function RecipeList() {
         </div>
 
         <div className="items-center justify-center w-200 h-[300px] mt-[39px] rounded-[20px] bg-[#E7F2EC] ">
-          <button onClick={buttonClick}>
+          <button >
             운동 전 스트레칭, 그렇게 하는 거 아니에요
           </button>
         </div>
 
-        <ChatPopup isOpen={isModalOpen} onRequestClose={closeModal} />
+       
       </div>
 
       <Sidebar />
