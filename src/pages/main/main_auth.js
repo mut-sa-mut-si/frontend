@@ -6,8 +6,8 @@ import SliderRecommend from "../../components/slide_recommend";
 import "./main.css"; // CSS 파일이 필요한 경우
 import Side from "../../components/side";
 
-import mainIcon from '../../assets/img/main_icon.png';
-import mainLogin from '../../assets/img/mainLogin.png';
+import grwmy from '../../assets/img/grwmy.png';
+import afterLogin from '../../assets/img/afterLogin.png';
 import SliderReview from "../../components/slide_review";
 
 
@@ -23,7 +23,7 @@ function Main() {
       
     const mainData = async () => {
       try {
-        const response = await axios.get(`http://${api}/api/v1/main/unauthentication`, {
+        const response = await axios.get(`http://${api}/api/v1/main/authentication`, {
             headers: {
               'Authorization': `${cleanToken}`,
             },
@@ -52,23 +52,25 @@ console.log(maindata)
     <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
       {/* 초록색 박스 */}
       <div className="absolute top-0 left-0 w-full h-[340px] bg-[#24A064] rounded-[30px] p-6">
+        
         <div className="text-white text-[28px] mt-8 font-base">
-          그룸에는
+          {maindata.profileMemberName} 님,
         </div>
+        
         <div className="text-white text-[32px] mt-2 font-bold">
-          {maindata.totalRecipeCount} 개의
+          그룸과 함께 하신 지 
         </div>
         <div className="text-white text-[28px] mt-2 font-base">
-          특별한 레시피가 있어요
+          {maindata.joinDate}일 됐어요
         </div>
 
         <div className="mt-[-140px] ml-[340px] absolute w-28 h-28">
-      <img src={mainIcon} alt="mainIcon" />
+      <img src={grwmy} alt="mainIcon" />
       </div>
 
       <div className="mt-[20px] ml-[7px] absolute w-[450px] h-[102px]">
         <button>
-      <img src={mainLogin} alt="mainLogin" />
+      <img src={afterLogin} alt="mainLogin" />
       </button>
       </div>
 
