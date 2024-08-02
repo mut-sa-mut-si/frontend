@@ -14,6 +14,7 @@ const Chatroom = () => {
   // URL에서 채팅방 ID를 가져옴
   const { id } = useParams();
   const roomId = id;
+  const [isSending, setIsSending] = useState(false);
   const navigate = useNavigate();
   
 
@@ -35,9 +36,8 @@ const Chatroom = () => {
   const cleanToken = token ? token.replace('Token: ', '') : '';
 
   useEffect(() => {
-    connect();
     fetchMessages();
-    // 컴포넌트 언마운트 시 웹소켓 연결 해제
+    connect();
     return () => disconnect();
   }, [roomId]);
 
@@ -61,7 +61,7 @@ const Chatroom = () => {
   };
 
 
-  // 기존 채팅 메시지를 서버로부터 가져오는 함수
+ 
   const fetchMessages = () => {
     axios
       .get(`http://${api}/api/v1/chats/${id}`, {
@@ -71,42 +71,44 @@ const Chatroom = () => {
      
       })
       .then((response) => {
-        console.log("메시지 목록", response.data);
-        console.log(id)
+ 
         const { chats } = response.data;
         setMemberId(response.data.meMember.id);
        
         setMessages(Array.isArray(chats) ? chats : []); // chats가 배열인지 확인
-        fetchMessages();
+       
 
       })
       .catch((error) => console.error("Failed to fetch chat messages.", error));
   };
 
+  fetchMessages();
 
-  const connect = () => {
-    const socket = new SockJS(`http://${api}/connect`);
-    stompClient.current = Stomp.over(socket);
-    stompClient.current.connect({ Authorization: `${cleanToken}` }, (frame) => {
-      console.log('Connected:', frame);
-      stompClient.current.subscribe(`/chats/${roomId}`, (message) => {
-        const newMessage = JSON.parse(message.body);
-        console.log('Received:', newMessage);
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
-      });
-    }, (error) => {
-      console.error('WebSocket error:', error);
+
+const connect = () => {
+  const socket = new SockJS(`http://${api}/connect`);
+  stompClient.current = Stomp.over(socket);
+  stompClient.current.connect({ Authorization: `${cleanToken}` }, (frame) => {
+    console.log('Connected:', frame);
+    stompClient.current.subscribe(`/chats/${roomId}`, (message) => {
+      const newMessage = JSON.parse(message.body);
+      console.log('Received:', newMessage);
+
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
     });
-  };
-  
+  }, (error) => {
+    console.error('WebSocket error:', error);
+  });
+};
 
-console.log(memberId);
+
   // 새 메시지를 보내는 함수
   const sendMessage = () => {
-    if (stompClient.current && stompClient.current.connected && message) {
+    if (stompClient.current && stompClient.current.connected && message.trim() && !isSending) {
+      setIsSending(true);  // 로딩 상태로 설정
       const messageObj = {
         memberId: memberId,
-        message: message,
+        message: message.trim(),
       };
       console.log('Sending message:', messageObj);
       stompClient.current.send(
@@ -114,19 +116,23 @@ console.log(memberId);
         { Authorization: `${cleanToken}` },
         JSON.stringify(messageObj)
       );
+     
       setMessage(""); // 입력 필드 초기화
-      console.log("Sent message:", messageObj);
       fetchMessages();
+      console.log("Sent message:", messageObj);
+      setTimeout(() => {
+        setIsSending(false); // 로딩 상태 해제
+      }, 500); // 500ms 후에 로딩 상태 해제
     } else {
-      console.error("Failed to send message. WebSocket client is not connected or message is empty.");
+      console.error("Failed to send message. WebSocket client is not connected, message is empty, or already sending.");
     }
   };
-  
-  console.log(memberId);
-  console.log(message);
+
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      event.preventDefault(); // Enter 키의 기본 동작(줄 바꿈)을 방지합니다.
       sendMessage();
+      setMessage("");
     }
   };
 
@@ -172,6 +178,7 @@ console.log(memberId);
           <button
             className='w-12 h-12'
             onClick={sendMessage}
+            disabled={isSending} 
           >
               <img src={SendImg} alt="SendImg" />
           </button>

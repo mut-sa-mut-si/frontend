@@ -6,9 +6,8 @@ const HistoryContainer = styled.div`
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-
   padding: 16px;
-  margin-top: 100px;
+  margin-top: 40px;
 `;
 
 const HeaderContainer = styled.div`
@@ -26,13 +25,12 @@ const Title = styled.h2`
 const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  overflow-x: auto;  /* 가로 스크롤 추가 */
-  white-space: nowrap;  /* 요소들이 가로로 나열되도록 설정 */
+  overflow-x: auto;
+  white-space: nowrap;
 `;
 
 const KeywordContainer = styled.div`
   display: inline-flex;
-   /* 세로 배치 설정 */
   justify-content: space-between;
   align-items: center;
   padding: 8px;
@@ -41,7 +39,6 @@ const KeywordContainer = styled.div`
   width: 360px;
 `;
 
-
 const Keyword = styled.span`
   font-size: 14px;
   font-weight: bold;
@@ -49,12 +46,15 @@ const Keyword = styled.span`
 
 const RemoveButton = styled.button`
   color: gray;
-   font-weight: bold;
+  font-weight: bold;
   cursor: pointer;
-  margin-left: 8px;  /* 버튼과 텍스트 사이에 간격 추가 */
+  margin-left: 8px;
 `;
 
-function History({ keywords, onRemoveKeyword, onClearKeywords }) {
+
+
+function History({ keywords, onRemoveKeyword }) {
+  console.log(keywords)
   if (keywords.length === 0) {
     return <HistoryContainer>최근 검색된 기록이 없습니다.</HistoryContainer>;
   }
@@ -66,7 +66,7 @@ function History({ keywords, onRemoveKeyword, onClearKeywords }) {
       <ListContainer>
         {keywords.map(({ id, text }) => (
           <KeywordContainer key={id}>
-            <img src={recent} alt="recent"className='w-8 h-8' />
+            <img src={recent} alt="recent" className='w-8 h-8' />
             <Keyword>{text}</Keyword>
             <RemoveButton onClick={() => onRemoveKeyword(id)}>X</RemoveButton>
           </KeywordContainer>

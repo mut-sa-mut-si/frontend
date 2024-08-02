@@ -2,17 +2,17 @@ import React, { useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const ChatPopup = ({ isOpen, onRequestClose, category, }) => {
+const ChatPopup = ({ isOpen, onRequestClose, category, detail, memberId}) => {
   const popupRef = useRef();
   const navigate = useNavigate();
-  const { memberId } = useParams(); // memberId 받아옴
+
   console.log(memberId);
   const handleClickOutside = (event) => {
     if (popupRef.current && !popupRef.current.contains(event.target)) {
       onRequestClose();
     }
   };
- 
+ console.log(detail)
   useEffect(() => {
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
@@ -31,12 +31,18 @@ const ChatPopup = ({ isOpen, onRequestClose, category, }) => {
   const cleanToken = token ? token.replace('Token: ', '') : '';
 
   console.log('JWT Token:', cleanToken);
-  const finalCategory = category || 'SKIN';
+  const finalCategory = detail.category || category;
+  const finalMemberId = detail.member ? detail.member.id : memberId;
+
+
+
+  console.log(detail.category);
+  console.log(finalMemberId)
   const handleJoinChat = async () => {
     try {
       const response = await axios.post(`http://${api}/api/v1/chats`, {}, {
         params: {
-          memberId: 2,
+          memberId: finalMemberId,
           category: finalCategory,
         },
         headers: {
@@ -76,18 +82,20 @@ const ChatPopup = ({ isOpen, onRequestClose, category, }) => {
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
         zIndex: 1000
       }}
-    >
+    >   {detail.member && (
       <div className="text-center mt-6">
-        <h2 className="font-bold text-[24px] mb-28">{`${2}님과의 1:1 채팅방에 입장하시겠어요?`}</h2>
+        <h2 className="font-bold text-[24px] mb-28">{detail.member.name}님과의 1:1 채팅방에 입장하시겠어요?</h2>
         <button
           onClick={handleJoinChat}
-          className=" px-10 py-2 text-white w-[300px] text-[20px] font-bold h-14 bg-[#56C08C] rounded-[20px]"
+          className="px-10 py-2 text-white w-[300px] text-[20px] font-bold h-14 bg-[#56C08C] rounded-[20px]"
         >
           입장하기
         </button>
       </div>
-    </div>
-  );
+    )}
+  </div>
+);
 };
+
 
 export default ChatPopup;

@@ -216,6 +216,7 @@ function Write() {
         });
 
         const token = localStorage.getItem('jwt');
+        console.log(category);
 
         const cleanToken = token ? token.replace('Token: ', '') : '';
         try {
@@ -225,7 +226,7 @@ function Write() {
                     'Authorization':  `${cleanToken}`,
                 },
             });
-            console.log(response);
+            console.log(response.data);
             alert("등록되었습니다");
             navigate('/search');
         } catch (error) {
@@ -233,7 +234,7 @@ function Write() {
             alert("등록 중 오류가 발생했습니다.");
         }
     };
-
+    console.log(category);
     return (
         <div className="relative w-screen h-screen overflow-hidden">
             <Side />
@@ -247,13 +248,13 @@ function Write() {
                     </div>
                     <p className="font-semibold text-2xl ml-2 text-gray-300 mb-4">특별한 레시피를 공유해주세요</p>
                     <div className="">
-                        <button type="button" onClick={() => handleCategoryChange('피부미용')} className={`w-32 h-11 p-3 ml-2 font-semibold rounded-[30px] focus:outline-none focus:ring-2 border ${category === '피부미용' ? 'border-[#56C08C] ring-[#56C08C] bg-[#56C08C] text-white' : ''}`} style={{ fontSize: '15px' }}>
+                        <button type="button" onClick={() => handleCategoryChange('SKIN')} className={`w-32 h-11 p-3 ml-2 font-semibold rounded-[30px] focus:outline-none focus:ring-2 border ${category === 'SKIN' ? 'border-[#56C08C] ring-[#56C08C] bg-[#56C08C] text-white' : ''}`} style={{ fontSize: '15px' }}>
                             피부미용
                         </button>
-                        <button type="button" onClick={() => handleCategoryChange('헬스')} className={`w-32 h-11 p-3 ml-8 font-semibold rounded-[30px] focus:outline-none focus:ring-2 border ${category === '헬스' ? 'border-[#56C08C] ring-[#56C08C] bg-[#56C08C] text-white' : ''}`} style={{ fontSize: '15px' }}>
+                        <button type="button" onClick={() => handleCategoryChange('HEALTH')} className={`w-32 h-11 p-3 ml-8 font-semibold rounded-[30px] focus:outline-none focus:ring-2 border ${category === 'HEALTH' ? 'border-[#56C08C] ring-[#56C08C] bg-[#56C08C] text-white' : ''}`} style={{ fontSize: '15px' }}>
                             헬스
                         </button>
-                        <button type="button" onClick={() => handleCategoryChange('영양제')} className={`w-32 h-11 p-3 ml-8 font-semibold rounded-[30px] focus:outline-none border ${category === '영양제' ? 'border-[#56C08C] focus:ring-[#56C08C] bg-[#56C08C] text-white' : ''}`} style={{ fontSize: '15px' }}>
+                        <button type="button" onClick={() => handleCategoryChange('NUTRIENTS')} className={`w-32 h-11 p-3 ml-8 font-semibold rounded-[30px] focus:outline-none border ${category === 'NUTRIENTS' ? 'border-[#56C08C] focus:ring-[#56C08C] bg-[#56C08C] text-white' : ''}`} style={{ fontSize: '15px' }}>
                             영양제
                         </button>
                     </div>
