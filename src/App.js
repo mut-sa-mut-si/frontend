@@ -61,7 +61,7 @@ function App() {
           <Route path='/recipeDetail/:id' element={<RecipeDetail />} />
           <Route path='/chatroom/:id' element={<Chatroom />} />
           <Route path='/chatroom' element={<ChatroomList />} />
-          <Route path='/mymain' element={isAuthenticated ? <MymainOther />:<MymainOther/> }/>
+          <Route path='/mymain' element={isAuthenticated ? <MyMain />:<MymainOther/> }/>
           <Route path='/recipesearch' element={<RecipeSearch />} />
           <Route path='/mypage/recipes' element={<MyRecipes />} />
           <Route path='/mypage/scraps' element={<MyScraps />} />

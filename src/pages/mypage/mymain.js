@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams,useNavigate } from 'react-router-dom';
 import Side from '../../components/side';
 import styled from 'styled-components';
 import profileImg from '../../assets/img/profile.png'; // 프로필 이미지 경로 수정 필요
@@ -37,9 +38,11 @@ const MyMain = () => {
   const [userInfo, setUserInfo] = useState(null);
   const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
   const token = localStorage.getItem('jwt');
+  const { id } = useParams();
   const cleanToken = token ? token.replace('Token: ', '') : '';
 
-  /*useEffect(() => {
+  console.log(id)
+  useEffect(() => {
     const maindata = async () => {
       try {
         const response = await axios.get(`http://${api}/api/v1/members`, {
@@ -48,7 +51,7 @@ const MyMain = () => {
           },
     
         });
-
+        setUserInfo(response.data);
         console.log(response.data); // 콘솔에 받아온 데이터 전체 출력
 
       } catch (error) {
@@ -57,7 +60,7 @@ const MyMain = () => {
     };
 
     maindata();
-  }, []); // 여기에 selected 추가*/
+  }, []); // 여기에 selected 추가
 
   return (
     <div className="relative w-screen h-screen overflow-hidden">
