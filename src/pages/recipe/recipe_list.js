@@ -7,15 +7,20 @@ import iconSkin from "../../assets/img/icon_skin.png";
 import iconHealth from "../../assets/img/icon_health.png";
 import Sidebar from "../../components/sidebar";
 import { useNavigate } from 'react-router-dom';
-import {FaStar} from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 import Numcomment from "../../assets/img/numcomment.png";
 import LoginPopup from '../../components/login_popup';
 import lockIcon from "../../assets/img/lockIcon.png";
 
+
 function RecipeList() {
-  const [selected, setSelected] = useState("");
+
   const [recipes, setRecipes] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const [selected, setSelected] = useState(null);
+  const [recipe, setRecipe] = useState([]);
+
   const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
   const token = localStorage.getItem('jwt');
   const cleanToken = token ? token.replace('Token: ', '') : '';
@@ -33,27 +38,41 @@ function RecipeList() {
     }
   };
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const response = await axios.get(`http://${api}/api/v1/recipes/unauthentication`, {
-          headers: {
-            'Authorization': `${cleanToken}`,
-          },
-          params: {
-            category: selected,
-          },
-        });
+ 
 
-        console.log(response.data.recipes); // 콘솔에 받아온 데이터 전체 출력
-        setRecipes(response.data.recipes);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (selected === null) {
+          const defaultResponse = await axios.get(`http://${api}/api/v1/recipes/default-recipes/unauthentication`, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+          });
+          setRecipe(defaultResponse.data.recipes);
+        } else {
+          const response = await axios.get(`http://${api}/api/v1/recipes/unauthentication`, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+            params: {
+              category: selected,
+            },
+          });
+
+          console.log(response.data);
+          setRecipe(response.data.recipes);
+        }
+
       } catch (error) {
         console.error('There was an error', error);
       }
     };
 
-    fetchRecipes();
-  }, [selected]); // 여기에 selected 추가
+// 여기에 selected 추가
+    fetchData();
+  }, [selected]);
+
 
   return (
     <div className="relative w-screen h-screen overflow-hidden">
@@ -93,6 +112,13 @@ function RecipeList() {
             <div key={index}
               onClick={() => handleRecipeClick(recipe)}
               className="flex flex-col bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8 cursor-pointer">
+
+        <div className="items-center justify-center p-6 ">
+          {Array.isArray(recipe) && recipe.map((recipe, index) => (
+            <div key={index}
+              onClick={() => handleRecipeClick(recipe.id)}
+              className="flex flex-col  bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8">
+
               <div className="relative">
                 <img src={recipe.image} alt={`Recipe ${index}`} className="w-full h-[300px] object-cover rounded-[20px]" />
                 {console.log(`Recipe ${index} public value: `, recipe.public)}
@@ -101,10 +127,16 @@ function RecipeList() {
                     <div className="absolute top-2 left-2 w-[120px] h-[45px] bg-main-color rounded-[15px] flex items-center justify-center">
                       <img src={lockIcon} alt="잠금 아이콘" className="w-8 h-12 mr-2" />
                       <p className='font-bold text-[22px] mr-4 mt-1 text-white'>120G</p>
+
+
+                      <img src={lockIcon} alt="잠금 아이콘" className=" w-8 h-12 mr-2 " />
+                      <p className='font-bold text-[22px] mr-4 mt-1 text-white'>120G</p>
+
                     </div>
                   </div>
                 )}
               </div>
+
               <div className="mt-4 ml-4 text-lg flex font-bold">{recipe.title}</div>
               <div className="flex items-center mt-4 ml-3">
                 <img src={profile} alt="profile" className="w-8 h-8 mr-2" />
@@ -123,6 +155,11 @@ function RecipeList() {
             </div>
           ))}
         </div>
+            </div>
+          ))}
+        </div>
+
+
       </div>
 
       <Sidebar />
@@ -132,3 +169,4 @@ function RecipeList() {
 }
 
 export default RecipeList;
+
