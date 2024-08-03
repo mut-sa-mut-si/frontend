@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.button:hover {
+    background-color: #56C08C;
+    color: white;
+}

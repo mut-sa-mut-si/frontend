@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components'; // ?��?��: styled-components?�� createGlobalStyle 추�??
+import styled, { createGlobalStyle } from 'styled-components';
 import './App.css';
 
+import Main from '../../frontend/src/pages/main/main';
 import Footer from './components/footer';
-import Main from './pages/main/main'; // 로그?�� ?��
-import MainAuth from './pages/main/main_auth'; // 로그?�� ?��
+import MainAuth from './pages/main/main_auth';
 
 import Login from './pages/user/login';
+import HandleLoginInfo from './pages/user/loginInfo';
 import Mypage from './pages/user/mypage';
 import Search from './pages/user/search';
 
@@ -15,19 +16,31 @@ import Write from './pages/recipe/write';
 import RecipeListAuth from './pages/recipe/recipe_list_auth';
 import RecipeList from './pages/recipe/recipe_list';
 
+//4(qna)
+import UnLoginQnAHandler from './pages/unLoginQnA/unLoginQnAHandler';
+import UnLoginSearchPage from './pages/unLoginQnA/unLoginSearchPage';
+import UnLoginQnADetail from './pages/unLoginQnA/unLoginQnADetail';
+import QnAHandler from './pages/QnA/qnaHandler';
+import WriteQuestion from './pages/QnA/WriteQuestion';
+import MyQuestion from './pages/QnA/MyQuestion';
+import SearchPage from './pages/QnA/SearchPage';
+import OnboardingHandler from './pages/onboarding/onboardingHandler';
+import QnADetail from './pages/QnA/qnaDetail';
+
+//5(manage)
+import MyPageSub from './pages/manage/mypagesub';
+import SubPurchase from './pages/manage/subpurchase';
+
 import MyRecipes from './pages/mypage/myrecipes';
 import MyScraps from './pages/mypage/myscraps';
 import RecipeDetail from './pages/recipe/recipe_detail';
 import RecipeSearch from './pages/recipe/recipe_search';
-
-import Payment from './pages/payment/payments';
 
 import Chatroom from './pages/chat/chatroom';
 import ChatroomList from './pages/chat/chatroomList';
 
 import MyMain from './pages/mypage/mymain';
 import MymainOther from './pages/mypage/mymain_other';
-
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -43,32 +56,56 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const isAuthenticated = !!localStorage.getItem('jwt'); 
+    const isAuthenticated = !!localStorage.getItem('jwt');
+    return (
+        <Router>
+            <div className='flex flex-col items-center min-h-screen bg-gray-100'>
+                <Routes>
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/login/info' element={<HandleLoginInfo />} />
 
-  return (
-    <Router>
-      <GlobalStyle />
-      <div className="flex flex-col items-center min-h-screen bg-gray-100">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/health/write" element={<Write />} />
-          <Route path='/mypage' element={<Mypage />} />
-          <Route path="/redirect" element={<Login />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='/payments' element={<Payment />} />
-          <Route path='/main' element={isAuthenticated ? <Main /> : <Main />} />
-          <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth />: <RecipeList/>} />
-          <Route path='/recipeDetail/:id' element={<RecipeDetail />} />
-          <Route path='/chatroom/:id' element={<Chatroom />} />
-          <Route path='/chatroom' element={<ChatroomList />} />
-          <Route path='/mymain' element={isAuthenticated ? <MyMain />:<MymainOther/> }/>
-          <Route path='/recipesearch' element={<RecipeSearch />} />
-          <Route path='/mypage/recipes' element={<MyRecipes />} />
-          <Route path='/mypage/scraps' element={<MyScraps />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+
+                    <Route path='/onboarding' element={<OnboardingHandler />} />
+                    <Route path='/health/write' element={<Write />} />
+                    <Route path='/mypage' element={<Mypage />} />
+                    <Route path='/redirect' element={<Login />} />
+                    <Route path='/search' element={<Search />} />
+                    <Route path='/main' element={<Main />} />
+
+                    {/* QnA */}
+                    <Route path='/unloginqna' element={<UnLoginQnAHandler />} />
+                    <Route path='/qna/unathentication/search' element={<UnLoginSearchPage />} />
+                    <Route path='/qna/unathentication/:id' element={<UnLoginQnADetail />} />
+
+                    <Route path='/qna' element={<QnAHandler />} />
+                    <Route path='/writequestion' element={<WriteQuestion />} />
+                    <Route path='/myquestion' element={<MyQuestion />} />
+                    <Route path='/qna/search' element={<SearchPage />} />
+                    <Route path='/qna/:id' element={<QnADetail />} />
+
+                    {/* MyPage */}
+                    <Route path='managesub' element={<MyPageSub />} />
+                    <Route path='subpurchase' element={<SubPurchase />} />
+
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/health/write' element={<Write />} />
+                    <Route path='/mypage' element={<Mypage />} />
+                    <Route path='/redirect' element={<Login />} />
+                    <Route path='/search' element={<Search />} />
+                    <Route path='/main' element={isAuthenticated ? <Main /> : <Main />} />
+                    <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth /> : <RecipeList />} />
+                    <Route path='/recipeDetail/:id' element={<RecipeDetail />} />
+                    <Route path='/chatroom/:id' element={<Chatroom />} />
+                    <Route path='/chatroom' element={<ChatroomList />} />
+                    <Route path='/mymain' element={isAuthenticated ? <MymainOther /> : <MymainOther />} />
+                    <Route path='/recipesearch' element={<RecipeSearch />} />
+                    <Route path='/mypage/recipes' element={<MyRecipes />} />
+                    <Route path='/mypage/scraps' element={<MyScraps />} />
+                </Routes>
+            </div>
+        </Router>
+    );
+>>>>>>> 330ecc512d9cda7aeb23c033f9ffe91af8976355
 }
 
 export default App;
