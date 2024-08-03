@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import profile from '../assets/img/profile.png';
 import { FaStar } from 'react-icons/fa';
 import numcomment from '../assets/img/numcomment.png';
+import { useNavigate } from 'react-router-dom';
 
 function SliderRecommend({maindata}){
     const settings = {
@@ -19,7 +20,10 @@ function SliderRecommend({maindata}){
   const { recommendRecipes } = maindata || {}; // maindata가 undefined일 경우 빈 객체로 대체
 
   console.log(recommendRecipes);
-
+  const navigate = useNavigate();
+  const handleClick = (id) => {
+    navigate(`/recipeDetail/${id}`);
+  }
       return(
         <div>
             <div className="font-bold text-[24px]">
@@ -36,8 +40,10 @@ function SliderRecommend({maindata}){
         {recommendRecipes && recommendRecipes.length > 0 ? (
           recommendRecipes.map((recipe, index) => (
 
-
-            <div key={index} className="bg-white rounded-lg p-4 shadow-md">
+           
+            
+            <div key={index} className="bg-white rounded-lg p-4 shadow-md"  onClick={() => handleClick(recipe.id)}>
+           
               <img
                 src={recipe.image}
                 alt={recipe.title}

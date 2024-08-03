@@ -12,12 +12,16 @@ import SliderReview from "../../components/slide_review";
 
 
 function Main() {
-
+  const navigate = useNavigate();
   const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';  
   const token = localStorage.getItem('jwt');
   const cleanToken = token ? token.replace('Token: ', '') : '';
   console.log('JWT Token:', cleanToken);
   const [maindata, setMaindata] = useState('');
+
+  const handleClick = () => {
+    navigate(`/login`);
+  }
 
   useEffect(() => {
       
@@ -66,7 +70,7 @@ console.log(maindata)
       <img src={mainIcon} alt="mainIcon" />
       </div>
 
-      <div className="mt-[20px] ml-[7px] absolute w-[450px] h-[102px]">
+      <div className="mt-[20px] ml-[7px] absolute w-[450px] h-[102px]" onClick={() => handleClick()}>
         <button>
       <img src={mainLogin} alt="mainLogin" />
       </button>

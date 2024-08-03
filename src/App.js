@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components'; // ¼öÁ¤: styled-componentsÀÇ createGlobalStyle Ãß°¡
+import styled, { createGlobalStyle } from 'styled-components'; // ?ï¿½ï¿½?ï¿½ï¿½: styled-components?ï¿½ï¿½ createGlobalStyle ì¶”ï¿½??
 import './App.css';
 
 import Footer from './components/footer';
-import Main from './pages/main/main'; // ·Î±×ÀÎ Àü
-import MainAuth from './pages/main/main_auth'; // ·Î±×ÀÎ ÈÄ
+import Main from './pages/main/main'; // ë¡œê·¸?ï¿½ï¿½ ?ï¿½ï¿½
+import MainAuth from './pages/main/main_auth'; // ë¡œê·¸?ï¿½ï¿½ ?ï¿½ï¿½
 
 import Login from './pages/user/login';
 import Mypage from './pages/user/mypage';
@@ -15,7 +15,8 @@ import Write from './pages/recipe/write';
 import RecipeListAuth from './pages/recipe/recipe_list_auth';
 import RecipeList from './pages/recipe/recipe_list';
 
-
+import MyRecipes from './pages/mypage/myrecipes';
+import MyScraps from './pages/mypage/myscraps';
 import RecipeDetail from './pages/recipe/recipe_detail';
 import RecipeSearch from './pages/recipe/recipe_search';
 
@@ -25,8 +26,9 @@ import Chatroom from './pages/chat/chatroom';
 import ChatroomList from './pages/chat/chatroomList';
 
 import MyMain from './pages/mypage/mymain';
+import MymainOther from './pages/mypage/mymain_other';
 
-// ±Û·Î¹ú ½ºÅ¸ÀÏ ¼³Á¤
+
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'GmarketSansBold', sans-serif;
@@ -41,7 +43,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const isAuthenticated = !!localStorage.getItem('jwt'); // JWT ÅäÅ«ÀÌ ÀÖ´ÂÁö È®ÀÎ
+  const isAuthenticated = !!localStorage.getItem('jwt'); 
 
   return (
     <Router>
@@ -54,13 +56,15 @@ function App() {
           <Route path="/redirect" element={<Login />} />
           <Route path='/search' element={<Search />} />
           <Route path='/payments' element={<Payment />} />
-          <Route path='/main' element={isAuthenticated ? <MainAuth /> : <Main />} />
+          <Route path='/main' element={isAuthenticated ? <Main /> : <Main />} />
           <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth />: <RecipeList/>} />
           <Route path='/recipeDetail/:id' element={<RecipeDetail />} />
           <Route path='/chatroom/:id' element={<Chatroom />} />
           <Route path='/chatroom' element={<ChatroomList />} />
-          <Route path='/mymain' element={<MyMain />} />
+          <Route path='/mymain' element={isAuthenticated ? <MymainOther />:<MymainOther/> }/>
           <Route path='/recipesearch' element={<RecipeSearch />} />
+          <Route path='/mypage/recipes' element={<MyRecipes />} />
+          <Route path='/mypage/scraps' element={<MyScraps />} />
         </Routes>
       </div>
     </Router>

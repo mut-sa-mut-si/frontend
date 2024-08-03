@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaStar } from 'react-icons/fa';
 import profile from '../assets/img/profile.png'; // 실제 이미지 경로로 수정하세요
+import { useNavigate } from 'react-router-dom';
 
 function SliderReview({ maindata }) {
   const settings = {
@@ -17,6 +18,10 @@ function SliderReview({ maindata }) {
   const { recipeReviews } = maindata || {}; // maindata가 undefined일 경우 빈 객체로 대체
 
   console.log(recipeReviews);
+  const navigate = useNavigate();
+  const handleClick = (id) => {
+    navigate(`/recipeDetail/${id}`);
+  }
 
   return (
     <div>
@@ -27,7 +32,7 @@ function SliderReview({ maindata }) {
       <Slider {...settings}>
         {recipeReviews && recipeReviews.length > 0 ? (
           recipeReviews.map((review, index) => (
-            <div key={index} className="bg-[#E7F2EC] rounded-lg p-4 mt-8 h-[300px] shadow-md">
+            <div key={index} className="bg-[#E7F2EC] rounded-lg p-4 mt-8 h-[300px] shadow-md"  onClick={() => handleClick(review.id)}>
               <div className="flex items-center mt-4 ml-4">
                 <img
                   src={profile}

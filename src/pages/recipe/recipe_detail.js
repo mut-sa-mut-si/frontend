@@ -181,7 +181,7 @@ function RecipeDetail(){
         </div>
         <img src={numcomment} alt="numcomment" className="w-12 ml-2" />
 
-        <div className='ml-16 font-bold text-[18px] mr-2'>{detail.ratingAverage }</div>
+        <div className='ml-16 font-bold text-[18px] mt-1 mr-2'>{detail.ratingAverage }</div>
         <FaStar size='24' color='gold'/>
         </div>
 

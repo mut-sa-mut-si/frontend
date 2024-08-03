@@ -21,7 +21,7 @@ function SliderFamous({ maindata }) {
   return (
     <div>
       <div className="font-bold text-[24px]">
-        <h2> 인기있는 레시피 </h2>
+        <h2> 인기있는 레시퍼 </h2>
       </div>
       <Slider {...settings}>
         {popularRecipers && popularRecipers.length > 0 ? (
