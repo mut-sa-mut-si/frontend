@@ -15,7 +15,7 @@ function Footer() {
         navigate(`/recipeList`);
     };
 
-    const handleSearch = () => {
+    const handleSearch = () => {d
         navigate(`/search`);
     };
 

@@ -5,7 +5,6 @@ import './App.css';
 
 import Main from '../../frontend/src/pages/main/main';
 import Footer from './components/footer';
-import Main from './pages/main/main';
 import MainAuth from './pages/main/main_auth';
 
 import Login from './pages/user/login';
@@ -16,9 +15,6 @@ import Search from './pages/user/search';
 import Write from './pages/recipe/write';
 import RecipeListAuth from './pages/recipe/recipe_list_auth';
 import RecipeList from './pages/recipe/recipe_list';
-
-//3(payment)
-import Payment from './pages/payment/payments';
 
 //4(qna)
 import UnLoginQnAHandler from './pages/unLoginQnA/unLoginQnAHandler';
@@ -39,8 +35,6 @@ import MyRecipes from './pages/mypage/myrecipes';
 import MyScraps from './pages/mypage/myscraps';
 import RecipeDetail from './pages/recipe/recipe_detail';
 import RecipeSearch from './pages/recipe/recipe_search';
-
-import Payment from './pages/payment/payments';
 
 import Chatroom from './pages/chat/chatroom';
 import ChatroomList from './pages/chat/chatroomList';
@@ -73,13 +67,8 @@ function App() {
                     <Route path='/onboarding' element={<OnboardingHandler />} />
                     <Route path='/health/write' element={<Write />} />
                     <Route path='/mypage' element={<Mypage />} />
-                    <Route path='/mysubscription' element={<MySubscription />} />
                     <Route path='/redirect' element={<Login />} />
-                    <Route path='/subscription' element={<Subscription />} />
-                    <Route path='/cancellation' element={<Cancellation />} />
                     <Route path='/search' element={<Search />} />
-
-                    <Route path='/payments' element={<Payment />} />
                     <Route path='/main' element={<Main />} />
 
                     {/* QnA */}
@@ -102,7 +91,6 @@ function App() {
                     <Route path='/mypage' element={<Mypage />} />
                     <Route path='/redirect' element={<Login />} />
                     <Route path='/search' element={<Search />} />
-                    <Route path='/payments' element={<Payment />} />
                     <Route path='/main' element={isAuthenticated ? <Main /> : <Main />} />
                     <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth /> : <RecipeList />} />
                     <Route path='/recipeDetail/:id' element={<RecipeDetail />} />
