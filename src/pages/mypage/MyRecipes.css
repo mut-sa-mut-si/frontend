@@ -1,0 +1,16 @@
+/* MyRecipes.css */
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #d0d0d0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
+.animate-skeleton {
+  animation: skeleton-loading 1.5s infinite;
+}
