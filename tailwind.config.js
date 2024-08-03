@@ -5,11 +5,14 @@ module.exports = {
         extend: {
             colors: {
                 'main-color': '#0E7B46',
-                'customGreen': '#0E7B46',
-        'customGray': '#A9A9A9',
+                customGreen: '#0E7B46',
+                customGray: '#A9A9A9',
             },
             margin: {
                 'custom-left': '267px',
+            },
+            fontWeight: {
+                ultrabold: 900,
             },
         },
     },
