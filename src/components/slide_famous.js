@@ -14,14 +14,14 @@ function SliderFamous({ maindata }) {
     autoplaySpeed: 3000,
   };
 
-  const { popularRecipers } = maindata || {}; // maindataê°€ undefinedì¼ ê²½ìš° ë¹ˆ ê°ì²´ë¡œ ëŒ€ì²´
+  const { popularRecipers } = maindata || {}; // maindata°¡ undefinedÀÏ °æ¿ì ºó °´Ã¼·Î ´ëÃ¼
 
   console.log(popularRecipers);
 
   return (
     <div>
       <div className="font-bold text-[24px]">
-        <h2> ì¸ê¸°ìˆëŠ” ë ˆì‹œí”¼ </h2>
+        <h2> ÀÎ±âÀÖ´Â ·¹½ÃÇÇ </h2>
       </div>
       <Slider {...settings}>
         {popularRecipers && popularRecipers.length > 0 ? (
@@ -33,10 +33,10 @@ function SliderFamous({ maindata }) {
                 <img src={profile} alt="profile" className="w-12 h-12 ml-52" />
               </div>
               <div className="flex font-bold text-[17px]">
-                <p className="text-main-color">{recipe.recipeCount}ê°œ</p>
-                <p>ì˜ ë ˆì‹œí”¼ì—ì„œ</p>
-                <p className="text-main-color ml-4">{recipe.reviewCount}ê°œ</p>
-                <p>ì˜ í›„ê¸°ë¥¼ ë°›ì•˜ì–´ìš”</p>
+                <p className="text-main-color">{recipe.recipeCount}°³</p>
+                <p>ÀÇ ·¹½ÃÇÇ¿¡¼­</p>
+                <p className="text-main-color ml-4">{recipe.reviewCount}°³</p>
+                <p>ÀÇ ÈÄ±â¸¦ ¹Ş¾Ò¾î¿ä</p>
                 <p className="text-main-color ml-8 flex">
                   {recipe.ratingAverage} <FaStar size='12' color='gold' className="ml-2 mt-2" />
                 </p>
@@ -45,7 +45,7 @@ function SliderFamous({ maindata }) {
           ))
         ) : (
           <div className="font-bold text-[24px]">
-            <h3>ì¸ê¸° ë ˆì‹œí”¼ê°€ ì—†ìŠµë‹ˆë‹¤.</h3>
+            <h3>ÀÎ±â ·¹½ÃÇÇ°¡ ¾ø½À´Ï´Ù.</h3>
           </div>
         )}
       </Slider>

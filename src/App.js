@@ -25,6 +25,7 @@ import Chatroom from './pages/chat/chatroom';
 import ChatroomList from './pages/chat/chatroomList';
 
 import MyMain from './pages/mypage/mymain';
+import MymainOther from './pages/mypage/mymain_other';
 
 // 글로벌 스타일 설정
 const GlobalStyle = createGlobalStyle`
@@ -55,11 +56,11 @@ function App() {
           <Route path='/search' element={<Search />} />
           <Route path='/payments' element={<Payment />} />
           <Route path='/main' element={isAuthenticated ? <MainAuth /> : <Main />} />
-          <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth />: <RecipeList/>} />
+          <Route path='/recipeList' element={isAuthenticated ? <RecipeList />: <RecipeList/>} />
           <Route path='/recipeDetail/:id' element={<RecipeDetail />} />
           <Route path='/chatroom/:id' element={<Chatroom />} />
           <Route path='/chatroom' element={<ChatroomList />} />
-          <Route path='/mymain' element={<MyMain />} />
+          <Route path='/mymain' element={isAuthenticated ? <MymainOther />:<MymainOther/> }/>
           <Route path='/recipesearch' element={<RecipeSearch />} />
         </Routes>
       </div>
