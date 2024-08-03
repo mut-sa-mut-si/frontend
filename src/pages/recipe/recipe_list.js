@@ -40,6 +40,7 @@ function RecipeList() {
 
  
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -63,16 +64,13 @@ function RecipeList() {
           console.log(response.data);
           setRecipe(response.data.recipes);
         }
-
       } catch (error) {
         console.error('There was an error', error);
       }
     };
 
-// 여기에 selected 추가
     fetchData();
   }, [selected]);
-
 
   return (
     <div className="relative w-screen h-screen overflow-hidden">
@@ -107,12 +105,6 @@ function RecipeList() {
           </button>
         </div>
 
-        <div className="items-center justify-center p-6">
-          {Array.isArray(recipes) && recipes.map((recipe, index) => (
-            <div key={index}
-              onClick={() => handleRecipeClick(recipe)}
-              className="flex flex-col bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8 cursor-pointer">
-
         <div className="items-center justify-center p-6 ">
           {Array.isArray(recipe) && recipe.map((recipe, index) => (
             <div key={index}
@@ -121,13 +113,9 @@ function RecipeList() {
 
               <div className="relative">
                 <img src={recipe.image} alt={`Recipe ${index}`} className="w-full h-[300px] object-cover rounded-[20px]" />
-                {console.log(`Recipe ${index} public value: `, recipe.public)}
-                {!recipe.public && ( // 정확히 false인 경우
-                  <div className='flex'>
+                {!recipe.public && (
+                  <div className='flex '>
                     <div className="absolute top-2 left-2 w-[120px] h-[45px] bg-main-color rounded-[15px] flex items-center justify-center">
-                      <img src={lockIcon} alt="잠금 아이콘" className="w-8 h-12 mr-2" />
-                      <p className='font-bold text-[22px] mr-4 mt-1 text-white'>120G</p>
-
 
                       <img src={lockIcon} alt="잠금 아이콘" className=" w-8 h-12 mr-2 " />
                       <p className='font-bold text-[22px] mr-4 mt-1 text-white'>120G</p>
@@ -152,21 +140,19 @@ function RecipeList() {
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-            </div>
-          ))}
-        </div>
 
+            </div>
+          ))}
+        </div>
 
       </div>
+      {isPopupOpen && <LoginPopup onClose={() => setIsPopupOpen(false)} />} {/* 팝업 컴포넌트 */}
 
       <Sidebar />
-      {isPopupOpen && <LoginPopup onClose={() => setIsPopupOpen(false)} />} {/* 팝업 컴포넌트 */}
     </div>
   );
 }
 
 export default RecipeList;
+
 
