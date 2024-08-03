@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components'; // ¼öÁ¤: styled-componentsÀÇ createGlobalStyle Ãß°¡
+import styled, { createGlobalStyle } from 'styled-components'; // ï¿½ï¿½ï¿½ï¿½: styled-componentsï¿½ï¿½ createGlobalStyle ï¿½ß°ï¿½
 import './App.css';
 
 import Footer from './components/footer';
-import Main from './pages/main/main'; // ·Î±×ÀÎ Àü
-import MainAuth from './pages/main/main_auth'; // ·Î±×ÀÎ ÈÄ
+import Main from './pages/main/main'; // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½
+import MainAuth from './pages/main/main_auth'; // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 import Login from './pages/user/login';
 import Mypage from './pages/user/mypage';
@@ -26,7 +26,10 @@ import ChatroomList from './pages/chat/chatroomList';
 
 import MyMain from './pages/mypage/mymain';
 
-// ±Û·Î¹ú ½ºÅ¸ÀÏ ¼³Á¤
+import MyRecipes from './pages/mypage/myrecipes';
+import MyScraps from './pages/mypage/myscraps';
+
+// ï¿½Û·Î¹ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'GmarketSansBold', sans-serif;
@@ -41,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const isAuthenticated = !!localStorage.getItem('jwt'); // JWT ÅäÅ«ÀÌ ÀÖ´ÂÁö È®ÀÎ
+  const isAuthenticated = !!localStorage.getItem('jwt'); // JWT ï¿½ï¿½Å«ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 
   return (
     <Router>
@@ -61,6 +64,8 @@ function App() {
           <Route path='/chatroom' element={<ChatroomList />} />
           <Route path='/mymain' element={<MyMain />} />
           <Route path='/recipesearch' element={<RecipeSearch />} />
+          <Route path='/mypage/recipes' element={<MyRecipes />} />
+          <Route path='/mypage/scraps' element={<MyScraps />} />
         </Routes>
       </div>
     </Router>

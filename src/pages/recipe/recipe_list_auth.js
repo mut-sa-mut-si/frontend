@@ -7,15 +7,15 @@ import iconSkin from "../../assets/img/icon_skin.png";
 import iconHealth from "../../assets/img/icon_health.png";
 import Sidebar from "../../components/sidebar";
 import { useNavigate } from 'react-router-dom';
-import {FaStar} from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 import Numcomment from "../../assets/img/numcomment.png";
 import ChatPopup from "../../components/chat_popup";
 import lockIcon from "../../assets/img/lockIcon.png";
 
 function RecipeListAuth() {
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(null);
   const [recipe, setRecipe] = useState([]);
-  const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';  
+  const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
   const token = localStorage.getItem('jwt');
   const cleanToken = token ? token.replace('Token: ', '') : '';
   const navigate = useNavigate();
@@ -29,27 +29,36 @@ function RecipeListAuth() {
   };
 
   useEffect(() => {
-    const recipeList = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`http://${api}/api/v1/recipes/authentication`, {
-          headers: {
-            'Authorization': `${cleanToken}`,
-          },
-          params: {
-            category: selected,
-          },
-        });
-       
-        console.log(response.data);
-        setRecipe(response.data.recipes);
-        console.log(recipe)
+        if (selected === null) {
+          const defaultResponse = await axios.get(`http://${api}/api/v1/recipes/default-recipes/authentication`, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+          });
+          setRecipe(defaultResponse.data.recipes);
+        } else {
+          const response = await axios.get(`http://${api}/api/v1/recipes/authentication`, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+            params: {
+              category: selected,
+            },
+          });
+
+          console.log(response.data);
+          setRecipe(response.data.recipes);
+        }
       } catch (error) {
         console.error('There was an error', error);
       }
     };
 
-    recipeList();
-  }, [selected]); // 여기에 selected 추가
+    fetchData();
+  }, [selected]);
+
   return (
     <div className="relative w-screen h-screen overflow-hidden">
       <Side />
@@ -84,51 +93,45 @@ function RecipeListAuth() {
         </div>
 
         <div className="items-center justify-center p-6 ">
-        {Array.isArray(recipe) && recipe.map((recipe, index) => (
-            <div key={index} 
-            onClick={() => handleRecipeClick(recipe.id)} 
-            className="flex flex-col  bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8">
+          {Array.isArray(recipe) && recipe.map((recipe, index) => (
+            <div key={index}
+              onClick={() => handleRecipeClick(recipe.id)}
+              className="flex flex-col  bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8">
 
-            <div className="relative">
+              <div className="relative">
                 <img src={recipe.image} alt={`Recipe ${index}`} className="w-full h-[300px] object-cover rounded-[20px]" />
                 {!recipe.public && (
                   <div className='flex '>
                     <div className="absolute top-2 left-2 w-[120px] h-[45px] bg-main-color rounded-[15px] flex items-center justify-center">
-                    
-                  <img src={lockIcon} alt="잠금 아이콘" className=" w-8 h-12 mr-2 " />
-                  <p className='font-bold text-[22px] mr-4 mt-1 text-white'>120G</p>
-                  
-                  </div>
+
+                      <img src={lockIcon} alt="잠금 아이콘" className=" w-8 h-12 mr-2 " />
+                      <p className='font-bold text-[22px] mr-4 mt-1 text-white'>120G</p>
+
+                    </div>
                   </div>
                 )}
               </div>
 
-
-                          
-        
-                  <div className="mt-4 ml-4 text-lg flex font-bold">{recipe.title}</div>
-                    <div className="flex items-center mt-4 ml-3">
-                      <img src={profile} alt="profile" className="w-8 h-8 mr-2" />
-                      <p className="text-sm text-gray-500 ml-2">{recipe.member.name}</p>
-                      <div className="flex items-center ml-auto text-sm text-gray-500">
-                        <div className="mr-4 flex items-center">
-                          <img src={Numcomment} alt="numcomment" className="w-8 mr-2" />
-                          {recipe.reviewCount}
-                        </div>
-                        <div className="mr-4 flex items-center">
-                          <FaStar color='gold' className="mr-1 w-6 h-6" />
-                          {recipe.ratingAverage}
-                        </div>
-                      </div>
-                    </div>
-
-
-               
+              <div className="mt-4 ml-4 text-lg flex font-bold">{recipe.title}</div>
+              <div className="flex items-center mt-4 ml-3">
+                <img src={profile} alt="profile" className="w-8 h-8 mr-2" />
+                <p className="text-sm text-gray-500 ml-2">{recipe.member.name}</p>
+                <div className="flex items-center ml-auto text-sm text-gray-500">
+                  <div className="mr-4 flex items-center">
+                    <img src={Numcomment} alt="numcomment" className="w-8 mr-2" />
+                    {recipe.reviewCount}
+                  </div>
+                  <div className="mr-4 flex items-center">
+                    <FaStar color='gold' className="mr-1 w-6 h-6" />
+                    {recipe.ratingAverage}
+                  </div>
                 </div>
+              </div>
+
+            </div>
           ))}
         </div>
 
-       
       </div>
 
       <Sidebar />
