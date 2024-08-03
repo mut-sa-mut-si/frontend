@@ -1,6 +1,6 @@
 import axios from "axios";
 import Footer from "../../components/footer";
-import Header from "../../components/Layout";
+
 import React, { useEffect, useState } from "react";
 import Back from '../../assets/img/back_.png';
 import profile from '../../assets/img/profile.png';

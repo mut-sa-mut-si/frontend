@@ -1,23 +1,21 @@
-import './App.css';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import styled, { createGlobalStyle } from 'styled-components';
+import './App.css';
 
-//0(home)
-
-import Header from '../../frontend/src/components/Layout';
-import Footer from '../../frontend/src/components/footer';
 import Main from '../../frontend/src/pages/main/main';
+import Footer from './components/footer';
+import Main from './pages/main/main';
+import MainAuth from './pages/main/main_auth';
 
-//1(user)
 import Login from './pages/user/login';
 import HandleLoginInfo from './pages/user/loginInfo';
 import Mypage from './pages/user/mypage';
-import MySubscription from './pages/user/mySubscription';
-import Subscription from './pages/user/subscription';
-import Cancellation from './pages/user/cancellation';
 import Search from './pages/user/search';
 
-//2(write)
 import Write from './pages/recipe/write';
+import RecipeListAuth from './pages/recipe/recipe_list_auth';
+import RecipeList from './pages/recipe/recipe_list';
 
 //3(payment)
 import Payment from './pages/payment/payments';
@@ -37,7 +35,34 @@ import QnADetail from './pages/QnA/qnaDetail';
 import MyPageSub from './pages/manage/mypagesub';
 import SubPurchase from './pages/manage/subpurchase';
 
+import MyRecipes from './pages/mypage/myrecipes';
+import MyScraps from './pages/mypage/myscraps';
+import RecipeDetail from './pages/recipe/recipe_detail';
+import RecipeSearch from './pages/recipe/recipe_search';
+
+import Payment from './pages/payment/payments';
+
+import Chatroom from './pages/chat/chatroom';
+import ChatroomList from './pages/chat/chatroomList';
+
+import MyMain from './pages/mypage/mymain';
+import MymainOther from './pages/mypage/mymain_other';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'GmarketSansBold', sans-serif;
+  }
+
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('/assets/fonts/GmarketSansTTFBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+`;
+
 function App() {
+    const isAuthenticated = !!localStorage.getItem('jwt');
     return (
         <Router>
             <div className='flex flex-col items-center min-h-screen bg-gray-100'>
@@ -71,6 +96,22 @@ function App() {
                     {/* MyPage */}
                     <Route path='managesub' element={<MyPageSub />} />
                     <Route path='subpurchase' element={<SubPurchase />} />
+
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/health/write' element={<Write />} />
+                    <Route path='/mypage' element={<Mypage />} />
+                    <Route path='/redirect' element={<Login />} />
+                    <Route path='/search' element={<Search />} />
+                    <Route path='/payments' element={<Payment />} />
+                    <Route path='/main' element={isAuthenticated ? <Main /> : <Main />} />
+                    <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth /> : <RecipeList />} />
+                    <Route path='/recipeDetail/:id' element={<RecipeDetail />} />
+                    <Route path='/chatroom/:id' element={<Chatroom />} />
+                    <Route path='/chatroom' element={<ChatroomList />} />
+                    <Route path='/mymain' element={isAuthenticated ? <MymainOther /> : <MymainOther />} />
+                    <Route path='/recipesearch' element={<RecipeSearch />} />
+                    <Route path='/mypage/recipes' element={<MyRecipes />} />
+                    <Route path='/mypage/scraps' element={<MyScraps />} />
                 </Routes>
             </div>
         </Router>
