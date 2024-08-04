@@ -66,7 +66,7 @@ function App() {
 
 
                     <Route path='/onboarding' element={<OnboardingHandler />} />
-                    <Route path='/health/write' element={<Write />} />
+                    <Route path='/write' element={<Write />} />
                     <Route path='/mypage' element={<Mypage />} />
                     <Route path='/redirect' element={<Login />} />
                     <Route path='/search' element={<Search />} />
@@ -92,12 +92,12 @@ function App() {
                     <Route path='/mypage' element={<Mypage />} />
                     <Route path='/redirect' element={<Login />} />
                     <Route path='/search' element={<Search />} />
-                    <Route path='/main' element={isAuthenticated ? <Main /> : <Main />} />
+                    <Route path='/main' element={isAuthenticated ? <MainAuth /> : <Main />} />
                     <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth /> : <RecipeList />} />
                     <Route path='/recipeDetail/:id' element={<RecipeDetail />} />
                     <Route path='/chatroom/:id' element={<Chatroom />} />
                     <Route path='/chatroom' element={<ChatroomList />} />
-                    <Route path='/mymain' element={isAuthenticated ? <MymainOther /> : <MymainOther />} />
+                    <Route path='/mymain/:id' element={isAuthenticated ? <MymainOther /> : <MymainOther />} />
                     <Route path='/recipesearch' element={<RecipeSearch />} />
                     <Route path='/mypage/recipes' element={<MyRecipes />} />
                     <Route path='/mypage/scraps' element={<MyScraps />} />
@@ -105,7 +105,7 @@ function App() {
             </div>
         </Router>
     );
->>>>>>> 330ecc512d9cda7aeb23c033f9ffe91af8976355
+
 }
 
 export default App;

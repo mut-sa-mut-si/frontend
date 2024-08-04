@@ -7,7 +7,7 @@ import profileImg from '../../assets/img/profile.png'; // 프로필 이미지 �
 import recipeIcon from '../../assets/img/main_icon.png'; // 아이콘 이미지 경로 수정 필요
 import scrapIcon from '../../assets/img/main_scrap.png'; // 아이콘 이미지 경로 수정 필요
 import settingIcon from '../../assets/img/main_setting.png'; // 아이콘 이미지 경로 수정 필요
-import pointIcon from '../../assets/img/main_point.png'; // 아이콘 이미지 경로 수정 필요
+import alarmIcon from '../../assets/img/main_alarm.png'; // 아이콘 이미지 경로 수정 필요
 
 const ProfileImage = styled.img`
   width: 80px;
@@ -40,8 +40,22 @@ const MyMain = () => {
   const token = localStorage.getItem('jwt');
   const { id } = useParams();
   const cleanToken = token ? token.replace('Token: ', '') : '';
+  const navigate = useNavigate();
 
-  console.log(id)
+  const handleRecipeClick = () => {
+    navigate('/mypage/recipes');
+  }
+
+  const handleScrapClick = () => {
+    navigate('/mypage/scraps');
+  }
+
+  const handleSettingClick = () => {
+    navigate('/managesub');
+  }
+
+ 
+ 
   useEffect(() => {
     const maindata = async () => {
       try {
@@ -51,8 +65,8 @@ const MyMain = () => {
           },
     
         });
-        setUserInfo(response.data);
-        console.log(response.data); // 콘솔에 받아온 데이터 전체 출력
+        setUserInfo(response.data.member);
+        console.log(userInfo); // 콘솔에 받아온 데이터 전체 출력
 
       } catch (error) {
         console.error('There was an error', error);
@@ -67,37 +81,37 @@ const MyMain = () => {
     {/* 배경 디자인 컴포넌트 */}
     <Side />
 
-    <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+    <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-white shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
     <div className="flex flex-col items-center mt-20">
             <ProfileImage src={profileImg} alt="프로필 이미지" />
-            <h2 className="mt-4 font-bold text-[18px]">
+            <h2 className="mt-4  text-[18px]">
               {userInfo ? userInfo.name : '사용자 이름'}
             </h2>
             <p className="text-gray-500">
               {userInfo ? userInfo.email : '이메일'}
             </p>
             <div className="mt-12 bg-[#E7F2EC] p-4 rounded-[20px] w-full text-center">
-              <span className="font-bold">
-                {userInfo ? `${userInfo.points} 포인트` : '포인트'}
+              <span className="">
+                {userInfo ? `${userInfo.point} 포인트` : '포인트'}
               </span>
             </div>
           </div>
           <ButtonContainer className='mt-16'>
-            <Button>
+            <Button onClick={handleRecipeClick}>
               <img src={recipeIcon} alt="작성 레시피" className="w-10 h-10" />
               작성 레시피
             </Button>
-            <Button>
+            <Button onClick={handleScrapClick}>
               <img src={scrapIcon} alt="스크랩 레시피" className="w-10 h-10" />
               스크랩 레시피
             </Button>
-            <Button>
+            <Button onClick={handleSettingClick}>
               <img src={settingIcon} alt="구독 관리" className="w-10 h-10" />
               구독 관리
             </Button>
             <Button>
-              <img src={pointIcon} alt="포인트 관리" className="w-10 h-10" />
-              포인트 관리
+              <img src={alarmIcon} alt="알람" className="w-10 h-10" />
+              알람
             </Button>
           </ButtonContainer>
         </div>

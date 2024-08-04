@@ -9,7 +9,7 @@ const LoginPopup = ({ onClose }) => {
       navigate('/login');
     };
   return (
-    <div    style={{
+    <div style={{
         position: 'fixed',
         width: '400px',
         height: '300px',

@@ -13,6 +13,7 @@ import imgDetail from "../../assets/img/img_detail.png";
 import Review from "../../components/review";
 import scrapTrue from "../../assets/img/scrapTrue.png";
 import scrapFalse from "../../assets/img/scrapFalse.png";
+import MymainOther from '../mypage/mymain_other';
 
 const ReviewContainer = styled.div`
   
@@ -50,6 +51,14 @@ function RecipeDetail(){
   const navigate = useNavigate();
     console.log('JWT Token:', cleanToken);
 
+    useEffect(() => {
+      const localScrapStatus = localStorage.getItem(`scrapStatus-${id}`);
+      if (localScrapStatus) {
+        setIsScraped(localScrapStatus === 'true');
+      }
+      recipeDetail();
+    }, [id]);
+    
     const saveReview = e => {
         setReview(e.target.value);
     }
@@ -104,6 +113,9 @@ function RecipeDetail(){
         setScore(star);
         setRating(index + 1);
     }
+    const handleProfileClick = (memberId) => {
+      navigate(`/mymain/${memberId}`);
+    };
 
     //상세조회
     const recipeDetail = async () => {
@@ -127,27 +139,26 @@ function RecipeDetail(){
 
 
 
-  const toggleScrap = async () => {
-    try {
-      if (isScraped) {
-        await axios.delete(`http://${api}/api/v1/recipes/${id}/scraps`, {
-          headers: {
-            'Authorization': `${cleanToken}`,
-          },
-        });
-      } else {
-        await axios.post(`http://${api}/api/v1/recipes/${id}/scraps`, {}, {
-          headers: {
-            'Authorization': `${cleanToken}`,
-          },
-        });
+    const toggleScrap = async () => {
+      try {
+        if (isScraped) {
+          await axios.delete(`http://${api}/api/v1/recipes/${id}/scraps`, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+          });
+        } else {
+          await axios.post(`http://${api}/api/v1/recipes/${id}/scraps`, {}, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+          });
+        }
+        setIsScraped(!isScraped); // 스크랩 상태를 토글
+      } catch (error) {
+        console.error('There was an error toggling the scrap status', error);
       }
-      setIsScraped(!isScraped);
-      console.log(isScraped)
-    } catch (error) {
-      console.error('There was an error toggling the scrap status', error);
     }
-  };
 
     return(
 <div className="relative w-screen h-screen overflow-hidden">
@@ -179,8 +190,10 @@ function RecipeDetail(){
         <div className="font-bold text-[18px] flex items-center justify-between h-12 mt-4 rounded-[10px] px-2">
   {detail.member && (
     <>
+     <div onClick={() => handleProfileClick(detail.member.id)}>
       <img src={profile} alt="profile" className="w-12 h-12" />
       <span className='mr-52'>{detail.member.name}</span>
+      </div>
     </>
   )}
   <button onClick={buttonClick} className="flex items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]">
