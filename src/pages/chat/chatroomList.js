@@ -51,29 +51,7 @@ function ChatroomList() {
         <div className="p-6 h-auto">
           <div className="text-2xl font-bold">채팅</div>
           <div className="flex justify-center mt-4">
-            <button
-              className={`w-28 h-12 font-bold flex items-center justify-center rounded-[20px] border ${selected === "skin" ? "border-[#56C08C]" : "border-gray-300"}`}
-              onClick={() => handleClick("skin")}
-            >
-              <img src={iconSkin} alt="mainIcon" className="mr-4" />
-              <div className="ml-8 absolute">피부</div>
-            </button>
-
-            <button
-              className={`w-28 h-12 font-bold flex ml-4 items-center justify-center rounded-[20px] border ${selected === "health" ? "border-[#56C08C]" : "border-gray-300"}`}
-              onClick={() => handleClick("health")}
-            >
-              <img src={iconHealth} alt="mainIcon" className="mr-2" />
-              헬스
-            </button>
-
-            <button
-              className={`w-28 h-12 font-bold flex ml-4 items-center justify-center rounded-[20px] border ${selected === "medicine" ? "border-[#56C08C]" : "border-gray-300"}`}
-              onClick={() => handleClick("medicine")}
-            >
-              <img src={iconMedicine} alt="mainIcon" className="mr-2" />
-              영양제
-            </button>
+         
           </div>
           <div className="mt-6 h-auto">
             {chatrooms.map((chatroom) => (
