@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 // Import images
@@ -15,10 +15,11 @@ const api = axios.create({
     baseURL: 'http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080/',
 });
 
-function SubPurchase() {
+function SubPurchase({ name }) {
     const [data, setData] = useState('');
     const [pay, setPay] = useState('1개월 결제');
     const [totalAmount, setTotalAmount] = useState(1, 900);
+    const { id } = useParams();
     const token = localStorage.getItem('jwt');
     const cleanToken = token ? token.replace('Token: ', '') : '';
     const navigate = useNavigate();
@@ -35,6 +36,7 @@ function SubPurchase() {
         }
 
         const requestBody = {
+            memberId: { id },
             itemName: pay,
             totalAmount: totalAmount,
         };
@@ -65,7 +67,7 @@ function SubPurchase() {
                 <div className='flex items-center justify-center mb-10'>
                     <img src={grwmProfile} alt='Profile' className='w-1/3 h-1/5 mr-2' />
                     <p className='text-2xl font-bold'>
-                        <span className='text-green-600'>멋사멋시</span>님 구독하기
+                        <span className='text-green-600'>{name}</span>님 구독하기
                     </p>
                 </div>
                 <div
@@ -92,7 +94,7 @@ function SubPurchase() {
                         <p className='font-bold text-lg '>1년 결제</p>
 
                         <p>
-                            <span className='line-through mr-2'>₩22,800</span>
+                            <span className='line-through text-xs mr-2'>₩22,800</span>
                             <span className='font-bold'>₩20,000</span>/년
                         </p>
                     </div>
