@@ -11,6 +11,9 @@ import ChatPopup from "../../components/chat_popup";
 import {FaStar} from 'react-icons/fa';
 import imgDetail from "../../assets/img/img_detail.png";
 import Review from "../../components/review";
+import scrapTrue from "../../assets/img/scrapTrue.png";
+import scrapFalse from "../../assets/img/scrapFalse.png";
+import MymainOther from '../mypage/mymain_other';
 
 const ReviewContainer = styled.div`
   
@@ -38,13 +41,24 @@ function RecipeDetail(){
     const Array = [0,1,2,3,4];
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0); // 별점 값
-    const [reviewList, setReviewList] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isScraped, setIsScraped] = useState(false);
     const [memberId, setMemberId] = useState(null); // memberId 상태 추가
     const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';  
     const token = localStorage.getItem('jwt');
     const cleanToken = token ? token.replace('Token: ', '') : '';
+
+  const navigate = useNavigate();
     console.log('JWT Token:', cleanToken);
+
+    useEffect(() => {
+      const localScrapStatus = localStorage.getItem(`scrapStatus-${id}`);
+      if (localScrapStatus) {
+        setIsScraped(localScrapStatus === 'true');
+      }
+      recipeDetail();
+    }, [id]);
+    
     const saveReview = e => {
         setReview(e.target.value);
     }
@@ -99,6 +113,9 @@ function RecipeDetail(){
         setScore(star);
         setRating(index + 1);
     }
+    const handleProfileClick = (memberId) => {
+      navigate(`/mymain/${memberId}`);
+    };
 
     //상세조회
     const recipeDetail = async () => {
@@ -109,6 +126,7 @@ function RecipeDetail(){
           },
         });
         console.log(response.data);
+        setIsScraped(response.data.scraped); 
         setDetail(response.data);
       } catch (error) {
         console.error('There was an error', error);
@@ -119,6 +137,29 @@ function RecipeDetail(){
       recipeDetail();
     }, []);
 
+
+
+    const toggleScrap = async () => {
+      try {
+        if (isScraped) {
+          await axios.delete(`http://${api}/api/v1/recipes/${id}/scraps`, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+          });
+        } else {
+          await axios.post(`http://${api}/api/v1/recipes/${id}/scraps`, {}, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+          });
+        }
+        setIsScraped(!isScraped); // 스크랩 상태를 토글
+      } catch (error) {
+        console.error('There was an error toggling the scrap status', error);
+      }
+    }
+
     return(
 <div className="relative w-screen h-screen overflow-hidden">
       {/* 배경 디자인 컴포넌트 */}
@@ -127,8 +168,11 @@ function RecipeDetail(){
       <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
       <div className="flex items-center  justify-between">
                 <button className="w-6 h-6 mr-2 mb-4">
-                    <img src={Back} alt="Back" />
+                    <img src={Back} alt="Back" onClick={() => navigate(-1)}/>
                 </button>
+                <button onClick={toggleScrap} className="w-10 h-10">
+            <img src={isScraped ? scrapTrue : scrapFalse} alt="Scrap Icon" className="w-full h-full"/>
+          </button>
         </div>
       
             <div >
@@ -146,8 +190,10 @@ function RecipeDetail(){
         <div className="font-bold text-[18px] flex items-center justify-between h-12 mt-4 rounded-[10px] px-2">
   {detail.member && (
     <>
+     <div onClick={() => handleProfileClick(detail.member.id)}>
       <img src={profile} alt="profile" className="w-12 h-12" />
       <span className='mr-52'>{detail.member.name}</span>
+      </div>
     </>
   )}
   <button onClick={buttonClick} className="flex items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]">
