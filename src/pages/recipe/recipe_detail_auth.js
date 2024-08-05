@@ -140,24 +140,28 @@ function RecipeDetailAuth(){
 
     const toggleScrap = async () => {
       try {
-        if (isScraped) {
-          await axios.delete(`http://${api}/api/v1/recipes/${id}/scraps`, {
-            headers: {
-              'Authorization': `${cleanToken}`,
-            },
-          });
-        } else {
-          await axios.post(`http://${api}/api/v1/recipes/${id}/scraps`, {}, {
-            headers: {
-              'Authorization': `${cleanToken}`,
-            },
-          });
-        }
-        setIsScraped(!isScraped); // 스크랩 상태를 토글
+          if (isScraped) {
+              await axios.delete(`http://${api}/api/v1/recipes/${id}/scraps`, {
+                  headers: {
+                      Authorization: `${cleanToken}`,
+                  },
+              });
+          } else {
+              await axios.post(
+                  `http://${api}/api/v1/recipes/${id}/scraps`,
+                  {},
+                  {
+                      headers: {
+                          Authorization: `${cleanToken}`,
+                      },
+                  }
+              );
+          }
+          setIsScraped(!isScraped); // 스크랩 상태를 토글
       } catch (error) {
-        console.error('There was an error toggling the scrap status', error);
+          console.error('There was an error toggling the scrap status', error);
       }
-    }
+  };
     const settings = {
       dots:true,
       infinite: detail.images && detail.images.length > 1,
@@ -173,14 +177,12 @@ function RecipeDetailAuth(){
       {/* 배경 디자인 컴포넌트 */}
       <Side />
 
-      <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+      <div className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
       <div className="flex items-center  justify-between">
                 <button className="w-6 h-6 mr-2 mb-4">
                     <img src={Back} alt="Back" onClick={() => navigate(-1)}/>
                 </button>
-                <button onClick={toggleScrap} className="w-10 h-10">
-            <img src={isScraped ? scrapTrue : scrapFalse} alt="Scrap Icon" className="w-full h-full"/>
-          </button>
+            
         </div>
       
             <div >
@@ -241,6 +243,16 @@ function RecipeDetailAuth(){
 
         <div className='ml-16 font-bold text-[18px] mt-1 mr-2'>{detail.ratingAverage }</div>
         <FaStar size='24' color='gold'/>
+
+        <button
+                            onClick={toggleScrap}
+                            className={`ml-auto right-0 border border-[#14AE63] rounded-xl p-2 w-28 h-10 ${
+                                isScraped ? 'bg-white text-[#14AE63]' : 'bg-[#14AE63] text-white '
+                            }`}
+                        >
+                            {isScraped ? '스크랩취소' : '스크랩'}
+                            {/*<img src={isScraped ? scrapTrue : scrapFalse} alt='Scrap Icon' className='w-full h-full' /> */}
+                        </button>
         </div>
 
 

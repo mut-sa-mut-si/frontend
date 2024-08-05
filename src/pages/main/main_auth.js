@@ -18,7 +18,7 @@ function Main() {
   const cleanToken = token ? token.replace('Token: ', '') : '';
   console.log('JWT Token:', cleanToken);
   const [maindata, setMaindata] = useState('');
-
+  const navigate = useNavigate();
   useEffect(() => {
       
     const mainData = async () => {
@@ -49,7 +49,7 @@ console.log(maindata)
       {/* 배경 디자인 컴포넌트 */}
       <Side />
       
-    <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+    <div className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
     <div className='flex flex-col flxed items-center justify-between'>
         <Footer/>
         </div>

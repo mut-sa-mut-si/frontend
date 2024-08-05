@@ -10,6 +10,7 @@ import profile from '../../assets/img/profile.png';
 import { useNavigate } from 'react-router-dom';
 import {FaStar} from 'react-icons/fa';
 import Numcomment from "../../assets/img/numcomment.png";
+import lockIcon from "../../assets/img/lockIcon.png";
 import imgDetail from "../../assets/img/img_detail.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -94,14 +95,23 @@ function RecipeSearch(){
                 {searchResults.map((recipe, index) => (
                     <div key={index} onClick={() => handleRecipeClick(recipe.id)} className="flex flex-col bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8">
                         <div className="flex justify-center">
+                     
                             <img
                                 src={recipe.image || 'defaultImage.png'}
                                 alt={`Recipe ${index}`}
                                 className="w-full h-[300px] object-cover rounded-[20px]"
                                 onError={(e) => { e.target.onerror = null; e.target.src='defaultImage.png'; }}
                             />
+                           
                         </div>
+                        {!recipe.public && (
+                      <div className="absolute top-2 right-2 w-[120px] h-[45px] bg-main-color rounded-[15px] flex items-center justify-center">
+                        <img src={lockIcon} alt="잠금 아이콘" className="w-8 h-12" />
+                        <p className="font-bold text-[22px] mr-4 mt-1 text-white">120G</p>
+                      </div>
+                    )}
                         <div className="mt-4 ml-4 text-lg font-bold">{recipe.title}</div>
+                      
                         <div className="flex items-center mt-4 ml-3">
                             <img src={profile} alt="profile" className="w-8 h-8 mr-2" />
                             <div className="text-sm text-gray-500">{recipe.member.name}</div>

@@ -88,7 +88,7 @@ function App() {
 
                     {/* MyPage */}
                     <Route path='/managesub/:id' element={<ManageSub />} />
-                    <Route path='subpurchase' element={<SubPurchase />} />
+                    <Route path='subpurchase/:id' element={<SubPurchase />} />
 
                     <Route path='/login' element={<Login />} />
                     <Route path='/health/write' element={<Write />} />
@@ -96,7 +96,7 @@ function App() {
                     <Route path='/redirect' element={<Login />} />
                     <Route path='/search' element={<Search />} />
                     <Route path='/main' element={isAuthenticated ? <MainAuth /> : <Main />} />
-                    <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth /> : <RecipeList />} />
+                    <Route path='/recipeList' element={isAuthenticated ? <RecipeList /> : <RecipeList />} />
                     <Route path='/recipeDetail/:id' element={isAuthenticated ? <RecipeDetailAuth /> : <RecipeDetail/>} />
                     <Route path='/chatroom/:id' element={<Chatroom />} />
                     <Route path='/chatroom' element={<ChatroomList />} />

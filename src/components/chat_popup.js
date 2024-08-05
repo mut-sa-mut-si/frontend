@@ -52,7 +52,7 @@ const ChatPopup = ({ isOpen, onRequestClose, category, detail, memberId}) => {
       console.log('Chat room created:', response.data);
       console.log(memberId);
       onRequestClose();
-      navigate(`/chatroom/${response.data.roomId}`);
+      navigate(`/chatroom`);
     } catch (error) {
       console.error('There was an error creating the chat room!', error);
     }

@@ -84,7 +84,7 @@ function RecipeListAuth() {
     <div className="relative w-screen h-screen overflow-hidden">
       <Side />
 
-      <div className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+      <div className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-70px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
         <div className="font-bold mt-4 ml-2 text-[24px]">레시피</div>
 
                 <div className='flex justify-center mt-4 mr-[83px]'>
@@ -122,7 +122,7 @@ function RecipeListAuth() {
                 <div className='items-center justify-center p-6 '>
                 {Array.isArray(recipe) && recipe.map((recipe, index) => (
             <div key={index}
-              onClick={() => handleRecipeClick(recipe.id)}
+              onClick={() => handleRecipeClick(recipe)}
               className="flex flex-col  bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8">
 
               <div className="relative">
