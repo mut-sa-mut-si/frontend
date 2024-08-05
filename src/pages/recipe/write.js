@@ -278,7 +278,7 @@ function Write() {
                     />
                     <p className="font-semibold text-gray-600 mb-4">해시태그를 추가해 레시피를 알려보세요</p>
                     <TagInputContainer>
-                        <div>
+                        <div className="w-full">
                             {hashtags.map((tag, idx) => (
                                 <TagItem key={idx}>
                                     <span>{tag}</span>
@@ -293,7 +293,7 @@ function Write() {
                                     name="tag"
                                     onChange={onChange}
                                     value={tag}
-                                    className="w-full p-3 mb-4 border rounded-[30px] bg-[#E7F2EC]  focus:outline-none focus:ring-2 focus:ring-[#56C08C]"
+                                    className="w-[70%] p-3 mb-4 border rounded-[30px] bg-[#E7F2EC]  focus:outline-none focus:ring-2 focus:ring-[#56C08C]"
                                     style={{ fontSize: '14px' }}
                                 />
                             )}
