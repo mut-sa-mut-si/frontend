@@ -72,6 +72,7 @@ function SearchPage() {
                         <p className='text-gray-600'>{question.content}</p>
                     </div>
                 ))}
+                
             </div>
         </div>
     );

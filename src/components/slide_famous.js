@@ -1,5 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams,useNavigate } from 'react-router-dom';
 import Slider from "react-slick";
 import profile from '../assets/img/profile.png';
 import { FaStar } from 'react-icons/fa';
@@ -14,6 +16,11 @@ function SliderFamous({ maindata }) {
     autoplaySpeed: 3000,
   };
 
+  const handleProfileClick = (memberId) => {
+    navigate(`/mymain/${memberId}`);
+  };
+
+  const navigate = useNavigate();
   const { popularRecipers } = maindata || {}; // maindata가 undefined일 경우 빈 객체로 대체
 
   console.log(popularRecipers);
@@ -26,8 +33,8 @@ function SliderFamous({ maindata }) {
       <Slider {...settings}>
         {popularRecipers && popularRecipers.length > 0 ? (
           popularRecipers.map((recipe, index) => (
-            <div key={index} className="">
-              <div className="flex items-center">
+            <div key={index} className=""  >
+              <div className="flex items-center" onClick={() => handleProfileClick(recipe.member.id)}>
                 <h3 className="text-main-color font-bold text-[72px]">{recipe.rank}</h3>
                 <p className="text-[24px] font-bold ml-8">{recipe.member.name}</p>
                 <img src={profile} alt="profile" className="w-12 h-12 ml-52" />

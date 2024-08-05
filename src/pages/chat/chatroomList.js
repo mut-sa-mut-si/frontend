@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Side from "../../components/side";
 import axios from 'axios';
-import iconMedicine from "../../assets/img/icon_medicine.png";
-import iconSkin from "../../assets/img/icon_skin.png";
-import iconHealth from "../../assets/img/icon_health.png";
+import Footer from '../../components/footer';
 import profile from '../../assets/img/profile.png';
 
 function ChatroomList() {
@@ -48,7 +46,12 @@ function ChatroomList() {
     <div className="relative w-screen h-screen overflow-hidden">
       <Side />
       <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] flex flex-col overflow-hidden no-scrollbar z-10">
+      <div className='flex flex-col flxed items-center justify-between'>
+        <Footer/>
+        </div>
+       
         <div className="p-6 h-auto">
+
           <div className="text-2xl font-bold">채팅</div>
           <div className="flex justify-center mt-4">
          

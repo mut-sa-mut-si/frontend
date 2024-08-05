@@ -9,8 +9,9 @@ import Sidebar from "../../components/sidebar";
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import Numcomment from "../../assets/img/numcomment.png";
-import ChatPopup from "../../components/chat_popup";
+import PointPopup from '../../components/point_popup';
 import lockIcon from "../../assets/img/lockIcon.png";
+import Footer from '../../components/footer';
 
 function RecipeListAuth() {
   const [selected, setSelected] = useState(null);
@@ -19,14 +20,27 @@ function RecipeListAuth() {
   const token = localStorage.getItem('jwt');
   const cleanToken = token ? token.replace('Token: ', '') : '';
   const navigate = useNavigate();
+  //팝업창 클릭
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
   const handleClick = (type) => {
     setSelected(type.toUpperCase());
   };
 
-  const handleRecipeClick = (id) => {
-    navigate(`/recipeDetail/${id}`); // id에 맞는 URL로 이동
+  const handleRecipeClick = (recipe) => {
+    if (!recipe.public) {
+      setIsPopupOpen(true); // 팝업 열기
+    } else {
+      navigate(`/recipeDetail/${recipe.id}`); // id에 맞는 URL로 이동
+    }
   };
+
+  console.log(recipe)
+
+  const closePopup = () => {
+    setIsPopupOpen(false); // 팝업 닫기
+  };
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,12 +72,11 @@ function RecipeListAuth() {
 
     fetchData();
   }, [selected]);
-
   return (
     <div className="relative w-screen h-screen overflow-hidden">
       <Side />
 
-      <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+      <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-40px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
         <div className="font-bold mt-4 ml-2 text-[24px]">레시피</div>
 
         <div className="flex justify-center mt-4 mr-[83px]">
@@ -95,7 +108,7 @@ function RecipeListAuth() {
         <div className="items-center justify-center p-6 ">
           {Array.isArray(recipe) && recipe.map((recipe, index) => (
             <div key={index}
-              onClick={() => handleRecipeClick(recipe.id)}
+              onClick={() => handleRecipeClick(recipe)}
               className="flex flex-col  bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8">
 
               <div className="relative">
@@ -103,10 +116,8 @@ function RecipeListAuth() {
                 {!recipe.public && (
                   <div className='flex '>
                     <div className="absolute top-2 left-2 w-[120px] h-[45px] bg-main-color rounded-[15px] flex items-center justify-center">
-
                       <img src={lockIcon} alt="잠금 아이콘" className=" w-8 h-12 mr-2 " />
                       <p className='font-bold text-[22px] mr-4 mt-1 text-white'>120G</p>
-
                     </div>
                   </div>
                 )}
@@ -131,10 +142,11 @@ function RecipeListAuth() {
             </div>
           ))}
         </div>
-
+        <div className='flex flex-col flxed items-center justify-between'>
+          <Footer />
+        </div>
       </div>
-
-      <Sidebar />
+      {isPopupOpen && <PointPopup onClose={closePopup} />} {/* 포인트 팝업 컴포넌트 */}
     </div>
   );
 }

@@ -14,6 +14,7 @@ import imgDetail from "../../assets/img/img_detail.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Footer from "../../components/footer";
 
 function RecipeSearch(){
     const location = useLocation();
@@ -64,6 +65,9 @@ function RecipeSearch(){
         navigate(`/recipesearch?keyword=${encodeURIComponent(newKeyword)}`);
       };
     
+      const handleBackClick = () => {
+        navigate(-1);
+    };
 
    
         return (
@@ -71,9 +75,9 @@ function RecipeSearch(){
             {/* 배경 디자인 컴포넌트 */}
             <Side />
             
-            <div className="fixed top-0 left-[670px] max-w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+            <div className="fixed top-0 left-[670px] max-w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
           <div className="flex items-center  justify-between">
-                <button className="w-6 h-6 mr-2 mb-4">
+                <button className="w-8 h-8 mr-2 mb-4" onClick={handleBackClick}>
                     <img src={Back} alt="Back" />
                 </button>
                 <SearchBar onAddKeyword={handleAddKeyword}/>
@@ -84,47 +88,46 @@ function RecipeSearch(){
                <div className="text-[20px] font-bold"> (으)로 검색한 결과 </div>
                </div>
 
-                <div className="items-center justify-center w-200 h-[300px] mt-[39px] rounded-[20px] bg-[#E7F2EC] ">
-        {Array.isArray(searchResults) && searchResults.map((recipe, index) => (
-            <div key={index} 
- onClick={() => handleRecipeClick(recipe.id)} 
-            className="flex flex-col  bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8">
-                 {recipe.images.map((image, idx) => (
-    <div key={idx} className="flex justify-center">
-      <img
-        src={image}
-        alt={`Recipe ${index} - ${idx}`}
-        className="w-full h-[300px] object-cover rounded-[20px]" // 수정된 부분
-      />
-    </div>
-  ))}
-                <div className="mt-4 ml-4 text-lg font-bold">{recipe.title}</div>
-                <div className="flex items-center mt-4 ml-3">
-                  <img src={profile} alt="profile" className="w-8 h-8 mr-2" />
-                  <div className="text-sm text-gray-500">{recipe.member.name}</div>
-
-                  <div className="flex justify-end ml-52 text-sm text-gray-500">
-                 
-                  <div className="mr-4 flex items-center">
-                 <img src={Numcomment} alt="numcomment" className="w-8" />
-                 {recipe.reviewCount}
+               <div className="items-center justify-center w-200 h-[300px] mt-[39px] rounded-[20px] bg-[#E7F2EC] ">
+               {searchResults.length > 0 ? (
+            <div className="items-center justify-center w-200 h-[300px] mt-[39px] rounded-[20px] bg-[#E7F2EC] ">
+                {searchResults.map((recipe, index) => (
+                    <div key={index} onClick={() => handleRecipeClick(recipe.id)} className="flex flex-col bg-[#E7F2EC] rounded-lg shadow-md p-4 mt-8">
+                        <div className="flex justify-center">
+                            <img
+                                src={recipe.image || 'defaultImage.png'}
+                                alt={`Recipe ${index}`}
+                                className="w-full h-[300px] object-cover rounded-[20px]"
+                                onError={(e) => { e.target.onerror = null; e.target.src='defaultImage.png'; }}
+                            />
+                        </div>
+                        <div className="mt-4 ml-4 text-lg font-bold">{recipe.title}</div>
+                        <div className="flex items-center mt-4 ml-3">
+                            <img src={profile} alt="profile" className="w-8 h-8 mr-2" />
+                            <div className="text-sm text-gray-500">{recipe.member.name}</div>
+                            <div className="flex justify-end ml-52 text-sm text-gray-500">
+                                <div className="mr-4 flex items-center">
+                                    <img src={Numcomment} alt="numcomment" className="w-8" />
+                                    {recipe.reviewCount}
+                                </div>
+                                <div className="mr-4 flex items-center">
+                                    <FaStar color='gold' className="mr-1 w-6 h-6" />
+                                    {recipe.ratingAverage}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  
-                  <div className="mr-4 flex items-center">
-                  <FaStar color='gold' className="mr-1 w-6 h-6" /> 
-                  {recipe.ratingAverage}
-                </div>
-                  
-                </div>
-                </div>
-
-               
-                </div>
-          ))}
+                ))}
+            </div>
+        ) : (
+            <div className="mt-10 text-center text-lg text-gray-500">
+                검색 결과가 없습니다.
+            </div>
+        )}
+    </div>
+        <div className='flex flex-col flxed items-center justify-between'>
+        <Footer/>
         </div>
-
-
-
                 
 
 

@@ -8,6 +8,7 @@ import recipeIcon from '../../assets/img/main_icon.png'; // 아이콘 이미지 
 import scrapIcon from '../../assets/img/main_scrap.png'; // 아이콘 이미지 경로 수정 필요
 import settingIcon from '../../assets/img/main_setting.png'; // 아이콘 이미지 경로 수정 필요
 import alarmIcon from '../../assets/img/main_alarm.png'; // 아이콘 이미지 경로 수정 필요
+import Footer from '../../components/footer';
 
 const ProfileImage = styled.img`
   width: 80px;
@@ -83,6 +84,7 @@ const MyMain = () => {
 
     <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-white shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
     <div className="flex flex-col items-center mt-20">
+    <Footer/>
             <ProfileImage src={profileImg} alt="프로필 이미지" />
             <h2 className="mt-4  text-[18px]">
               {userInfo ? userInfo.name : '사용자 이름'}
@@ -114,7 +116,11 @@ const MyMain = () => {
               알람
             </Button>
           </ButtonContainer>
+
+          
+       
         </div>
+
       </div>
 
   );

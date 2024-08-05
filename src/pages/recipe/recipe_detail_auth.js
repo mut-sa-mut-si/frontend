@@ -10,7 +10,6 @@ import "slick-carousel/slick/slick.css"; // Import slick styles
 import "slick-carousel/slick/slick-theme.css";
 import profile from '../../assets/img/profile.png';
 import styled from 'styled-components';
-import LoginPopup from '../../components/login_popup';
 import numcomment from '../../assets/img/numcomment.png';
 import ChatPopup from "../../components/chat_popup";
 import {FaStar} from 'react-icons/fa';
@@ -39,7 +38,7 @@ const ReviewContainer = styled.div`
 `;
 
 
-function RecipeDetail(){
+function RecipeDetailAuth(){
     const { id } = useParams();
 
     const [detail, setDetail] = useState({});
@@ -59,22 +58,9 @@ function RecipeDetail(){
   const navigate = useNavigate();
     console.log('JWT Token:', cleanToken);
 
-  
-    const handleClick = () => {
-      if (token) {
-          setIsLoginPopupOpen(true);
-      }
-  };
-
-
-
-  const closeLoginPopup = () => {
-      setIsLoginPopupOpen(false);
-  };
-
-    const [isLoginPopupOpen, setIsLoginPopupOpen] = React.useState(false);
-
-  
+    const saveReview = e => {
+        setReview(e.target.value);
+    }
 
     const buttonClick = () => {
         setIsModalOpen(true);
@@ -222,7 +208,7 @@ function RecipeDetail(){
       </div>
     </>
   )}
-  <button onClick={handleClick} className="flex items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]">
+  <button onClick={buttonClick} className="flex items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]">
     1:1채팅
   </button>
 </div>
@@ -265,17 +251,36 @@ function RecipeDetail(){
 
 
 
+        <div className="flex mt-4 ml-4">
+            {Array.map((el, index) => (
+                <FaStar
+                key={index}
+                size='24'
+                color={score[index] ? 'gold' : 'gray'}
+                onClick={()=> starScore(index)}
+                 className="cursor-pointer"
+                ></FaStar>
+            ))}
+        </div>
+
+
      
 
-        <div className="flex flex-col mt-4">
-        <input
-                    onClick={handleClick}
-                    readOnly
-                    className="font-bold text-[15px] flex items-center justify-center w-full h-16 border bg-[#E7F2EC] rounded-[30px] p-2 "
-                    placeholder="로그인 후 후기를 남겨보세요"
-                />
-                {isLoginPopupOpen && <LoginPopup onClose={closeLoginPopup} />}
-                   
+        <div className="flex mt-4">
+                    <input
+                        className="font-bold text-[15px] flex items-center justify-center w-[400px] h-16 border bg-[#E7F2EC] rounded-[30px] p-2 mr-4"
+                        type="text"
+                        placeholder="후기를 입력하세요"
+                        onChange={saveReview}
+                        value={review}
+                        onKeyDown={handleKeyPress}
+                    />
+                    <button 
+                    onClick={pushReviewList}
+                    
+                    className="w-28 h-16 text-white font-bold bg-[#56C08C] rounded-[30px]">
+                        등록
+                    </button>
                 </div>
                 </div> 
 
@@ -292,4 +297,4 @@ function RecipeDetail(){
     )
 }
 
-export default RecipeDetail;
+export default RecipeDetailAuth;

@@ -11,7 +11,7 @@ import { FaStar } from 'react-icons/fa';
 import Numcomment from "../../assets/img/numcomment.png";
 import LoginPopup from '../../components/login_popup';
 import lockIcon from "../../assets/img/lockIcon.png";
-
+import Footer from '../../components/footer';
 
 function RecipeList() {
 
@@ -76,7 +76,7 @@ function RecipeList() {
     <div className="relative w-screen h-screen overflow-hidden">
       <Side />
 
-      <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+      <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-40px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
         <div className="font-bold mt-4 ml-2 text-[24px]">레시피</div>
 
         <div className="flex justify-center mt-4 mr-[83px]">
@@ -144,11 +144,12 @@ function RecipeList() {
             </div>
           ))}
         </div>
-
+ <div className='flex flex-col flxed items-center justify-between'>
+        <Footer/>
+        </div>
       </div>
       {isPopupOpen && <LoginPopup onClose={() => setIsPopupOpen(false)} />} {/* 팝업 컴포넌트 */}
 
-      <Sidebar />
     </div>
   );
 }

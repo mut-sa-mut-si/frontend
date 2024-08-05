@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 // Import images
@@ -22,7 +22,10 @@ function SubPurchase() {
     const token = localStorage.getItem('jwt');
     const cleanToken = token ? token.replace('Token: ', '') : '';
     const navigate = useNavigate();
+    const { id } = useParams();
 
+ 
+    console.log(id)
     const handleBack = () => {
         navigate(-1);
     };

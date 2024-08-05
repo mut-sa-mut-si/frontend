@@ -7,6 +7,7 @@ import profile from '../../assets/img/profile.png';
 import { FaStar } from 'react-icons/fa';
 import Back from '../../assets/img/back_.png';
 import Subpopup from '../../components/sub_popup'; // 팝업 컴포넌트 임포트
+import Footer from '../../components/footer';
 
 const ProfileContainer = styled.div`
   display: flex;
@@ -72,21 +73,10 @@ const MymainOther = () => {
   };
 
   const handleClosePopup = () => {
-    setIsPopupOpen(false); // 팝업 닫기
+    navigate(`/subpurchase/${id}`);
   };
 
-  const handleCancelSubscription = async () => {
-    // 구독 취소 로직 구현
-    try {
-      await axios.post(`http://${api}/api/v1/members/${id}/unsubscribe`, {}, {
-        headers: {
-          'Authorization': `${cleanToken}`,
-        },
-      });
-      setIsSubscribed(false);
-    } catch (error) {
-      console.error('구독 취소 중 오류가 발생했습니다', error);
-    }
+  const handleCancelSubscription =()=> {
     setIsPopupOpen(false); // 팝업 닫기
   };
 
@@ -94,7 +84,12 @@ const MymainOther = () => {
     <div className="relative w-screen h-screen overflow-hidden">
       <Side />
       <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+
+        <div className='flex flex-col flxed items-center justify-between'>
+        <Footer/>
+        </div>
         <div className="flex items-center justify-between">
+       
           <button onClick={() => navigate(-1)}>
             <img src={Back} alt="Back" className='w-8 h-8' />
           </button>
@@ -114,15 +109,14 @@ const MymainOther = () => {
           </ProfileContainer>
         )}
       </div>
-      <div className=' flex items-center '>
       {isPopupOpen && (
         <Subpopup
-          name={userInfo ? userInfo.name : ''}
+          name={userInfo?.name}
+          id = {userInfo?.id}
           onClose={handleClosePopup}
           onCancel={handleCancelSubscription}
         />
       )}
-      </div>
     </div>
   );
 }

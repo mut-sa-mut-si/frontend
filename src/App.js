@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import './App.css';
 
-import Main from '../../frontend/src/pages/main/main';
+import Main from './pages/main/main';
 import Footer from './components/footer';
 import MainAuth from './pages/main/main_auth';
 
@@ -34,6 +34,7 @@ import SubPurchase from './pages/manage/subpurchase';
 import MyRecipes from './pages/mypage/myrecipes';
 import MyScraps from './pages/mypage/myscraps';
 import RecipeDetail from './pages/recipe/recipe_detail';
+import RecipeDetailAuth from './pages/recipe/recipe_detail_auth';
 import RecipeSearch from './pages/recipe/recipe_search';
 
 import Chatroom from './pages/chat/chatroom';
@@ -70,7 +71,7 @@ function App() {
                     <Route path='/mypage' element={<Mypage />} />
                     <Route path='/redirect' element={<Login />} />
                     <Route path='/search' element={<Search />} />
-                    <Route path='/main' element={<Main />} />
+
 
                     {/* QnA */}
                     <Route path='/unloginqna' element={<UnLoginQnAHandler />} />
@@ -85,7 +86,7 @@ function App() {
 
                     {/* MyPage */}
                     <Route path='managesub' element={<MyPageSub />} />
-                    <Route path='subpurchase' element={<SubPurchase />} />
+                    <Route path='/subpurchase/:id' element={<SubPurchase />} />
 
                     <Route path='/login' element={<Login />} />
                     <Route path='/health/write' element={<Write />} />
@@ -94,10 +95,11 @@ function App() {
                     <Route path='/search' element={<Search />} />
                     <Route path='/main' element={isAuthenticated ? <MainAuth /> : <Main />} />
                     <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth /> : <RecipeList />} />
-                    <Route path='/recipeDetail/:id' element={<RecipeDetail />} />
+                    <Route path='/recipeDetail/:id' element={isAuthenticated ? <RecipeDetailAuth /> : <RecipeDetail/>} />
                     <Route path='/chatroom/:id' element={<Chatroom />} />
                     <Route path='/chatroom' element={<ChatroomList />} />
-                    <Route path='/mymain/:id' element={isAuthenticated ? <MymainOther /> : <MymainOther />} />
+                    <Route path='/mymain' element={ <MyMain />} />
+                    <Route path='/mymain/:id' element={ <MymainOther />} />
                     <Route path='/recipesearch' element={<RecipeSearch />} />
                     <Route path='/mypage/recipes' element={<MyRecipes />} />
                     <Route path='/mypage/scraps' element={<MyScraps />} />
