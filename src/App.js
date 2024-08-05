@@ -45,6 +45,8 @@ import MymainOther from './pages/mypage/mymain_other';
 
 import LoginComplete from './pages/user/loginComplete';
 
+import Notification from './pages/mypage/notification';
+
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'GmarketSansBold', sans-serif;
@@ -105,6 +107,7 @@ function App() {
                     <Route path='/recipesearch' element={<RecipeSearch />} />
                     <Route path='/mypage/recipes' element={<MyRecipes />} />
                     <Route path='/mypage/scraps' element={<MyScraps />} />
+                    <Route path='/notifications' element={<Notification />} />
                 </Routes>
             </div>
         </Router>
