@@ -86,7 +86,7 @@ function App() {
 
                     {/* MyPage */}
                     <Route path='/managesub/:id' element={<ManageSub />} />
-                    <Route path='subpurchase' element={<SubPurchase />} />
+                    <Route path='subpurchase/:id' element={<SubPurchase />} />
 
                     <Route path='/login' element={<Login />} />
                     <Route path='/health/write' element={<Write />} />
