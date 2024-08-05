@@ -30,7 +30,7 @@ function QnADetail() {
     // 데이터 불러오는 함수 분리
     const fetchQnADetail = async () => {
         try {
-            const response = await api.get(`api/v1/questions/${id}`, {
+            const response = await api.get(`api/v1/questions/${id}/authentication`, {
                 headers: {
                     'Authorization': `${cleanToken}`,
                 },
@@ -50,7 +50,7 @@ function QnADetail() {
     const handleReply = async () => {
         if (reply.trim().length > 0) {
             try {
-                await api.post(`/api/v1/questions/${id}/answers`, {
+                await api.post(`api/v1/questions/${id}/answers`, {
                     content: reply,
                 }, {
                     headers: {
@@ -80,6 +80,17 @@ function QnADetail() {
     // 뒤로가기 버튼
     const handleBack = () => {
         navigate(-1);
+    }
+
+    const handleInput = (e) => {
+        setReply(e.target.value);
+        
+        if (data.isWritten && reply.length>0 ) {
+            setReply('');
+            return (
+                <PopupQnA />
+            );
+        }
     }
 
     return (
@@ -124,7 +135,7 @@ function QnADetail() {
                         <div className="flex items-center ">
                             <input
                                 className="flex-grow bg-[#E7F2EC] rounded-full p-2 mr-2"
-                                onChange={(e) => setReply(e.target.value)}
+                                onChange={handleInput}
                                 value={reply}
                                 placeholder="답변을 입력하세요"
                             />
@@ -133,12 +144,24 @@ function QnADetail() {
                             </button>
                         </div>
                     </div>
-        
-        </div>
+                    {!data.isWritten && <PopupQnA />}        
+                    </div>
 
                 </div>
 
     );
+}
+
+function PopupQnA() {
+    return (
+        <div className='font-bold'>
+            <p>내가 작성한 질문 또는 이미 답변을 등록한 질문은</p>
+            <p><span className='text-green-300'>답변</span>을 남길 수 없어요</p>
+            <button className='bg-green-300 text-white'>
+                질문으로 돌아가기
+            </button>
+        </div>
+    )
 }
 
 export default QnADetail;

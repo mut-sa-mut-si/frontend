@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
 
 // Import images
 import grwmProfile from '../../assets/img/grwmProfile.png';
 
+// Import Component
+import LoginPopup from '../../components/login_popup';
+
 function UnLoginAwaitAnswer( {data} ) {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const navigate=useNavigate();
+    const [showLoginInfo, setShowLoginInfo] = useState(false);
+    const popupRef = useRef();
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -17,7 +20,7 @@ function UnLoginAwaitAnswer( {data} ) {
     }, [data]);
 
     const handleClick = () => {
-        navigate(`/login`);
+        setShowLoginInfo(true);
     }
 
     return (
@@ -52,6 +55,7 @@ function UnLoginAwaitAnswer( {data} ) {
                                 </button>
                             </div>
                         </div>
+                        {showLoginInfo && <LoginPopup />}
                     </div>
                 ))}
             </div>

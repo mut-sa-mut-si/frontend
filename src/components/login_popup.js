@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const LoginPopup = ({ onClose }) => {
+const LoginPopup = ({onClose}) => {
     const navigate = useNavigate();
     const popupRef = useRef();
 
     const handleLoginClick = () => {
-      navigate('/login');
+        navigate('/login');
     };
 
     const handleClickOutside = (event) => {
@@ -57,6 +57,7 @@ const LoginPopup = ({ onClose }) => {
                     <div className='text-white mt-2'>
                         으로 그룸 시작하기
                     </div>
+
                 </button>
             </div>
         </div>

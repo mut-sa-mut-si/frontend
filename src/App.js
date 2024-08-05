@@ -28,7 +28,7 @@ import OnboardingHandler from './pages/onboarding/onboardingHandler';
 import QnADetail from './pages/QnA/qnaDetail';
 
 //5(manage)
-import MyPageSub from './pages/manage/mypagesub';
+import ManageSub from './pages/manage/managesub';
 import SubPurchase from './pages/manage/subpurchase';
 
 import MyRecipes from './pages/mypage/myrecipes';
@@ -42,6 +42,8 @@ import ChatroomList from './pages/chat/chatroomList';
 
 import MyMain from './pages/mypage/mymain';
 import MymainOther from './pages/mypage/mymain_other';
+
+import LoginComplete from './pages/user/loginComplete';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -64,7 +66,7 @@ function App() {
                 <Routes>
                     <Route path='/login' element={<Login />} />
                     <Route path='/login/info' element={<HandleLoginInfo />} />
-
+                    <Route path='/logincomplete' element={<LoginComplete />} />
 
                     <Route path='/onboarding' element={<OnboardingHandler />} />
                     <Route path='/write' element={<Write />} />
@@ -85,8 +87,8 @@ function App() {
                     <Route path='/qna/:id' element={<QnADetail />} />
 
                     {/* MyPage */}
-                    <Route path='managesub' element={<MyPageSub />} />
-                    <Route path='/subpurchase/:id' element={<SubPurchase />} />
+                    <Route path='/managesub/:id' element={<ManageSub />} />
+                    <Route path='subpurchase' element={<SubPurchase />} />
 
                     <Route path='/login' element={<Login />} />
                     <Route path='/health/write' element={<Write />} />
@@ -107,7 +109,6 @@ function App() {
             </div>
         </Router>
     );
-
 }
 
 export default App;
