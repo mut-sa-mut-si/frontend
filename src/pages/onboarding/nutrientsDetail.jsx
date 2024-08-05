@@ -19,8 +19,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('vitaminA')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('vitaminA')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         비타민A
@@ -29,8 +29,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('lutein')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('lutein')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         루테인
@@ -39,8 +39,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('vitaminB')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('vitaminB')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         비타민B
@@ -52,8 +52,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('milkThistle')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('milkThistle')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         밀크씨슬
@@ -62,8 +62,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('vitaminC')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('vitaminC')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         비타민C
@@ -72,8 +72,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('vitaminD')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('vitaminD')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         비타민D
@@ -85,8 +85,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('multivitamin')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('multivitamin')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         종합비타민
@@ -95,8 +95,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('chondroitin')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('chondroitin')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         콘드로이친
@@ -105,8 +105,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('magnesium')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('magnesium')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         마그네슘
@@ -118,8 +118,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('omega3')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('omega3')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         오메가3
@@ -128,8 +128,8 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
                         onClick={() => handleSelect('lacto')}
                         className={`m-2 p-3 rounded-2xl ${
                             nutrients.includes('lacto')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         유산균
@@ -140,7 +140,7 @@ function NutrientsDetail({ nutrients, setNutrients, onNext, button }) {
             <div className='flex justify-center h-screen'>
                 <button
                     onClick={onNext}
-                    className='fixed bg-[#56C08C] bottom-20 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full'
+                    className='fixed bg-[#14AE63] bottom-40 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full hover:bg-[#0E7B46]'
                 >
                     {button}
                 </button>

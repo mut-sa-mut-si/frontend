@@ -22,7 +22,7 @@ function SkinDetail({ skin, setSkin, onNext, button }) {
         <div className='flex flex-col justify-center h-full p-4'>
             <div className='mt-5 mb-8'>
                 <h1 className='text-3xl font-ultrabold mb-2'>
-                    피부 <span className='text-[#24A064]'>타입</span>과 <span className='text-[#24A064]'>상태</span>를
+                    피부 <span className='text-[#14AE63]'>타입</span>과 <span className='text-[#14AE63]'>상태</span>를
                     알려주세요
                 </h1>
             </div>
@@ -35,8 +35,8 @@ function SkinDetail({ skin, setSkin, onNext, button }) {
                         onClick={() => handleTypeSelect(type)}
                         className={`m-2 p-3 ${
                             skin.type === type
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-32 h-16 rounded-2xl'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-32 h-16 rounded-2xl'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-32 h-16 rounded-2xl'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-32 h-16 rounded-2xl hover:bg-[#14AE63]'
                         }`}
                     >
                         {type}
@@ -62,8 +62,8 @@ function SkinDetail({ skin, setSkin, onNext, button }) {
                         onClick={() => handleConditionSelect(condition)}
                         className={`m-2 p-3 ${
                             skin.conditions && skin.conditions.includes(condition)
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         {condition}
@@ -77,8 +77,8 @@ function SkinDetail({ skin, setSkin, onNext, button }) {
                         onClick={() => handleConditionSelect(condition)}
                         className={`m-2 p-3 ${
                             skin.conditions && skin.conditions.includes(condition)
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         {condition}
@@ -89,7 +89,7 @@ function SkinDetail({ skin, setSkin, onNext, button }) {
             <div className='flex justify-center h-screen'>
                 <button
                     onClick={onNext}
-                    className='fixed bg-[#56C08C] bottom-20 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full'
+                    className='fixed bg-[#14AE63] bottom-40 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full hover:bg-[#0E7B46]'
                 >
                     {button}
                 </button>

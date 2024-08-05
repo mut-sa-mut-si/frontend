@@ -48,8 +48,10 @@ function UnLoginQnAHandler() {
                 ) : (
                     <p>Loading...</p>
                 )}
+                <div className='flex flex-col flxed items-center justify-between z-20'>
+                    <Footer />
+                </div>
             </div>
-            {/*<Footer />*/}
         </div>
     );
 }

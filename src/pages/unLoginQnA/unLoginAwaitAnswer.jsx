@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Import images
 import grwmProfile from '../../assets/img/grwmProfile.png';
@@ -9,6 +10,7 @@ import LoginPopup from '../../components/login_popup';
 function UnLoginAwaitAnswer( {data} ) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [showLoginInfo, setShowLoginInfo] = useState(false);
+    const navigate=useNavigate();
     const popupRef = useRef();
 
     useEffect(() => {
@@ -21,6 +23,10 @@ function UnLoginAwaitAnswer( {data} ) {
 
     const handleClick = () => {
         setShowLoginInfo(true);
+    }
+
+    const onHandle = (id) => {
+        navigate(`/qna/${id}`);
     }
 
     return (
@@ -37,7 +43,7 @@ function UnLoginAwaitAnswer( {data} ) {
                         className={`transition-opacity duration-500 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
                         style={{ display: index === currentIndex ? 'block' : 'none' }}
                     >
-                        <div className="mb-4 rounded-lg">
+                        <div className="mb-4 rounded-lg cursor-pointer" onClick={() => onHandle(question.id)}>
                             <div className='bg-green-100 p-4 rounded-xl'>
                                 <div className="flex items-center mb-3">
                                     <img src={grwmProfile} alt='Profile' className='w-10 h-10 rounded-full mr-3' />

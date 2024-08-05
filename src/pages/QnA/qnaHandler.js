@@ -7,6 +7,7 @@ import QnAHeader from './qnaHeader';
 import AwaitAnswer from './awaitAnswer';
 import QnAList from './qnaList';
 import Footer from '../../components/footer';
+import { useNavigate } from 'react-router-dom';
 
 const api = axios.create({
     baseURL: 'http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080/',
@@ -15,6 +16,7 @@ const api = axios.create({
 function QnAHandler() {
     const [category, setCategory] = useState('skin');
     const [data, setData] = useState(null);
+    const navigate = useNavigate();
     const token = localStorage.getItem('jwt');
     const cleanToken = token ? token.replace('Token: ', '') : '';
 
@@ -36,9 +38,9 @@ function QnAHandler() {
     }, [category]);
 
     return (
-        <div className="relative w-screen h-screen overflow-hidden">
-      <Side />
-      <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10">
+        <div className='relative w-screen h-screen overflow-hidden'>
+            <Side />
+            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10 pb-20'>
                 {/* 초록색 박스 */}
                 <div className='sticky left-0 right-0 top-0 bg-[#F9F8F8] z-20 w-full'>
                     <QnAHeader category={category} setCategory={setCategory} />
@@ -51,8 +53,10 @@ function QnAHandler() {
                 ) : (
                     <p>Loading...</p>
                 )}
+                <div className='flex flex-col flxed items-center justify-between z-20'>
+                    <Footer />
+                </div>
             </div>
-            {/*<Footer />*/}
         </div>
     );
 }

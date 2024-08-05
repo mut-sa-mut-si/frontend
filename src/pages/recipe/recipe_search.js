@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import SearchBar from "../../components/searchBar";
-import History from "../../components/history";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import SearchBar from '../../components/searchBar';
+import History from '../../components/history';
 import Back from '../../assets/img/back_.png';
-import Side from "../../components/side";
+import Side from '../../components/side';
 import { useLocation } from 'react-router-dom';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import profile from '../../assets/img/profile.png';
 import { useNavigate } from 'react-router-dom';
 import {FaStar} from 'react-icons/fa';
@@ -17,77 +17,70 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Footer from "../../components/footer";
 
-function RecipeSearch(){
+function RecipeSearch() {
     const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const keyword = params.get('keyword');
-  const navigate = useNavigate();
+    const params = new URLSearchParams(location.search);
+    const keyword = params.get('keyword');
+    const navigate = useNavigate();
 
-  const handleRecipeClick = (id) => {
-    navigate(`/recipeDetail/${id}`); // id에 맞는 URL로 이동
-  };
+    const handleRecipeClick = (id) => {
+        navigate(`/recipeDetail/${id}`); // id에 맞는 URL로 이동
+    };
 
-  const token = localStorage.getItem('jwt');
-  const cleanToken = token ? token.replace('Token: ', '') : '';
-  const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
+    const token = localStorage.getItem('jwt');
+    const cleanToken = token ? token.replace('Token: ', '') : '';
+    const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
 
-  const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
-      
         const searchKey = async () => {
-          try {
-            const response = await axios.get(`http://${api}/api/v1/search/unauthentication`, {
-                headers: {
-                  'Authorization': `${cleanToken}`,
-                },
+            try {
+                const response = await axios.get(`http://${api}/api/v1/search/unauthentication`, {
+                    headers: {
+                        Authorization: `${cleanToken}`,
+                    },
 
-                params:{
-                    keyword:keyword,
-                }
+                    params: {
+                        keyword: keyword,
+                    },
+                });
 
-          
-            });
-           
-            console.log(response.data);
-            setSearchResults(response.data.recipes)
-          
-          } catch (error) {
-            console.error('There was an error', error);
-          }
-
-        
+                console.log(response.data);
+                setSearchResults(response.data.recipes);
+            } catch (error) {
+                console.error('There was an error', error);
+            }
         };
-    
+
         searchKey();
-      }, [keyword]); 
-    
-      const handleAddKeyword = (newKeyword) => {
+    }, [keyword]);
+
+    const handleAddKeyword = (newKeyword) => {
         navigate(`/recipesearch?keyword=${encodeURIComponent(newKeyword)}`);
-      };
-    
-      const handleBackClick = () => {
+    };
+
+    const handleBackClick = () => {
         navigate(-1);
     };
 
-   
-        return (
-            <div className="relative w-screen h-screen overflow-hidden">
+    return (
+        <div className='relative w-screen h-screen overflow-hidden'>
             {/* 배경 디자인 컴포넌트 */}
             <Side />
-            
-            <div className="fixed top-0 left-[670px] max-w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
-          <div className="flex items-center  justify-between">
-                <button className="w-8 h-8 mr-2 mb-4" onClick={handleBackClick}>
-                    <img src={Back} alt="Back" />
-                </button>
-                <SearchBar onAddKeyword={handleAddKeyword}/>
+
+            <div className='fixed top-0 left-[765px] max-w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
+                <div className='flex items-center  justify-between'>
+                    <button className='w-8 h-8 mr-2 mb-4' onClick={handleBackClick}>
+                        <img src={Back} alt='Back' />
+                    </button>
+                    <SearchBar onAddKeyword={handleAddKeyword} />
                 </div>
 
-            <div className="flex mt-6 ml-4">
-                <div className="text-[20px] font-bold text-[#56C08C]">{keyword}</div>
-               <div className="text-[20px] font-bold"> (으)로 검색한 결과 </div>
-               </div>
+                <div className='flex mt-6 ml-4'>
+                    <div className='text-[20px] font-bold text-[#56C08C]'>{keyword}</div>
+                    <div className='text-[20px] font-bold'> (으)로 검색한 결과 </div>
+                </div>
 
                <div className="items-center justify-center w-200 h-[300px] mt-[39px] rounded-[20px] bg-[#E7F2EC] ">
                {searchResults.length > 0 ? (
@@ -142,11 +135,8 @@ function RecipeSearch(){
 
 
             </div>
-            </div>
-
-        )
-    
-
+        </div>
+    );
 }
 
 export default RecipeSearch;

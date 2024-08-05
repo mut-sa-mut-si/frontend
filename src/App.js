@@ -45,6 +45,8 @@ import MymainOther from './pages/mypage/mymain_other';
 
 import LoginComplete from './pages/user/loginComplete';
 
+import Notification from './pages/mypage/notification';
+
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'GmarketSansBold', sans-serif;
@@ -74,17 +76,13 @@ function App() {
                     <Route path='/redirect' element={<Login />} />
                     <Route path='/search' element={<Search />} />
 
-
                     {/* QnA */}
-                    <Route path='/unloginqna' element={<UnLoginQnAHandler />} />
-                    <Route path='/qna/unathentication/search' element={<UnLoginSearchPage />} />
-                    <Route path='/qna/unathentication/:id' element={<UnLoginQnADetail />} />
-
-                    <Route path='/qna' element={<QnAHandler />} />
                     <Route path='/writequestion' element={<WriteQuestion />} />
                     <Route path='/myquestion' element={<MyQuestion />} />
-                    <Route path='/qna/search' element={<SearchPage />} />
-                    <Route path='/qna/:id' element={<QnADetail />} />
+
+                    <Route path='/qna' element={isAuthenticated ? <QnAHandler /> : <UnLoginQnAHandler />} />
+                    <Route path='/qna/search' element={isAuthenticated ? <SearchPage /> : <UnLoginSearchPage />} />
+                    <Route path='qna/:id' element={isAuthenticated ? <QnADetail /> : <UnLoginQnADetail />} />
 
                     {/* MyPage */}
                     <Route path='/managesub/:id' element={<ManageSub />} />
@@ -96,15 +94,19 @@ function App() {
                     <Route path='/redirect' element={<Login />} />
                     <Route path='/search' element={<Search />} />
                     <Route path='/main' element={isAuthenticated ? <MainAuth /> : <Main />} />
-                    <Route path='/recipeList' element={isAuthenticated ? <RecipeList /> : <RecipeList />} />
-                    <Route path='/recipeDetail/:id' element={isAuthenticated ? <RecipeDetailAuth /> : <RecipeDetail/>} />
+                    <Route path='/recipeList' element={isAuthenticated ? <RecipeListAuth /> : <RecipeList />} />
+                    <Route
+                        path='/recipeDetail/:id'
+                        element={isAuthenticated ? <RecipeDetailAuth /> : <RecipeDetail />}
+                    />
                     <Route path='/chatroom/:id' element={<Chatroom />} />
                     <Route path='/chatroom' element={<ChatroomList />} />
-                    <Route path='/mymain' element={ <MyMain />} />
-                    <Route path='/mymain/:id' element={ <MymainOther />} />
+                    <Route path='/mymain' element={<MyMain />} />
+                    <Route path='/mymain/:id' element={<MymainOther />} />
                     <Route path='/recipesearch' element={<RecipeSearch />} />
                     <Route path='/mypage/recipes' element={<MyRecipes />} />
                     <Route path='/mypage/scraps' element={<MyScraps />} />
+                    <Route path='/notifications' element={<Notification />} />
                 </Routes>
             </div>
         </Router>

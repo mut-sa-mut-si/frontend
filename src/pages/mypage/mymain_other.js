@@ -11,12 +11,12 @@ import Footer from '../../components/footer';
 import lockIcon from '../../assets/img/lockIcon.png';
 
 const ProfileContainer = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: #E7F2EC;
-  border-radius: 15px;
-  padding: 10px 20px;
-  margin-top: 50px;
+    display: flex;
+    align-items: center;
+    background-color: #e7f2ec;
+    border-radius: 15px;
+    padding: 10px 20px;
+    margin-top: 50px;
 `;
 
 const ProfileImage = styled.img`
@@ -26,19 +26,19 @@ const ProfileImage = styled.img`
 `;
 
 const ProfileInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
 `;
 
 const SubscribeButton = styled.button`
-  background-color: #56C08C;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-left: auto;
+    background-color: #56c08c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: auto;
 `;
 const PostGrid = styled.div`
   display: grid;
@@ -94,13 +94,13 @@ const MymainOther = () => {
 
   console.log(userInfo)
 
-  const handleSubscribeClick = () => {
-    setIsPopupOpen(true); // 구독하기 버튼 클릭 시 팝업 열기
-  };
+    const handleSubscribeClick = () => {
+        setIsPopupOpen(true); // 구독하기 버튼 클릭 시 팝업 열기
+    };
 
-  const handleClosePopup = () => {
-    navigate(`/subpurchase/${id}`);
-  };
+    const handleClosePopup = () => {
+        navigate(`/subpurchase/${id}`);
+    };
 
   const handleCancelSubscription =()=> {
     setIsPopupOpen(false); // 팝업 닫기

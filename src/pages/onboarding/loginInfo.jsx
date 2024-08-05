@@ -41,10 +41,10 @@ function LoginInfo({ onNext }) {
         <div className='flex flex-col justify-center h-full p-4'>
             <div className='mt-5 mb-8'>
                 <h1 className='text-3xl font-ultrabold mb-2'>
-                    <span className='font-ultrabold text-[#24A064]'>{loginMember.member.name}</span>님
+                    <span className='font-ultrabold text-[#14AE63]'>{loginMember.member.name}</span>님
                 </h1>
                 <h1 className='text-3xl font-ultrabold mb-2'>
-                    <span className='font-ultrabold text-[#24A064]'>그룸</span>에 오신 것을 환영해요
+                    <span className='font-ultrabold text-[#14AE63]'>그룸</span>에 오신 것을 환영해요
                 </h1>
             </div>
             <div>
@@ -59,7 +59,7 @@ function LoginInfo({ onNext }) {
             <div className='flex justify-center items-center h-screen'>
                 <button
                     onClick={onNext}
-                    className='fixed bg-[#56C08C] bottom-30 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full'
+                    className='fixed bg-[#14AE63] bottom-60 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full hover:bg-[#0E7B46]'
                 >
                     다음
                 </button>

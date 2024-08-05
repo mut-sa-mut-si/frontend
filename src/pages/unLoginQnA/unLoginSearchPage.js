@@ -41,7 +41,7 @@ function SearchPage() {
 
     // 질문 항목을 클릭했을 때 선택된 질문 ID를 상태로 설정하는 함수
     const handleClick = (id) => {
-        navigate(`/qna/unathentication/${id}`);
+        navigate(`/qna/${id}`);
     };
 
     // 뒤로가기
