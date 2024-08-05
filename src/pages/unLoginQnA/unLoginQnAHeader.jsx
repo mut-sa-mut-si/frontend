@@ -10,9 +10,12 @@ import writeQuestion from '../../assets/img/questionMark.png';
 import myQuestion from '../../assets/img/myQuestion.png';
 import footerSearch from '../../assets/img/footer_search.png';
 
+// Import Component
+import LoginPopup from '../../components/login_popup';
 
 function UnLoginQnAHeader({ category, setCategory }) {
     const [keyword, setKeyword]=useState('');
+    const [showLoginInfo, setShowLoginInfo] = useState(false);
     const navigate=useNavigate();
 
     const handleSearch = () => {
@@ -22,7 +25,7 @@ function UnLoginQnAHeader({ category, setCategory }) {
     };
 
     const handleUnLogin = () => {
-        navigate(`/login`);
+        setShowLoginInfo(true);
     }
     
     return (
@@ -74,6 +77,7 @@ function UnLoginQnAHeader({ category, setCategory }) {
                     <span>영양제</span>
                 </button>
             </div>
+            {showLoginInfo && <LoginPopup />}
         </div>
     );
 }

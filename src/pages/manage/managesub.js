@@ -13,7 +13,7 @@ const api = axios.create({
     baseURL: 'http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080/',
 });
 
-function MyPageSub() {
+function ManageSub() {
     const [data, setData] = useState('');
     const [selectedSub, setSelectedSub] = useState(null);
     const [selectedSubID, setSelectedSubID] = useState(null);
@@ -26,7 +26,7 @@ function MyPageSub() {
     useEffect(() => {
         const fetchMySub = async () => {
             try {
-                const response = await api.get(`api/v1/members/${id}/subscribes`, {
+                const response = await api.get(`api/v1/main/${id}/subscribes`, {
                     headers: {
                         Authorization: `${cleanToken}`,
                     },
@@ -38,7 +38,7 @@ function MyPageSub() {
             }
         };
         fetchMySub();
-    }, []);
+    }, [id]);
 
     const handleBack = () => {
         navigate(-1);
@@ -74,7 +74,7 @@ function MyPageSub() {
                             </div>
                         ))
                     ) : (
-                        <div>No subscribers found.</div>
+                        <div>id : {id}</div>
                     )}
                 </div>
                 {selectedSub && (
@@ -100,14 +100,13 @@ function CancelSub({ name, setSelectedSub, id_1, id_2 }) {
 
     const onCancel = async () => {
         try {
-            const response = await api.delete(`api/v1/members/${id_1}/subscribes/${id_2}`, {
+            const response = await api.delete(`api/v1/main/${id_1}/subscribes/${id_2}`, {
                 headers: {
                     Authorization: `${cleanToken}`,
                 },
             });
-
             console.log('Delete ', { name });
-            setSelectedSub(null); // 다이얼로그를 닫음
+            setSelectedSub(null);
         } catch (error) {
             console.error(error);
         }
@@ -139,4 +138,4 @@ function CancelSub({ name, setSelectedSub, id_1, id_2 }) {
     );
 }
 
-export default MyPageSub;
+export default ManageSub;
