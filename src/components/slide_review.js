@@ -19,9 +19,10 @@ function SliderReview({ maindata }) {
 
   console.log(recipeReviews);
   const navigate = useNavigate();
-  const handleClick = (id) => {
-    navigate(`/recipeDetail/${id}`);
-  }
+
+  const handleClick = (recipeId) => {
+    navigate(`/recipeDetail/${recipeId}`);
+  };
 
   return (
     <div>
@@ -32,7 +33,7 @@ function SliderReview({ maindata }) {
       <Slider {...settings}>
         {recipeReviews && recipeReviews.length > 0 ? (
           recipeReviews.map((review, index) => (
-            <div key={index} className="bg-[#E7F2EC] rounded-lg p-4 mt-8 h-[300px] shadow-md"  onClick={() => handleClick(review.id)}>
+            <div key={index} className="bg-[#E7F2EC] rounded-lg p-4 mt-8 h-[300px] shadow-md" onClick={() => handleClick(review.recipe.id)}>
               <div className="flex items-center mt-4 ml-4">
                 <img
                   src={profile}
@@ -44,12 +45,12 @@ function SliderReview({ maindata }) {
                 </p>
                 
                 <div className="ml-40 flex">
-                {Array(review.rating).fill().map((_, i) => (
-                  <FaStar key={i} size='16' color='gold' className=" " />
-                ))}
+                  {Array(review.rating).fill().map((_, i) => (
+                    <FaStar key={i} size='16' color='gold' className=" " />
+                  ))}
                 </div>
               </div>
-           
+              
               <div className="mt-8 ml-6 font-bold text-[22px] text-gray-800">
                 {review.content}
               </div>

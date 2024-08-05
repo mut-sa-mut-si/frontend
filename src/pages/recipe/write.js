@@ -242,7 +242,7 @@ function Write() {
     return (
         <div className="relative w-screen h-screen overflow-hidden">
             <Side />
-            <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+            <div className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
             <button className="w-8 h-8 rounded-[30px]" onClick={handleback}>
                             <img src={back} alt="Back" />
                         </button>
