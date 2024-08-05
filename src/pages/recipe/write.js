@@ -177,6 +177,10 @@ function Write() {
         }));
     };
 
+    const handleback = () => {
+        navigate(-1);
+    }
+
     const onSubmit = async (e) => {
         e.preventDefault();
 
@@ -239,11 +243,12 @@ function Write() {
         <div className="relative w-screen h-screen overflow-hidden">
             <Side />
             <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
-                <form onSubmit={onSubmit}>
-                    <div className="flex items-center mb-6">
-                        <button className="w-8 h-8 rounded-[30px]">
+            <button className="w-8 h-8 rounded-[30px]" onClick={handleback}>
                             <img src={back} alt="Back" />
                         </button>
+                <form onSubmit={onSubmit}>
+                    <div className="flex items-center mb-6">
+                       
                         <h1 className="text-2xl font-bold ml-4 rounded-[30px]">레시피 작성</h1>
                     </div>
                     <p className="font-semibold text-2xl ml-2 text-gray-300 mb-4">특별한 레시피를 공유해주세요</p>

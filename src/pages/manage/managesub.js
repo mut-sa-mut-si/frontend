@@ -55,6 +55,16 @@ function ManageSub() {
             <Side />
             <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#FFFFFF] shadow-2xl rounded-[30px] z-10'>
                 {/* 상단 바 */}
+                <div className='absolute'>
+                {selectedSub && (
+                    <CancelSub
+                        name={selectedSub}
+                        setSelectedSub={setSelectedSub}
+                        id_1={data.memberId}
+                        id_2={selectedSubID}
+                    />
+                )}
+                </div>
                 <div className='flex items-center p-4'>
                     <img src={BackButton} onClick={handleBack} className='cursor-pointer w-6 h-6 mr-2' alt='Back' />
                     <p className='ml-4 text-lg font-bold'>구독 관리</p>
@@ -77,14 +87,7 @@ function ManageSub() {
                         <div>id : {id}</div>
                     )}
                 </div>
-                {selectedSub && (
-                    <CancelSub
-                        name={selectedSub}
-                        setSelectedSub={setSelectedSub}
-                        id_1={data.memberId}
-                        id_2={selectedSubID}
-                    />
-                )}
+             
             </div>
         </div>
     );

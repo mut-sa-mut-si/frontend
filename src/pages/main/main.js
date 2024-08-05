@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import SliderFamous from '../../components/slide_famous';
-import SliderRecommend from '../../components/slide_recommend';
-import './main.css'; // CSS 파일이 필요한 경우
-import Side from '../../components/side';
+import SliderFamous from "../../components/slide_famous";
+import SliderRecommend from "../../components/slide_recommend";
+import "./main.css"; // CSS 파일이 필요한 경우
+import Side from "../../components/side";
 import Footer from '../../components/footer';
 
 import mainIcon from '../../assets/img/main_icon.png';
@@ -43,25 +43,31 @@ function Main() {
 
         mainData();
     }, []);
-
     const handleQnA = () => {
-        if (isAuthenticated) {
-            navigate(`/qna`);
-        } else {
-            navigate(`/unLoginqna`);
-        }
-    };
-
-    console.log(maindata);
-    return (
-        <div className='relative w-screen h-screen overflow-hidden'>
-            {/* 배경 디자인 컴포넌트 */}
-            <Side />
-
-            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-85px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
-                <div className='flex flex-col flxed items-center justify-between'>
-                    <Footer />
-                </div>
+      if (isAuthenticated) {
+          navigate(`/qna`);
+      } else {
+          navigate(`/unLoginqna`);
+      }
+  };
+console.log(maindata)
+  return (
+    <div className="relative w-screen h-screen overflow-hidden">
+      {/* 배경 디자인 컴포넌트 */}
+      <Side />
+      
+    <div className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+      {/* 초록색 박스 */}
+      <div className="absolute top-0 left-0 w-full h-[340px] bg-[#24A064] rounded-[30px] p-6">
+        <div className="text-white text-[28px] mt-8 font-base">
+          그룸에는
+        </div>
+        <div className="text-white text-[32px] mt-2 font-bold">
+          {maindata.totalRecipeCount} 개의
+        </div>
+        <div className="text-white text-[28px] mt-2 font-base">
+          특별한 레시피가 있어요
+        </div>
 
                 <div className='absolute top-0 right-0 w-full h-[340px] bg-[#24A064] rounded-[30px] p-6'>
                     <div className='flex flex-col fixed z-20 items-center bottom-20 right-30'>
@@ -91,13 +97,22 @@ function Main() {
                         <SliderRecommend maindata={maindata} />
                     </div>
 
-                    <div className='absolute top-0 w-[460px] ml-[27px] items-center left-0 mt-[1155px] h-auto bg-white rounded-[30px] p-6'>
-                        <SliderReview maindata={maindata} />
-                    </div>
-                </div>
-            </div>
+      <div className="absolute top-0  w-[460px] ml-[27px] items-center left-0 mt-[1155px] h-auto bg-white rounded-[30px] p-6">
+        <SliderReview maindata={maindata}/>
+      </div>
+
+
+      </div>
+
+      <div className='flex flex-col flxed items-center justify-between'>
+        <Footer/>
         </div>
-    );
+     
+    </div>
+    
+    </div>
+    </div>
+  );
 }
 
 export default Main;

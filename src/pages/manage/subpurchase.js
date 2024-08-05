@@ -25,6 +25,9 @@ function SubPurchase() {
     const cleanToken = token ? token.replace('Token: ', '') : '';
     const navigate = useNavigate();
 
+
+ 
+    console.log(id)
     const handleBack = () => {
         navigate(-1);
     };

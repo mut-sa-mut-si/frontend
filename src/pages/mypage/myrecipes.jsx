@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "react-loading-skeleton/dist/skeleton.css";
 import './MyRecipes.css';
+import Footer from "../../components/footer";
 
 const api = 'http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
 
@@ -51,9 +52,11 @@ function MyRecipes() {
     return (
         <div className="fixed w-screen h-screen overflow-hidden cursor-pointer">
             <Side />
-            <div name="a" className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10">
-                <div className="sticky top-0 bg-[#F9F8F8] z-20 w-full p-6">
+            <div name="a" className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-40px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10">
+                <div className="sticky top-0 bg-[#F9F8F8] fixed flex flex-col items-center z-20 w-full p-6">
+                  <Footer/>
                     <div name="b" className="flex items-center mb-6 w-full">
+                    
                         <button className="w-8 h-8 rounded-[30px]">
                             <img src={Back} alt="Back" onClick={handleBackClick} />
                         </button>
@@ -62,9 +65,9 @@ function MyRecipes() {
                 </div>
                 <div className="p-6">
                     {loading ? (
-                        <div className="space-y-4">
+                        <div className="space-y-4 ">
                             {[1, 2, 3, 4].map((n) => (
-                                <div key={n} className="bg-[#E0E8E0] rounded-[20px] p-4 shadow-md">
+                                <div key={n} className="bg-[#E0E8E0]  rounded-[20px] p-4 shadow-md">
                                     <div className="w-full h-[300px] bg-[#e0e0e0] rounded-[20px] mb-2 animate-skeleton" />
                                     <div className="flex items-center justify-between">
                                         <div className="w-[200px] h-[24px] bg-[#e0e0e0] rounded animate-skeleton" />
@@ -82,7 +85,7 @@ function MyRecipes() {
                                 {recipes.map((recipe) => (
                                     <div 
                                         key={recipe.id} 
-                                        className="bg-[#E0E8E0] rounded-[20px] p-4 shadow-md cursor-pointer"
+                                        className="bg-[#E0E8E0]  rounded-[20px] p-6  shadow-md cursor-pointer"
                                         onClick={() => handleRecipeClick(recipe.id)}
                                     >
                                         <img src={recipe.image} alt={recipe.title} className="w-full h-[300px] object-cover rounded-[20px] mb-2" />

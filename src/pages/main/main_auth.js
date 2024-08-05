@@ -5,7 +5,7 @@ import SliderFamous from "../../components/slide_famous";
 import SliderRecommend from "../../components/slide_recommend";
 import "./main.css"; // CSS 파일이 필요한 경우
 import Side from "../../components/side";
-
+import Footer from '../../components/footer';
 import grwmy from '../../assets/img/grwmy.png';
 import afterLogin from '../../assets/img/afterLogin.png';
 import SliderReview from "../../components/slide_review";
@@ -49,8 +49,10 @@ console.log(maindata)
       {/* 배경 디자인 컴포넌트 */}
       <Side />
       
-    <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
-      {/* 초록색 박스 */}
+    <div className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+    <div className='flex flex-col flxed items-center justify-between'>
+        <Footer/>
+        </div>
       <div className="absolute top-0 left-0 w-full h-[340px] bg-[#24A064] rounded-[30px] p-6">
         
         <div className="text-white text-[28px] mt-8 font-base">

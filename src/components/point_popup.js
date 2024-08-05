@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const LoginPopup = ({onClose}) => {
+const PointPopup = ({ onClose }) => {
     const navigate = useNavigate();
     const popupRef = useRef();
 
-    const handleLoginClick = () => {
-        navigate('/login');
+    const handleUsePoints = () => {
+        // 포인트 사용 로직 추가
     };
 
     const handleClickOutside = (event) => {
@@ -26,13 +26,13 @@ const LoginPopup = ({onClose}) => {
     }, []); // 의존성 배열을 비워 렌더링 시 한 번만 설정되도록 함
 
     return (
-        <div    ref={popupRef} style={{
+        <div ref={popupRef} style={{
             position: 'fixed',
-            bottom: '-20%',
-            left: '60%', // 화면의 중앙에 위치
-            transform: 'translate(-50%, -50%)', // 정확한 중앙 정렬을 위해 변경
+            bottom: '30%',
+            left: '75%', // 화면의 중앙에 위치
+            transform: 'translate(-50%, 50%)', // 정확한 중앙 정렬을 위해 변경
             width: '400px',
-            height: '300px',
+            height: '400px',
             padding: '20px',
             borderRadius: '30px',
             backgroundColor: '#fff',
@@ -45,23 +45,31 @@ const LoginPopup = ({onClose}) => {
         }}>
             <div className="text-center mt-6"></div>
             <div>
-                <p className="text-center text-[24px] font-bold mb-4">로그인 후 이용 가능해요</p>
-                <p className="text-center text-lg mb-4">그룸을 시작해보세요</p>
-                <button
-                    onClick={handleLoginClick}
-                    className="px-10 flex py-2 w-[300px] mt-10 text-[18px] font-bold h-14 bg-[#56C08C] rounded-[20px]"
-                >
-                    <div className='text-[#FFE400] mt-2'>
-                        카카오톡
-                    </div>
-                    <div className='text-white mt-2'>
-                        으로 그룸 시작하기
-                    </div>
+                <p className="text-center text-[24px] font-bold mb-4"><span className="text-[#56C08C]">120 그룸 포인트</span>를 사용해</p>
+                <p className="text-center text-lg mb-4">레시피를 확인해보시겠어요?</p>
+                
+                <div className="text-center text-sm text-gray-700 mb-4">
+                    <p>멋사멋시님을 구독해</p>
+                    <p>그룸 포인트 지불 없이 레시피를 볼 수도 있어요</p>
 
+                </div>
+
+                <div className="text-center text-sm text-gray-700 mb-4">
+                    <p>보유 그룸 포인트 <span className="text-[#56C08C] font-bold">17,240</span></p>
+                </div>
+                
+                <button
+                    onClick={handleUsePoints}
+                    className="px-10 py-2 w-[300px] mt-10 text-[18px] font-bold h-14 bg-[#56C08C] text-white rounded-[20px]"
+                >
+                    그룸 포인트 사용
                 </button>
             </div>
-        </div>
+
+              
+            </div>
+        
     );
 };
 
-export default LoginPopup;
+export default PointPopup;
