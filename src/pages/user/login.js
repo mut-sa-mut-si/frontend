@@ -24,23 +24,37 @@ function Login() {
     useEffect(() => {
         const query = new URLSearchParams(location.search);
         const code = query.get('code');
+        const api = `http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080`;
 
         if (code) {
-            // 여기에 백엔드로 코드 보내기 로직 추가
             axios
-                .get(
-                    `http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080/api/v1/login/kakao/redirect?code=${code}`
-                )
+                .get(`${api}/api/v1/login/kakao/redirect?code=${code}`)
                 .then((response) => {
                     console.log(response);
                     const jwt = response.data; // 소문자로 변경
 
                     if (jwt) {
+                        const cleanToken = jwt ? jwt.replace('Token: ', '') : '';
                         localStorage.setItem('jwt', jwt);
                         console.log('JWT', jwt);
                         setHasFetched(true); // 요청 완료 상태 업데이트
-                        // 로그인 성공 후 이동 페이지
-                        navigate(`/logincomplete`);
+                        axios.get(`${api}/api/v1/members/check-onboard`, {
+                            headers: {
+                                'Authorization': `${cleanToken}`,
+                            }
+                        })
+                        .then((response) => {
+                            const isOnboarded = response.data;
+                            console.log('isOnboarded', response.data);
+                            if (isOnboarded) {
+                                navigate(`/logincomplete`);
+                            } else {
+                                navigate(`/onboarding`);
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('There was an error!', error);
+                        });
                     }
                 })
                 .catch((error) => {
@@ -48,7 +62,7 @@ function Login() {
                     setHasFetched(true); // 에러 발생 시에도 상태 업데이트
                 });
         }
-    }, [location]);
+    }, [location, navigate]);
 
     const handleBack = () => {
         navigate(-1);
