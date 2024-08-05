@@ -49,22 +49,28 @@ function ManageSub() {
         setSelectedSubID(id);
     };
 
+    const handleCancelSuccess = (id) => {
+        setData((prevData) => ({
+            ...prevData,
+            subscribers: prevData.subscribers.filter((subscriber) => subscriber.id !== id),
+        }));
+    };
+
     return (
         <div className='relative w-screen h-screen'>
             {/* 배경 디자인 컴포넌트 */}
             <Side />
             <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#FFFFFF] shadow-2xl rounded-[30px] z-10'>
                 {/* 상단 바 */}
-                <div className='absolute'>
                 {selectedSub && (
                     <CancelSub
                         name={selectedSub}
                         setSelectedSub={setSelectedSub}
                         id_1={data.memberId}
                         id_2={selectedSubID}
+                        onCancelSuccess={handleCancelSuccess}
                     />
                 )}
-                </div>
                 <div className='flex items-center p-4'>
                     <img src={BackButton} onClick={handleBack} className='cursor-pointer w-6 h-6 mr-2' alt='Back' />
                     <p className='ml-4 text-lg font-bold'>구독 관리</p>
@@ -84,16 +90,15 @@ function ManageSub() {
                             </div>
                         ))
                     ) : (
-                        <div>id : {id}</div>
+                        <div className='text-gray-300'>회원님이 구독한 레시퍼가 없습니다.</div>
                     )}
                 </div>
-             
             </div>
         </div>
     );
 }
 
-function CancelSub({ name, setSelectedSub, id_1, id_2 }) {
+function CancelSub({ name, setSelectedSub, id_1, id_2, onCancelSuccess }) {
     const token = localStorage.getItem('jwt');
     const cleanToken = token ? token.replace('Token: ', '') : '';
 
@@ -103,12 +108,13 @@ function CancelSub({ name, setSelectedSub, id_1, id_2 }) {
 
     const onCancel = async () => {
         try {
-            const response = await api.delete(`api/v1/main/${id_1}/subscribes/${id_2}`, {
+            await api.delete(`api/v1/main/${id_1}/subscribes/${id_2}`, {
                 headers: {
                     Authorization: `${cleanToken}`,
                 },
             });
             console.log('Delete ', { name });
+            onCancelSuccess(id_2);
             setSelectedSub(null);
         } catch (error) {
             console.error(error);
@@ -116,7 +122,7 @@ function CancelSub({ name, setSelectedSub, id_1, id_2 }) {
     };
 
     return (
-        <div className='absolute inset-0 flex items-center justify-center'>
+        <div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50'>
             <div className='bg-white p-6 rounded-lg shadow-lg w-[320px]'>
                 <div className='flex flex-col items-center mb-4'>
                     <img src={grwmProfile} alt='Profile' className='w-24 h-24 mb-4' />

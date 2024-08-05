@@ -73,11 +73,7 @@ function MyQuestion() {
                         }`}
                     >
                         <div className='text-right'>
-                            <span
-                                className={`text-xs text-gray-300 font-bold rounded-full p-1 ${
-                                    question.content ? 'bg-green-200' : 'bg-gray-200'
-                                }`}
-                            >
+                            <span className='text-xs text-gray-400 font-bold rounded-full p-2 bg-[#E7F2ED]'>
                                 {question.content ? '답변 완료' : '답변 대기 중'}
                             </span>
                         </div>
