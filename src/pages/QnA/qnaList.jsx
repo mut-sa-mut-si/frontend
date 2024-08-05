@@ -20,7 +20,7 @@ function QnAList({ data }) {
     };
 
     return (
-        <div className="p-5 rounded-lg shadow-md ">
+        <div className="p-5 rounded-lg shadow-md bg-white">
             <h1 className="text-xl font-bold mb-5">질문</h1>
             {questions.length > 0 ? (
                 questions.map((q) => (

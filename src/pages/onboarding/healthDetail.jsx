@@ -20,8 +20,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                             onClick={() => handleSelect('chest')}
                             className={`m-2 p-3 rounded-2xl ${
                                 health.includes('chest')
-                                    ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                    : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                    ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                    : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                             }`}
                         >
                             가슴
@@ -30,8 +30,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                             onClick={() => handleSelect('shoulder')}
                             className={`m-2 p-3 rounded-2xl ${
                                 health.includes('shoulder')
-                                    ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                    : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                    ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                    : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                             }`}
                         >
                             어깨
@@ -40,8 +40,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                             onClick={() => handleSelect('back')}
                             className={`m-2 p-3 rounded-2xl ${
                                 health.includes('back')
-                                    ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                    : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                    ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                    : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                             }`}
                         >
                             등
@@ -54,8 +54,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                         onClick={() => handleSelect('arm')}
                         className={`m-2 p-3 rounded-2xl ${
                             health.includes('arm')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         팔
@@ -71,8 +71,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                         onClick={() => handleSelect('leg')}
                         className={`m-2 p-3 rounded-2xl ${
                             health.includes('leg')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         다리
@@ -81,8 +81,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                         onClick={() => handleSelect('hip')}
                         className={`m-2 p-3 rounded-2xl ${
                             health.includes('hip')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         엉덩이
@@ -98,8 +98,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                         onClick={() => handleSelect('diet')}
                         className={`m-2 p-3 rounded-2xl ${
                             health.includes('diet')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         다이어트
@@ -108,8 +108,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                         onClick={() => handleSelect('stretch')}
                         className={`m-2 p-3 rounded-2xl ${
                             health.includes('stretch')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         스트레칭
@@ -118,8 +118,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                         onClick={() => handleSelect('oxygen')}
                         className={`m-2 p-3 rounded-2xl ${
                             health.includes('oxygen')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         유산소
@@ -130,8 +130,8 @@ function HealthDetail({ health, setHealth, onNext, button }) {
                         onClick={() => handleSelect('else')}
                         className={`m-2 p-3 rounded-2xl ${
                             health.includes('else')
-                                ? 'bg-[#56C08C] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
-                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2'
+                                ? 'bg-[#14AE63] font-bold text-lg text-white w-[127px] h-[62px] rounded-2xl mx-2'
+                                : 'bg-[#E7F2ED] font-bold text-lg w-[127px] h-[62px] rounded-2xl mx-2 hover:bg-[#14AE63]'
                         }`}
                     >
                         기타
@@ -142,7 +142,7 @@ function HealthDetail({ health, setHealth, onNext, button }) {
             <div className='flex justify-center h-screen'>
                 <button
                     onClick={onNext}
-                    className='fixed bg-[#56C08C] bottom-20 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full'
+                    className='fixed bg-[#14AE63] bottom-40 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full hover:bg-[#0E7B46]'
                 >
                     {button}
                 </button>

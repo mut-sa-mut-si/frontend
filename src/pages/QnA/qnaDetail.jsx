@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // Import images
@@ -25,7 +24,6 @@ function QnADetail() {
     const navigate = useNavigate();
     const { id } = useParams();
 
-   
     // QnA 상세정보 불러옴
     // 데이터 불러오는 함수 분리
     const fetchQnADetail = async () => {
@@ -66,7 +64,6 @@ function QnADetail() {
             console.log('No content to submit');
         }
     };
-    
 
     if (!data) {
         return <div>Loading...</div>;
@@ -74,7 +71,7 @@ function QnADetail() {
 
     // 1:1채팅 누를 시 이동
     const handleChat = () => {
-        navigate(`/chat`);
+        navigate(`/chatroom/${id}`);
     }
 
     // 뒤로가기 버튼
@@ -83,14 +80,10 @@ function QnADetail() {
     }
 
     const handleInput = (e) => {
-        setReply(e.target.value);
-        
-        if (data.isWritten && reply.length>0 ) {
-            setReply('');
-            return (
-                <PopupQnA />
-            );
+        if (data.isWritten) {
+            return;
         }
+        setReply(e.target.value);
     }
 
     return (
@@ -98,70 +91,78 @@ function QnADetail() {
             {/* 배경 디자인 컴포넌트 */}
             <Side />
             <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#FFFFFF] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
-                    <div className="mb-4">
-                        <img src={BackButton} alt="BackButton" className="w-7 h-7 cursor-pointer" onClick={handleBack}/>
-                    </div>
-                    <div className="flex items-center mb-4">
-                        <img src={BoldQ} alt="Q" className="w-8 h-7 mr-2 mt-5 mb-5" onClick={handleBack} />
-                        <h2 className="text-xl font-bold">{data.question.title}</h2>
-                    </div>
-                    <div className="mb-4 p-4 bg-[#E7F2EC] rounded-lg">
-                        <p>{data.question.content}</p>
-                    </div>
-                    <div className="flex items-center mb-4">
-                        <img src={grwmCharacter} alt="Profile" className="w-10 h-10 rounded-full mr-2" />
-                        <p className="font-semibold">{data.question.member.name}</p>
-                        <button className="ml-auto bg-[#E7F2EC] text-black font-bold rounded-lg px-4 py-2" onClick={handleChat}>1:1채팅</button>
-                    </div>
-                    <div className="mb-20">
-                        <img src={alphabetA} alt="A" className="w-8 h-7 mt-10 mb-5" />
-                        {data.answers && data.answers.length > 0 ? (
-                            data.answers.map((answer) => (
-                                <div key={answer.id} className="flex items-center mb-2 p-4 bg-[#56C08C] rounded-lg">
-                                    <img src={grwmCharacter} alt="Profile" className="w-8 h-8 rounded-full mr-2" />
-                                    <div>
-                                        <p className="font-semibold">{answer.member.name}</p>
-                                        <p>{answer.content}</p>
-                                    </div>
+                <div className="mb-4">
+                    <img src={BackButton} alt="BackButton" className="w-7 h-7 cursor-pointer" onClick={handleBack}/>
+                </div>
+                <div className="flex items-center mb-4">
+                    <img src={BoldQ} alt="Q" className="w-8 h-7 mr-2 mt-5 mb-5" />
+                    <h2 className="text-xl font-bold">{data.question.title}</h2>
+                </div>
+                <div className="mb-4 p-4 bg-[#E7F2EC] rounded-lg">
+                    <p>{data.question.content}</p>
+                </div>
+                <div className="flex items-center mb-4">
+                    <img src={grwmCharacter} alt="Profile" className="w-10 h-10 rounded-full mr-2" />
+                    <p className="font-semibold">{data.question.member.name}</p>
+                    <button className="ml-auto bg-[#E7F2EC] text-black font-bold rounded-lg px-4 py-2" onClick={handleChat}>1:1채팅</button>
+                </div>
+                <div className="mb-20">
+                    <img src={alphabetA} alt="A" className="w-8 h-7 mt-10 mb-5" />
+                    {data.answers && data.answers.length > 0 ? (
+                        data.answers.map((answer) => (
+                            <div key={answer.id} className="flex items-center mb-2 p-4 bg-[#56C08C] rounded-lg">
+                                <img src={grwmCharacter} alt="Profile" className="w-8 h-8 rounded-full mr-2" />
+                                <div>
+                                    <p className="font-semibold">{answer.member.name}</p>
+                                    <p>{answer.content}</p>
                                 </div>
-                            ))
-                        ) : (
-                            <p className='font-bold text-gray-300'>답글이 없습니다.</p>
-                        )}
-                    </div>
-    
-
-                    <div className="fixed bottom-0 left-[765px] w-[512px] bg-white rounded-b-2xl shadow z-10 p-4">
-                        <div className="flex items-center ">
-                            <input
-                                className="flex-grow bg-[#E7F2EC] rounded-full p-2 mr-2"
-                                onChange={handleInput}
-                                value={reply}
-                                placeholder="답변을 입력하세요"
-                            />
-                            <button className="bg-green-500 text-white rounded-full px-4 py-2" onClick={handleReply}>
-                                답변
-                            </button>
-                        </div>
-                    </div>
-                    {!data.isWritten && <PopupQnA />}        
-                    </div>
-
+                            </div>
+                        ))
+                    ) : (
+                        <p className='font-bold text-gray-300'>답글이 없습니다.</p>
+                    )}
                 </div>
 
+                <div className="fixed bottom-0 left-[765px] w-[512px] bg-white rounded-b-2xl shadow z-10 p-4">
+                    <div className="flex items-center relative">
+                        <input
+                            className="flex-grow bg-[#E7F2EC] rounded-full p-2 mr-2"
+                            onChange={handleInput}
+                            value={reply}
+                            placeholder="답변을 입력하세요"
+                            disabled={data.isWritten}
+                        />
+                        <button className="bg-green-500 text-white rounded-full px-4 py-2" onClick={handleReply} disabled={data.isWritten}>
+                            답변
+                        </button>
+                        {data.isWritten && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 rounded-full">
+                                <PopupQnA />
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 
 function PopupQnA() {
+    const navigate = useNavigate();
+
+    const onBack = () => {
+        navigate(-1);
+    }
+
     return (
-        <div className='font-bold'>
+        <div className='fixed bottom-0 bg-white w-[512px] font-bold text-center p-6 pb-10 bg-opacity-30'>
             <p>내가 작성한 질문 또는 이미 답변을 등록한 질문은</p>
-            <p><span className='text-green-300'>답변</span>을 남길 수 없어요</p>
-            <button className='bg-green-300 text-white'>
+            <p><span className='text-[#14AE63]'>답변</span>을 남길 수 없어요</p>
+            <button className='bg-[#14AE63] w-1/2 text-white px-4 py-2 rounded-2xl mt-2' onClick={onBack}>
                 질문으로 돌아가기
             </button>
         </div>
-    )
+    );
 }
 
 export default QnADetail;

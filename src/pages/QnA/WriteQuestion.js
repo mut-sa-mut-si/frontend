@@ -39,8 +39,7 @@ function WriteQuestion() {
                 },
             });
             console.log(response.data);
-            // 요청이 성공하면 다른 동작을 수행할 수 있음 (예: 페이지 이동)
-            // 제출완료했습니다 보이게 넣는게 어떨까?! 시간 남으면 하자 ^_^
+            navigate(`/qna`);
         } catch (error) {
             console.error(error);
         }

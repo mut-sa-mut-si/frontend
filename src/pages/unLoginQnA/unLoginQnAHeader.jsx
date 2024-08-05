@@ -20,7 +20,7 @@ function UnLoginQnAHeader({ category, setCategory }) {
 
     const handleSearch = () => {
         if (keyword) {
-            navigate(`/qna/unathentication/search?keyword=${encodeURIComponent(keyword)}`);
+            navigate(`/qna/search?keyword=${encodeURIComponent(keyword)}`);
         }
     };
 
@@ -37,9 +37,9 @@ function UnLoginQnAHeader({ category, setCategory }) {
                 <div className="flex items-center mb-5 justify-between">
                     <img src={grwmProfile} alt='Profile' className='w-20 h-20 ml-20 ' />
                     <div className="space-y-2">
-                        <button className='flex items-center bg-green-700 py-2 px-4 rounded-lg text-white'
+                        <button className='flex items-center bg-green-700 py-2 px-4 rounded-lg text-white '
                                 onClick={handleUnLogin}>
-                            <img src={writeQuestion} className='w-5 h-5 mr-2' alt='writeQuestion' />
+                            <img src={writeQuestion} className='w-5 h-5 mr-2 ' alt='writeQuestion' />
                             <p>질문 작성하기</p>
                         </button>
                         <button className='flex items-center bg-green-700 py-2 px-4 rounded-lg text-white'

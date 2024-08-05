@@ -16,7 +16,7 @@ function UnLoginQnAList({ data }) {
     }, [data]);
 
     const handleClick = (id) => {
-        navigate(`/qna/unathentication/${id}`);
+        navigate(`/qna/${id}`);
     };
 
     return (

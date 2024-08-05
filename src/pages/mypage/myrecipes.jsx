@@ -52,7 +52,7 @@ function MyRecipes() {
     return (
         <div className="fixed w-screen h-screen overflow-hidden cursor-pointer">
             <Side />
-            <div name="a" className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-40px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10">
+            <div name="a" className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-40px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10">
                 <div className="sticky top-0 bg-[#F9F8F8] fixed flex flex-col items-center z-20 w-full p-6">
                   <Footer/>
                     <div name="b" className="flex items-center mb-6 w-full">

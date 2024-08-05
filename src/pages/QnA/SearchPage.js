@@ -44,6 +44,10 @@ function SearchPage() {
         navigate(`/qna/${id}`);
     };
 
+    const handleBack = () => {
+        navigate(-1);
+    };
+
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
             {/* 배경 디자인 컴포넌트 */}
@@ -53,7 +57,12 @@ function SearchPage() {
                 <div>
                     <div>
                         <button>
-                            <img src={BackButton} alt='BackButton' className='w-7 h-7 cursor-pointer' />
+                            <img
+                                src={BackButton}
+                                alt='BackButton'
+                                className='w-7 h-7 cursor-pointer'
+                                onClick={handleBack}
+                            />
                         </button>
                     </div>
                 </div>
@@ -72,7 +81,6 @@ function SearchPage() {
                         <p className='text-gray-600'>{question.content}</p>
                     </div>
                 ))}
-                
             </div>
         </div>
     );
