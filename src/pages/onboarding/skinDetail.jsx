@@ -89,7 +89,7 @@ function SkinDetail({ skin, setSkin, onNext, button }) {
             <div className='flex justify-center h-screen'>
                 <button
                     onClick={onNext}
-                    className='fixed bg-[#14AE63] bottom-40 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full hover:bg-[#0E7B46]'
+                    className='fixed bg-[#14AE63] bottom-24 text-white center font-bold py-2 px-4 w-[300px] h-[50px] rounded-full hover:bg-[#0E7B46]'
                 >
                     {button}
                 </button>

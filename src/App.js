@@ -30,6 +30,7 @@ import QnADetail from './pages/QnA/qnaDetail';
 //5(manage)
 import ManageSub from './pages/manage/managesub';
 import SubPurchase from './pages/manage/subpurchase';
+import SubComplete from './pages/manage/subcomplete';
 
 import MyRecipes from './pages/mypage/myrecipes';
 import MyScraps from './pages/mypage/myscraps';
@@ -86,7 +87,8 @@ function App() {
 
                     {/* MyPage */}
                     <Route path='/managesub/:id' element={<ManageSub />} />
-                    <Route path='subpurchase/:id' element={<SubPurchase />} />
+                    <Route path='/subpurchase/:id' element={<SubPurchase />} />
+                    <Route path='/subcomplete/:id' element={<SubComplete />} />
 
                     <Route path='/login' element={<Login />} />
                     <Route path='/health/write' element={<Write />} />
