@@ -25,9 +25,7 @@ function SubPurchase() {
     const cleanToken = token ? token.replace('Token: ', '') : '';
     const navigate = useNavigate();
 
-
- 
-    console.log(id)
+    console.log(id);
     const handleBack = () => {
         navigate(-1);
     };
@@ -53,23 +51,8 @@ function SubPurchase() {
         fetchSub();
     }, [id]);
 
-    const handlePay = async () => {
-        const requestBody = {
-            memberId: id,
-            itemName: pay,
-            totalAmount: totalAmount,
-        };
-
-        try {
-            const response = await api.post('api/v1/payment', requestBody, {
-                headers: {
-                    Authorization: `${cleanToken}`,
-                },
-            });
-            console.log(response.data);
-        } catch (error) {
-            console.error(error);
-        }
+    const handlePay = () => {
+        navigate(`/subcomplete/${id}`);
     };
 
     return (

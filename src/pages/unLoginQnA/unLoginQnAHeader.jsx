@@ -27,6 +27,10 @@ function UnLoginQnAHeader({ category, setCategory }) {
     const handleUnLogin = () => {
         setShowLoginInfo(true);
     }
+
+    const onClose = () => {
+        setShowLoginInfo(false);
+    }
     
     return (
         <div className="w-full bg-[#F9F8F8] rounded-lg text-gray-800">
@@ -77,7 +81,7 @@ function UnLoginQnAHeader({ category, setCategory }) {
                     <span>영양제</span>
                 </button>
             </div>
-            {showLoginInfo && <LoginPopup />}
+            {showLoginInfo && <LoginPopup onClose={onClose}/>}
         </div>
     );
 }
