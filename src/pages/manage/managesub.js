@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 // Import images
@@ -13,22 +13,11 @@ const api = axios.create({
     baseURL: 'http://default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080/',
 });
 
-const exampleData = {
-    memberId: 1,
-    subscribers: [
-        { id: 1, name: '보글보글스폰지국밥' },
-        { id: 2, name: '홍보석' },
-        { id: 3, name: '오보레' },
-        { id: 4, name: '빈스 에스프레소 본점' },
-        { id: 5, name: '카페 드 팽' },
-        { id: 6, name: '군' },
-    ],
-};
-
-function MyPageSub() {
-    const [data, setData] = useState(exampleData);
+function ManageSub() {
+    const [data, setData] = useState('');
     const [selectedSub, setSelectedSub] = useState(null);
     const [selectedSubID, setSelectedSubID] = useState(null);
+    const { id } = useParams();
     const token = localStorage.getItem('jwt');
     const cleanToken = token ? token.replace('Token: ', '') : '';
     const navigate = useNavigate();
@@ -37,23 +26,19 @@ function MyPageSub() {
     useEffect(() => {
         const fetchMySub = async () => {
             try {
-                // const response = await api.get(`api/v1/members/${id}/subscribes`, {
-                //     headers: {
-                //         Authorization: `${cleanToken}`,
-                //     },
-                // });
-                // setData(response.data);
-                // console.log(response.data);
-
-                // 테스트용 exampleData 사용
-                setData(exampleData);
-                console.log(exampleData);
+                const response = await api.get(`api/v1/main/${id}/subscribes`, {
+                    headers: {
+                        Authorization: `${cleanToken}`,
+                    },
+                });
+                setData(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error(error);
             }
         };
         fetchMySub();
-    }, []);
+    }, [id]);
 
     const handleBack = () => {
         navigate(-1);
@@ -89,7 +74,7 @@ function MyPageSub() {
                             </div>
                         ))
                     ) : (
-                        <div>No subscribers found.</div>
+                        <div>id : {id}</div>
                     )}
                 </div>
                 {selectedSub && (
@@ -115,14 +100,13 @@ function CancelSub({ name, setSelectedSub, id_1, id_2 }) {
 
     const onCancel = async () => {
         try {
-            const response = await api.delete(`api/v1/members/${id_1}/subscribes/${id_2}`, {
+            const response = await api.delete(`api/v1/main/${id_1}/subscribes/${id_2}`, {
                 headers: {
                     Authorization: `${cleanToken}`,
                 },
             });
-
             console.log('Delete ', { name });
-            setSelectedSub(null); // 다이얼로그를 닫음
+            setSelectedSub(null);
         } catch (error) {
             console.error(error);
         }
@@ -154,4 +138,4 @@ function CancelSub({ name, setSelectedSub, id_1, id_2 }) {
     );
 }
 
-export default MyPageSub;
+export default ManageSub;

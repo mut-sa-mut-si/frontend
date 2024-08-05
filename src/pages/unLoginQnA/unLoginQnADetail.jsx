@@ -27,7 +27,7 @@ function UnLoginQnADetail() {
     useEffect(() => {
         const fetchQnADetail = async () => {
             try {
-                const response = await api.get(`api/v1/questions/${id}`, {
+                const response = await api.get(`api/v1/questions/${id}/unauthentication`, {
                     headers: {
                         'Authorization': `${cleanToken}`,
                     },
@@ -76,7 +76,6 @@ function UnLoginQnADetail() {
                     <div className="flex items-center mb-4">
                         <img src={grwmCharacter} alt="Profile" className="w-10 h-10 rounded-full mr-2" />
                         <p className="font-semibold">{data.question.member.name}</p>
-                        <button className="ml-auto bg-[#E7F2EC] text-black font-bold rounded-lg px-4 py-2" onClick={handleChat}>1:1채팅</button>
                     </div>
                     <div className="mb-4">
                         <img src={alphabetA} alt="A" className="w-8 h-7 mt-10 mb-5" />

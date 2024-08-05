@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 // 사진 가져오기
 import GRWMCharacter from '../../assets/img/characterImg.png';
 
+// Import component
+import Footer from '../../components/footer';
+
 
 function ChooseRecipe({ onSelectCategory, onNext, selectedCategories }) {
     const [categories, setCategories] = useState(selectedCategories);
@@ -71,6 +74,10 @@ function ChooseRecipe({ onSelectCategory, onNext, selectedCategories }) {
                     다음
                 </button>
             </div>
+            <div className='flex flex-col flxed items-center justify-between'>
+                    <Footer />
+                </div>
+
         </div>
     );
 }
