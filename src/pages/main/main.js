@@ -73,7 +73,7 @@ function Main() {
                             <img src={mainIcon} alt='mainIcon' />
                         </div>
 
-                        <div className='mt-[20px] ml-[7px] absolute w-[450px] h-[102px]' onClick={() => handleClick()}>
+                        <div className='mt-[20px] ml-[7px] absolute w-[450px] h-[102px]'>
                             <button>
                                 <img src={mainLogin} alt='mainLogin' />
                             </button>

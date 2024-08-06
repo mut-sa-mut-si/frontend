@@ -79,6 +79,7 @@ const MyMain = () => {
         maindata();
     }, []); // 여기에 selected 추가
     console.log(userInfo);
+  
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
             {/* 배경 디자인 컴포넌트 */}
