@@ -138,9 +138,10 @@ function Write() {
     };
 
     const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && e.shiftKey) {
+            // Prevent default behavior only when Shift + Enter is pressed
             e.preventDefault();
-            setContents(contents + '\n• ');
+            setContents(contents + '\n');
         }
     };
 
@@ -238,8 +239,10 @@ function Write() {
             alert("등록 중 오류가 발생했습니다.");
         }
     };
+
     console.log(category);
-    return (
+
+    return(
         <div className="relative w-screen h-screen overflow-hidden">
             <Side />
             <div className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">

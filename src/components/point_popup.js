@@ -42,6 +42,8 @@ console.log(id)
 
         fetchPointData();
     }, [id, cleanToken, api]);
+
+    console.log(pointData.point)
     const handleUsePoints = async () => {
         if (pointData.point >= 120) {
             try {

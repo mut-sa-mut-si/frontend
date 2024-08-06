@@ -37,6 +37,8 @@ import MyScraps from './pages/mypage/myscraps';
 import RecipeDetail from './pages/recipe/recipe_detail';
 import RecipeDetailAuth from './pages/recipe/recipe_detail_auth';
 import RecipeSearch from './pages/recipe/recipe_search';
+import RecipeSearchAuth from './pages/recipe/recipe_search_auth';
+
 
 import Chatroom from './pages/chat/chatroom';
 import ChatroomList from './pages/chat/chatroomList';
@@ -105,7 +107,7 @@ function App() {
                     <Route path='/chatroom' element={<ChatroomList />} />
                     <Route path='/mymain' element={<MyMain />} />
                     <Route path='/mymain/:id' element={<MymainOther />} />
-                    <Route path='/recipesearch' element={<RecipeSearch />} />
+                    <Route path='/recipesearch' element={isAuthenticated ? <RecipeSearchAuth /> : <RecipeSearch/>} />
                     <Route path='/mypage/recipes' element={<MyRecipes />} />
                     <Route path='/mypage/scraps' element={<MyScraps />} />
                     <Route path='/notifications' element={<Notification />} />
