@@ -139,11 +139,7 @@ function RecipeDetail() {
     //상세조회
     const recipeDetail = async () => {
         try {
-            const response = await axios.get(`http://${api}/api/v1/recipes/${id}/authentication`, {
-                headers: {
-                    Authorization: `${cleanToken}`,
-                },
-            });
+            const response = await axios.get(`http://${api}/api/v1/recipes/${id}/unauthentication`);
             console.log(response.data);
             setIsScraped(response.data.scraped);
             setDetail(response.data);
@@ -156,30 +152,6 @@ function RecipeDetail() {
         recipeDetail();
     }, []);
 
-    const toggleScrap = async () => {
-        try {
-            if (isScraped) {
-                await axios.delete(`http://${api}/api/v1/recipes/${id}/scraps`, {
-                    headers: {
-                        Authorization: `${cleanToken}`,
-                    },
-                });
-            } else {
-                await axios.post(
-                    `http://${api}/api/v1/recipes/${id}/scraps`,
-                    {},
-                    {
-                        headers: {
-                            Authorization: `${cleanToken}`,
-                        },
-                    }
-                );
-            }
-            setIsScraped(!isScraped); // 스크랩 상태를 토글
-        } catch (error) {
-            console.error('There was an error toggling the scrap status', error);
-        }
-    };
     const settings = {
         dots: true,
         infinite: detail.images && detail.images.length > 1,
@@ -226,12 +198,6 @@ function RecipeDetail() {
                                 </div>
                             </>
                         )}
-                        <button
-                            onClick={buttonClick}
-                            className='flex items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]'
-                        >
-                            1:1채팅
-                        </button>
                     </div>
 
                     <div className='ml-20 text-[16px] font-bold text-[#A9A9A9]'>{detail.recipeCount}개의 레시피</div>
@@ -261,16 +227,6 @@ function RecipeDetail() {
 
                         <div className='ml-16 font-bold text-[18px] mt-1 mr-2'>{detail.ratingAverage}</div>
                         <FaStar size='24' color='gold' />
-
-                        <button
-                            onClick={toggleScrap}
-                            className={`ml-auto right-0 border border-[#14AE63] rounded-xl p-2 w-28 h-10 ${
-                                isScraped ? 'bg-white text-[#14AE63]' : 'bg-[#14AE63] text-white '
-                            }`}
-                        >
-                            {isScraped ? '스크랩취소' : '스크랩'}
-                            {/*<img src={isScraped ? scrapTrue : scrapFalse} alt='Scrap Icon' className='w-full h-full' /> */}
-                        </button>
                     </div>
 
                     <ReviewContainer>
@@ -287,8 +243,6 @@ function RecipeDetail() {
                         {isLoginPopupOpen && <LoginPopup onClose={closeLoginPopup} />}
                     </div>
                 </div>
-
-                <ChatPopup isOpen={isModalOpen} onRequestClose={closeModal} detail={detail} />
             </div>
         </div>
     );

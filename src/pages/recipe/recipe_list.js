@@ -11,7 +11,7 @@ import Numcomment from '../../assets/img/numcomment.png';
 import LoginPopup from '../../components/login_popup';
 import lockIcon from '../../assets/img/lockIcon.png';
 import Footer from '../../components/footer';
-import writeRecipeButton from '../../assets/img/writeRecipeButton.png';
+import pencilIcon from '../../assets/img/pencilIcon.png';
 
 function RecipeList() {
     const [recipes, setRecipes] = useState([]);
@@ -161,7 +161,7 @@ function RecipeList() {
 
                     <div className='flex flex-col fixed z-20 items-center bottom-20 right-30'>
                         <button onClick={handleWriteRecipe}>
-                            <img src={writeRecipeButton} className='w-20 h-20' />
+                            <img src={pencilIcon} className='w-[50px] h-[50px] mb-5' />
                         </button>
                     </div>
                     <div className='flex flex-col flxed items-center justify-between'>
