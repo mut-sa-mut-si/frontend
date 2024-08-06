@@ -140,13 +140,13 @@ function RecipeDetailAuth() {
     const toggleScrap = async () => {
         try {
             if (isScraped) {
-                await axios.delete(`http://${api}/api/v1/recipes/${id}/scraps`, {
+                await axios.delete(`http://${api}/api/v1/recipes/${detail.id}/scraps`, {
                     headers: {
                         Authorization: `${cleanToken}`,
                     },
                 });
             } else {
-                await axios.post(`http://${api}/api/v1/recipes/${id}/scraps`, {
+                await axios.post(`http://${api}/api/v1/recipes/${detail.id}/scraps`, {}, {
                     headers: {
                         Authorization: `${cleanToken}`,
                     },
@@ -157,6 +157,7 @@ function RecipeDetailAuth() {
             console.error('There was an error toggling the scrap status', error);
         }
     };
+    
     const settings = {
         dots: true,
         infinite: detail.images && detail.images.length > 1,

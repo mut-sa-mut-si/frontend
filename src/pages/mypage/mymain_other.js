@@ -69,31 +69,29 @@ const LockedIcon = styled.img`
 `;
 
 const MymainOther = () => {
-    const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
-    const token = localStorage.getItem('jwt');
-    const cleanToken = token ? token.replace('Token: ', '') : '';
-    const [userInfo, setUserInfo] = useState(null);
-    const [isSubscribed, setIsSubscribed] = useState(false);
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const navigate = useNavigate();
-    const { id } = useParams();
-    useEffect(() => {
-        const maindata = async () => {
-            try {
-                const response = await axios.get(`http://${api}/api/v1/members/${id}/authentication`, {
-                    headers: {
-                        Authorization: `${cleanToken}`,
-                    },
-                });
-                setUserInfo(response.data);
-                setIsSubscribed(response.data.isSubscribed);
-                console.log(response.data); // 콘솔에 받아온 데이터 전체 출력
-            } catch (error) {
-                console.error('There was an error', error);
-            }
-        };
-        maindata();
-    }, [id, cleanToken]);
+  const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
+  const token = localStorage.getItem('jwt');
+  const cleanToken = token ? token.replace('Token: ', '') : '';
+  const [userInfo, setUserInfo] = useState(null);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const navigate = useNavigate();
+  const { id } = useParams()
+  useEffect(() => {
+    const maindata = async () => {
+      try {
+        const response = await axios.get(`http://${api}/api/v1/members/${id}/unauthentication`, {
+         
+        });
+        setUserInfo(response.data);
+        setIsSubscribed(response.data.isSubscribed);
+        console.log(response.data); // 콘솔에 받아온 데이터 전체 출력
+      } catch (error) {
+        console.error('There was an error', error);
+      }
+    };
+    maindata();
+  }, [id, cleanToken]);
 
     console.log(userInfo);
 

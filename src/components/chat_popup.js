@@ -37,7 +37,7 @@ const ChatPopup = ({ isOpen, onRequestClose, category, detail, memberId}) => {
 
 
   console.log(detail.category);
-  console.log(finalMemberId)
+  console.log(finalMemberId);
   const handleJoinChat = async () => {
     try {
       const response = await axios.post(`http://${api}/api/v1/chats`, {}, {
@@ -63,26 +63,11 @@ const ChatPopup = ({ isOpen, onRequestClose, category, detail, memberId}) => {
   }
 
   return (
-    <div
-      ref={popupRef}
-      style={{
-        position: 'absolute',
-        width: '400px',
-        height: '300px',
-        bottom: '3%',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        padding: '20px',
-        borderRadius: '30px',
-        backgroundColor: '#fff',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-        zIndex: 1000
-      }}
-    >   {detail.member && (
+    <div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50' >
+            <div ref={popupRef}  className='bg-white p-6 rounded-lg shadow-lg w-auto'>
+      
+      
+       {detail.member && (
       <div className="text-center mt-6">
         <h2 className="font-bold text-[24px] mb-28">{detail.member.name}님과의 1:1 채팅방에 입장하시겠어요?</h2>
         <button
@@ -93,6 +78,7 @@ const ChatPopup = ({ isOpen, onRequestClose, category, detail, memberId}) => {
         </button>
       </div>
     )}
+  </div>
   </div>
 );
 };
