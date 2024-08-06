@@ -58,8 +58,8 @@ function SubPurchase() {
     return (
         <div className='relative w-screen h-screen'>
             {/* 배경 디자인 컴포넌트 */}
-            <Side className='hidden sm:block' />
-            <div className='fixed top-0 left-0 sm:left-[765px] sm:w-[512px] h-[calc(100vh-3px)] w-full bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
+            <Side />
+            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] p-6 bg-[#FFFFFF] shadow-2xl rounded-[30px] z-10 overflow-y-auto'>
                 {/* 상단 바 */}
                 <div className='flex items-center mb-10'>
                     <img src={BackButton} alt='Back' onClick={handleBack} className='w-6 h-6 cursor-pointer' />

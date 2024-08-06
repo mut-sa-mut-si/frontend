@@ -135,8 +135,8 @@ const Chatroom = () => {
 
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
-            <Side className='hidden sm:block' />
-            <div className='fixed top-0 left-0 sm:left-[765px] sm:w-[512px] h-[calc(100vh-3px)] w-full bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
+            <Side />
+            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] flex flex-col overflow-hidden no-scrollbar z-10'>
                 <div className='bg-[#6fbf73] p-4 text-white font-bold text-center flex items-center justify-between'>
                     <img src={back} alt='back' className='w-6 h-6 cursor-pointer' onClick={handleBackClick} />
                     <span className='flex-grow text-center'>채팅방 {roomId}</span>
