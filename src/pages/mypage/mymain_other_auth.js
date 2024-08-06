@@ -65,7 +65,7 @@ const LockedIcon = styled.img`
 `;
 
 
-const MymainOther = () => {
+const MymainOtherAuth = () => {
   const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
   const token = localStorage.getItem('jwt');
   const cleanToken = token ? token.replace('Token: ', '') : '';
@@ -77,7 +77,7 @@ const MymainOther = () => {
   useEffect(() => {
     const maindata = async () => {
       try {
-        const response = await axios.get(`http://${api}/api/v1/members/${id}/unauthentication`, {
+        const response = await axios.get(`http://${api}/api/v1/members/${id}/authentication`, {
           headers: {
             'Authorization': `${cleanToken}`,
           },
@@ -160,4 +160,4 @@ const MymainOther = () => {
   );
 }
 
-export default MymainOther;
+export default MymainOtherAuth;

@@ -45,6 +45,7 @@ import ChatroomList from './pages/chat/chatroomList';
 
 import MyMain from './pages/mypage/mymain';
 import MymainOther from './pages/mypage/mymain_other';
+import MymainOtherAuth from './pages/mypage/mymain_other_auth';
 
 import LoginComplete from './pages/user/loginComplete';
 
@@ -106,7 +107,7 @@ function App() {
                     <Route path='/chatroom/:id' element={<Chatroom />} />
                     <Route path='/chatroom' element={<ChatroomList />} />
                     <Route path='/mymain' element={<MyMain />} />
-                    <Route path='/mymain/:id' element={<MymainOther />} />
+                    <Route path='/mymain/:id' element={isAuthenticated ? <MymainOtherAuth /> : <MymainOther/>} />
                     <Route path='/recipesearch' element={isAuthenticated ? <RecipeSearchAuth /> : <RecipeSearch/>} />
                     <Route path='/mypage/recipes' element={<MyRecipes />} />
                     <Route path='/mypage/scraps' element={<MyScraps />} />
