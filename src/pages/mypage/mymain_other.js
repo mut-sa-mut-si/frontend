@@ -77,7 +77,7 @@ const MymainOther = () => {
   useEffect(() => {
     const maindata = async () => {
       try {
-        const response = await axios.get(`http://${api}/api/v1/members/${id}`, {
+        const response = await axios.get(`http://${api}/api/v1/members/${id}/authentication`, {
           headers: {
             'Authorization': `${cleanToken}`,
           },
