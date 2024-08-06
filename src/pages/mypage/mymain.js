@@ -56,6 +56,10 @@ const MyMain = () => {
         }
     };
 
+    const handleAlarm = () => {
+        navigate(`/notifications`);
+    };
+
     useEffect(() => {
         const maindata = async () => {
             try {

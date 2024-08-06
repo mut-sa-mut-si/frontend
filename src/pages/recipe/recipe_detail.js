@@ -15,6 +15,10 @@ import ChatPopup from '../../components/chat_popup';
 import { FaStar } from 'react-icons/fa';
 import imgDetail from '../../assets/img/img_detail.png';
 import Review from '../../components/review';
+import scrapTrue from '../../assets/img/scrapTrue.png';
+import lockIcon from '../../assets/img/lockIcon.png';
+import scrapFalse from '../../assets/img/scrapFalse.png';
+import MymainOther from '../mypage/mymain_other';
 import Footer from '../../components/footer';
 
 const ReviewContainer = styled.div`
@@ -135,7 +139,7 @@ function RecipeDetail() {
     //상세조회
     const recipeDetail = async () => {
         try {
-            const response = await axios.get(`http://${api}/api/v1/recipes/${id}/unauthentication`, {
+            const response = await axios.get(`http://${api}/api/v1/recipes/${id}/authentication`, {
                 headers: {
                     Authorization: `${cleanToken}`,
                 },
@@ -215,18 +219,23 @@ function RecipeDetail() {
 
                     <div className='font-bold text-[18px] flex items-center justify-between h-12 mt-4 rounded-[10px] px-2'>
                         {detail.member && (
-                            <div className='flex items-center'>
-                                <div
-                                    className='cursor-pointer flex items-center mr-5'
-                                    onClick={() => handleProfileClick(detail.member.id)}
-                                >
+                            <>
+                                <div onClick={() => handleProfileClick(detail.member.id)}>
                                     <img src={profile} alt='profile' className='w-12 h-12' />
-                                    <p className='ml-3'>{detail.member.name}</p>
+                                    <span className='mr-52'>{detail.member.name}</span>
                                 </div>
-                                <p className='text-[16px] font-bold text-[#A9A9A9]'>{detail.recipeCount}개의 레시피</p>
-                            </div>
+                            </>
                         )}
+                        <button
+                            onClick={buttonClick}
+                            className='flex items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]'
+                        >
+                            1:1채팅
+                        </button>
                     </div>
+
+                    <div className='ml-20 text-[16px] font-bold text-[#A9A9A9]'>{detail.recipeCount}개의 레시피</div>
+
                     <div className='font-bold text-[15px] flex items-center justify-center w-200 min-h-40 mt-4  border bg-[#E7F2EC] rounded-[10px]'>
                         {detail.content}
                     </div>
@@ -252,6 +261,16 @@ function RecipeDetail() {
 
                         <div className='ml-16 font-bold text-[18px] mt-1 mr-2'>{detail.ratingAverage}</div>
                         <FaStar size='24' color='gold' />
+
+                        <button
+                            onClick={toggleScrap}
+                            className={`ml-auto right-0 border border-[#14AE63] rounded-xl p-2 w-28 h-10 ${
+                                isScraped ? 'bg-white text-[#14AE63]' : 'bg-[#14AE63] text-white '
+                            }`}
+                        >
+                            {isScraped ? '스크랩취소' : '스크랩'}
+                            {/*<img src={isScraped ? scrapTrue : scrapFalse} alt='Scrap Icon' className='w-full h-full' /> */}
+                        </button>
                     </div>
 
                     <ReviewContainer>
