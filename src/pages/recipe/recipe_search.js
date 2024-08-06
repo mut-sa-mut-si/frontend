@@ -70,9 +70,8 @@ function RecipeSearch() {
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
             {/* 배경 디자인 컴포넌트 */}
-            <Side />
-
-            <div className='fixed top-0 left-[765px] max-w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
+            <Side className='hidden sm:block' />
+            <div className='fixed top-0 left-0 sm:left-[765px] sm:w-[512px] h-[calc(100vh-3px)] w-full bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
                 <div className='flex items-center  justify-between'>
                     <button className='w-8 h-8 mr-2 mb-4' onClick={handleBackClick}>
                         <img src={Back} alt='Back' />
