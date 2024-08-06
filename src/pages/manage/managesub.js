@@ -108,7 +108,7 @@ function CancelSub({ name, setSelectedSub, id_1, id_2, onCancelSuccess }) {
 
     const onCancel = async () => {
         try {
-            await api.delete(`api/v1/main/${id_1}/subscribes/${id_2}`, {
+            await api.delete(`api/v1/main/subscribes/${id_2}`, {
                 headers: {
                     Authorization: `${cleanToken}`,
                 },
