@@ -56,6 +56,11 @@ const MyMain = () => {
         }
     };
 
+    const handleAlarm = () => {
+      navigate(`/notifications`);
+  };
+
+
     useEffect(() => {
         const maindata = async () => {
             try {
@@ -108,7 +113,7 @@ const MyMain = () => {
               <img src={settingIcon} alt="구독 관리" className="w-10 h-10" />
               구독 관리
             </Button>
-            <Button>
+            <Button onClick={handleAlarm}>
               <img src={alarmIcon} alt="알람" className="w-10 h-10" />
               알람
             </Button>

@@ -81,9 +81,7 @@ const MymainOther = () => {
     const maindata = async () => {
       try {
         const response = await axios.get(`http://${api}/api/v1/members/${id}/unauthentication`, {
-          headers: {
-            'Authorization': `${cleanToken}`,
-          },
+         
         });
         setUserInfo(response.data);
         setIsSubscribed(response.data.isSubscribed);

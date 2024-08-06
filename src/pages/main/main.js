@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import SliderFamous from '../../components/slide_famous';
+import SliderFamousUn from '../../components/slide_famous';
 import SliderRecommend from '../../components/slide_recommend';
 import './main.css'; // CSS 파일이 필요한 경우
 import Side from '../../components/side';
@@ -80,7 +80,7 @@ function Main() {
                         </div>
 
                         <div className='absolute top-0 w-[460px] ml-[27px] items-center left-0 mt-[370px] h-[220px] bg-white rounded-[30px] p-6'>
-                            <SliderFamous maindata={maindata} />
+                            <SliderFamousUn maindata={maindata} />
                         </div>
 
                         <div className='absolute top-0 w-[460px] ml-[27px] items-center left-0 mt-[625px] h-auto bg-white rounded-[30px] p-6'>

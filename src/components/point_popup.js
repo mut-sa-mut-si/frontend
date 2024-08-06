@@ -68,23 +68,8 @@ console.log(id)
 
 
     return (
-        <div    ref={popupRef} style={{
-            position: 'absolute',
-        width: '400px',
-        height: '300px',
-        bottom: '3%',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        padding: '20px',
-        borderRadius: '30px',
-        backgroundColor: '#fff',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-        zIndex: 1000
-        }}>
+        <div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50' >
+            <div ref={popupRef}  className='bg-white p-6 rounded-lg shadow-lg w-auto'>
             <div className="text-center mt-6">
                 <p className="text-center text-[24px] font-bold mb-4"><span className="text-[#56C08C]">120 그룸 포인트</span>를 사용해</p>
                 <p className="text-center text-lg mb-4">레시피를 확인해보시겠어요?</p>
@@ -107,6 +92,7 @@ console.log(id)
                     그룸 포인트 사용
                 </button>
             </div>
+        </div>
         </div>
     );
 };

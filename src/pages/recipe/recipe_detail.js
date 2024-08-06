@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Side from '../../components/side';
-import Sidebar from '../../components/sidebar';
+import Side from "../../components/side";
+import Sidebar from "../../components/sidebar";
 import Back from '../../assets/img/back_.png';
-import Slider from 'react-slick'; // Import Slider
-import 'slick-carousel/slick/slick.css'; // Import slick styles
-import 'slick-carousel/slick/slick-theme.css';
+import Slider from "react-slick"; // Import Slider
+import "slick-carousel/slick/slick.css"; // Import slick styles
+import "slick-carousel/slick/slick-theme.css";
 import profile from '../../assets/img/profile.png';
 import styled from 'styled-components';
 import LoginPopup from '../../components/login_popup';
@@ -15,6 +15,10 @@ import ChatPopup from '../../components/chat_popup';
 import { FaStar } from 'react-icons/fa';
 import imgDetail from '../../assets/img/img_detail.png';
 import Review from '../../components/review';
+import scrapTrue from '../../assets/img/scrapTrue.png';
+import lockIcon from "../../assets/img/lockIcon.png";
+import scrapFalse from '../../assets/img/scrapFalse.png';
+import MymainOther from '../mypage/mymain_other';
 import Footer from '../../components/footer';
 
 const ReviewContainer = styled.div`
@@ -48,30 +52,32 @@ function RecipeDetail() {
     const token = localStorage.getItem('jwt');
     const cleanToken = token ? token.replace('Token: ', '') : '';
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
     console.log('JWT Token:', cleanToken);
 
     useEffect(() => {
-        const localScrapStatus = localStorage.getItem(`scrapStatus-${id}`);
-        if (localScrapStatus) {
-            setIsScraped(localScrapStatus === 'true');
-        }
-        recipeDetail();
+      const localScrapStatus = localStorage.getItem(`scrapStatus-${id}`);
+      if (localScrapStatus) {
+        setIsScraped(localScrapStatus === 'true');
+      }
+      recipeDetail();
     }, [id]);
-
-    const saveReview = (e) => {
+    
+    const saveReview = e => {
         setReview(e.target.value);
-    };
+    }
 
     const handleClick = () => {
-        if (token) {
-            setIsLoginPopupOpen(true);
-        }
-    };
+      if (token) {
+          setIsLoginPopupOpen(true);
+      }
+  };
 
-    const closeLoginPopup = () => {
-        setIsLoginPopupOpen(false);
-    };
+
+
+  const closeLoginPopup = () => {
+      setIsLoginPopupOpen(false);
+  };
 
     const [isLoginPopupOpen, setIsLoginPopupOpen] = React.useState(false);
 
@@ -135,7 +141,7 @@ function RecipeDetail() {
     //상세조회
     const recipeDetail = async () => {
         try {
-            const response = await axios.get(`http://${api}/api/v1/recipes/${id}/unauthentication`, {
+            const response = await axios.get(`http://${api}/api/v1/recipes/${id}/authentication`, {
                 headers: {
                     Authorization: `${cleanToken}`,
                 },
@@ -153,81 +159,81 @@ function RecipeDetail() {
     }, []);
 
     const toggleScrap = async () => {
-        try {
-            if (isScraped) {
-                await axios.delete(`http://${api}/api/v1/recipes/${id}/scraps`, {
-                    headers: {
-                        Authorization: `${cleanToken}`,
-                    },
-                });
-            } else {
-                await axios.post(
-                    `http://${api}/api/v1/recipes/${id}/scraps`,
-                    {},
-                    {
-                        headers: {
-                            Authorization: `${cleanToken}`,
-                        },
-                    }
-                );
-            }
-            setIsScraped(!isScraped); // 스크랩 상태를 토글
-        } catch (error) {
-            console.error('There was an error toggling the scrap status', error);
+      try {
+        if (isScraped) {
+          await axios.delete(`http://${api}/api/v1/recipes/${id}/scraps`, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+          });
+        } else {
+          await axios.post(`http://${api}/api/v1/recipes/${id}/scraps`, {}, {
+            headers: {
+              'Authorization': `${cleanToken}`,
+            },
+          });
         }
-    };
+        setIsScraped(!isScraped); // 스크랩 상태를 토글
+      } catch (error) {
+        console.error('There was an error toggling the scrap status', error);
+      }
+    }
     const settings = {
-        dots: true,
-        infinite: detail.images && detail.images.length > 1,
-        speed: 300,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: detail.images && detail.images.length > 1,
-        autoplaySpeed: 3000,
+      dots:true,
+      infinite: detail.images && detail.images.length > 1,
+      speed: 300,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: detail.images && detail.images.length > 1,
+      autoplaySpeed: 3000,
     };
 
-    return (
-        <div className='relative w-screen h-screen overflow-hidden'>
-            {/* 배경 디자인 컴포넌트 */}
-            <Side />
+    return(
+<div className="relative w-screen h-screen overflow-hidden">
+      {/* 배경 디자인 컴포넌트 */}
+      <Side />
 
-            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
-                <div className='flex items-center  justify-between'>
-                    <button className='w-6 h-6 mr-2 mb-4'>
-                        <img src={Back} alt='Back' onClick={() => navigate(-1)} />
-                    </button>
-                </div>
+      <div className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10">
+      <div className="flex items-center  justify-between">
+                <button className="w-6 h-6 mr-2 mb-4">
+                    <img src={Back} alt="Back" onClick={() => navigate(-1)}/>
+                </button>
+                <button onClick={toggleScrap} className="w-10 h-10">
+            <img src={isScraped ? scrapTrue : scrapFalse} alt="Scrap Icon" className="w-full h-full"/>
+          </button>
+        </div>
+      
+            <div >
+        <div className="font-bold text-[22px] mt-4">
+            {detail.title}
+        </div>
 
-                <div>
-                    <div className='font-bold text-[22px] mt-4'>{detail.title}</div>
+        
+        <Slider {...settings} key={detail.images ? detail.images.length : 0}>
+    {detail.images && detail.images.map((img, index) => (
+      <div key={index}>
+        <img src={img.src} alt={`Slide ${index}`} className="w-full h-[300px] object-cover rounded-[20px]" />
+      </div>
+    ))}
+  </Slider>
 
-                    <Slider {...settings} key={detail.images ? detail.images.length : 0}>
-                        {detail.images &&
-                            detail.images.map((img, index) => (
-                                <div key={index}>
-                                    <img
-                                        src={img.src}
-                                        alt={`Slide ${index}`}
-                                        className='w-full h-[300px] object-cover rounded-[20px]'
-                                    />
-                                </div>
-                            ))}
-                    </Slider>
 
-                    <div className='font-bold text-[18px] flex items-center justify-between h-12 mt-4 rounded-[10px] px-2'>
-                        {detail.member && (
-                            <div className='flex items-center'>
-                                <div
-                                    className='cursor-pointer flex items-center mr-5'
-                                    onClick={() => handleProfileClick(detail.member.id)}
-                                >
-                                    <img src={profile} alt='profile' className='w-12 h-12' />
-                                    <p className='ml-3'>{detail.member.name}</p>
-                                </div>
-                                <p className='text-[16px] font-bold text-[#A9A9A9]'>{detail.recipeCount}개의 레시피</p>
-                            </div>
-                        )}
-                    </div>
+        <div className="font-bold text-[18px] flex items-center justify-between h-12 mt-4 rounded-[10px] px-2">
+  {detail.member && (
+    <>
+     <div onClick={() => handleProfileClick(detail.member.id)}>
+      <img src={profile} alt="profile" className="w-12 h-12" />
+      <span className='mr-52'>{detail.member.name}</span>
+      </div>
+    </>
+  )}
+  <button onClick={buttonClick} className="flex items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]">
+    1:1채팅
+  </button>
+</div>
+
+                    <div className='ml-20 text-[16px] font-bold text-[#A9A9A9]'>{detail.recipeCount}개의 레시피</div>
+
                     <div className='font-bold text-[15px] flex items-center justify-center w-200 min-h-40 mt-4  border bg-[#E7F2EC] rounded-[10px]'>
                         {detail.content}
                     </div>
@@ -253,27 +259,44 @@ function RecipeDetail() {
 
                         <div className='ml-16 font-bold text-[18px] mt-1 mr-2'>{detail.ratingAverage}</div>
                         <FaStar size='24' color='gold' />
+
+                        <button
+                            onClick={toggleScrap}
+                            className={`ml-auto right-0 border border-[#14AE63] rounded-xl p-2 w-28 h-10 ${
+                                isScraped ? 'bg-white text-[#14AE63]' : 'bg-[#14AE63] text-white '
+                            }`}
+                        >
+                            {isScraped ? '스크랩취소' : '스크랩'}
+                            {/*<img src={isScraped ? scrapTrue : scrapFalse} alt='Scrap Icon' className='w-full h-full' /> */}
+                        </button>
                     </div>
 
                     <ReviewContainer>
                         <Review reviewList={detail.reviews || []} />
                     </ReviewContainer>
 
-                    <div className='flex flex-col mt-4'>
-                        <input
-                            onClick={handleClick}
-                            readOnly
-                            className='font-bold text-[15px] flex items-center justify-center w-full h-16 border bg-[#E7F2EC] rounded-[30px] p-2 '
-                            placeholder='로그인 후 후기를 남겨보세요'
-                        />
-                        {isLoginPopupOpen && <LoginPopup onClose={closeLoginPopup} />}
-                    </div>
+
+
+
+                    <div className="flex flex-col mt-4">
+        <input
+                    onClick={handleClick}
+                    readOnly
+                    className="font-bold text-[15px] flex items-center justify-center w-full h-16 border bg-[#E7F2EC] rounded-[30px] p-2 "
+                    placeholder="로그인 후 후기를 남겨보세요"
+                />
+                {isLoginPopupOpen && <LoginPopup onClose={closeLoginPopup} />}
                 </div>
+                </div> 
+
 
                 <ChatPopup isOpen={isModalOpen} onRequestClose={closeModal} detail={detail} />
-            </div>
+
+         
         </div>
-    );
+
+      </div>
+    )
 }
 
 export default RecipeDetail;

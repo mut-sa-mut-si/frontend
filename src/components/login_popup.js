@@ -26,23 +26,8 @@ const LoginPopup = ({onClose}) => {
     }, []); // 의존성 배열을 비워 렌더링 시 한 번만 설정되도록 함
 
     return (
-        <div    ref={popupRef} style={{
-            position: 'absolute',
-        width: '400px',
-        height: '300px',
-        bottom: '3%',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        padding: '20px',
-        borderRadius: '30px',
-        backgroundColor: '#fff',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-        zIndex: 1000
-        }}>
+        <div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50' >
+            <div ref={popupRef}  className='bg-white p-6 rounded-lg shadow-lg w-auto'>
             <div className="text-center mt-6"></div>
             <div>
                 <p className="text-center text-[24px] font-bold mb-4">로그인 후 이용 가능해요</p>
@@ -59,6 +44,7 @@ const LoginPopup = ({onClose}) => {
                     </div>
 
                 </button>
+            </div>
             </div>
         </div>
     );
