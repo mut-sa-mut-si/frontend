@@ -82,7 +82,7 @@ function ManageSub() {
                                 <img src={grwmProfile} alt='Profile' className='w-12 h-12 rounded-full' />
                                 <p className='ml-4 text-lg'>{subscriber.name}</p>
                                 <button
-                                    className='ml-auto text-s px-4 py-2 bg-[#14AE63] text-white rounded-lg hover:bg-[#0E7B46]'
+                                    className='ml-auto text-s px-4 py-2 bg-green-500 text-white rounded-lg'
                                     onClick={() => handleCancel(subscriber.name, subscriber.id)}
                                 >
                                     구독 취소
@@ -132,14 +132,11 @@ function CancelSub({ name, setSelectedSub, id_1, id_2, onCancelSuccess }) {
                     <p className='text-center'>구독 취소하시겠습니까?</p>
                 </div>
                 <div className='flex flex-col space-y-2'>
-                    <button
-                        className='px-4 py-2 bg-[#14AE63] text-white rounded-lg hover:bg-[#0E7B46]'
-                        onClick={onClose}
-                    >
+                    <button className='px-4 py-2 bg-green-500 text-white rounded-lg' onClick={onClose}>
                         구독 유지하기
                     </button>
                     <button
-                        className='px-4 py-2 bg-white text-[#14AE63] border border-[#14AE63] rounded-lg hover:bg-[#E7F2ED]'
+                        className='px-4 py-2 bg-white text-green-500 border border-green-500 rounded-lg'
                         onClick={onCancel}
                     >
                         구독 취소하기

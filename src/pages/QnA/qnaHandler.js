@@ -39,8 +39,8 @@ function QnAHandler() {
 
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
-            <Side className='hidden sm:block' />
-            <div className='fixed top-0 left-0 sm:left-[765px] sm:w-[512px] h-[calc(100vh-3px)] w-full bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10 pb-20'>
+            <Side />
+            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10 pb-20'>
                 {/* 초록색 박스 */}
                 <div className='sticky left-0 right-0 top-0 bg-[#F9F8F8] z-20 w-full'>
                     <QnAHeader category={category} setCategory={setCategory} />
