@@ -87,7 +87,7 @@ function Notification() {
         return notices.map((notice) => (
             <div key={notice.id} className="flex flex-col items-start mb-6 cursor-pointer bg-white p-4 rounded-[20px] shadow-md" onClick={() => handleNoticeClick(type, type === 'answer' ? notice.question.id : notice.recipe.id, notice.id)}>
                 <div className="flex items-center">
-                    <img src={Profile} alt="Profile" className="w-12 h-12 rounded-full mr-4" />
+                    <img src={Profile} alt="https://github.com/mut-sa-mut-si/frontend/pull/34/conflict?name=src%252Fpages%252Fmypage%252Fnotification.jsx&ancestor_oid=6e8d64152b1535ad95304d0c3cde8b911a192a89&base_oid=dcce581a7e1b81e41485a75479f3cee39e4a01cb&head_oid=b9846f4930070d6e7015fdf951603cc252720ca0Profile" className="w-12 h-12 rounded-full mr-4" />
                     <div>
                         <p className="font-bold">{notice.member.name}</p>
                         <p>

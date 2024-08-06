@@ -5,7 +5,7 @@ import kakaoImg from '../assets/img/kakao.png';
 import axios from 'axios';
 import grwmLogo from '../../src/assets/img/grwmLogo.png';
 
-function Side({ className }) {
+function Side() {
     const location = useLocation();
     const [hasFetched, setHasFetched] = useState(false);
 
@@ -38,7 +38,7 @@ function Side({ className }) {
         }
     }, [location]);
     return (
-        <div className={`fixed w-screen h-screen bg-white ${className}`}>
+        <div className='fixed w-screen h-screen bg-white '>
             <div className='absolute w-[500px] h-[500px] bg-green-400 ml-[-600px]  rounded-full blur-3xl opacity-50 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2'></div>
             <div className='w-28 h-28 mt-4 ml-4'>
                 <img src={grwmLogo} alt='Logo' />

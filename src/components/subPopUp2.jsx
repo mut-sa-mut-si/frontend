@@ -23,17 +23,17 @@ function SubPopUp1({name, id, onClose}) {
                     Authorization: `${cleanToken}`,
                 },
             });
-            console.log('Delete :', { name });
+            console.log('Delete ', { name });
             setCancelComplete(true);
             
         } catch (error) {
             console.error(error);
         }
     };
-        
+    
+    
 
     return (
-   
         <div className='fixed ml-[565px] inset-x-0 bottom-0 flex items-center justify-center z-50 mb-4'>
             <div className='bg-white p-6 rounded-lg shadow-lg w-[512px]'>
                 <div className='flex flex-col items-center mb-4'>
