@@ -135,6 +135,8 @@ function RecipeDetailAuth() {
         recipeDetail();
     }, []);
 
+    console.log(id)
+
     const toggleScrap = async () => {
         try {
             if (isScraped) {
@@ -202,12 +204,16 @@ function RecipeDetailAuth() {
                                 </div>
                             </>
                         )}
-                        <button
+                        {!detail.isMe && (
+
+                            <button
                             onClick={buttonClick}
                             className='flex items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]'
-                        >
+                            >
                             1:1채팅
-                        </button>
+                            </button>
+                        )}
+                     
                     </div>
 
                     <div className='ml-20 text-[16px] font-bold text-[#A9A9A9]'>{detail.recipeCount}개의 레시피</div>
@@ -237,7 +243,8 @@ function RecipeDetailAuth() {
 
                         <div className='ml-16 font-bold text-[18px] mt-1 mr-2'>{detail.ratingAverage}</div>
                         <FaStar size='24' color='gold' />
-
+                        {!detail.isMe && (
+                            
                         <button
                             onClick={toggleScrap}
                             className={`ml-auto right-0 border border-[#14AE63] rounded-xl p-2 w-28 h-10 ${
@@ -246,6 +253,7 @@ function RecipeDetailAuth() {
                         >
                             {isScraped ? '스크랩취소' : '스크랩'}
                         </button>
+                        )}
                     </div>
 
                     <ReviewContainer>
@@ -273,6 +281,8 @@ function RecipeDetailAuth() {
                             value={review}
                             onKeyDown={handleKeyPress}
                         />
+
+          
                         <button
                             onClick={pushReviewList}
                             className='w-28 h-16 text-white font-bold bg-[#56C08C] rounded-[30px]'
@@ -281,7 +291,6 @@ function RecipeDetailAuth() {
                         </button>
                     </div>
                 </div>
-
                 <ChatPopup isOpen={isModalOpen} onRequestClose={closeModal} detail={detail} />
 
                 <div className='flex flex-col flxed items-center justify-between'>

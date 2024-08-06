@@ -31,6 +31,7 @@ function MyRecipes() {
                 },
             });
             setRecipes(response.data.recipes);
+            console.log(recipes)
             setTimeout(() => {
                 setLoading(false);
             }, 1000);

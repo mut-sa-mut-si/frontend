@@ -42,6 +42,7 @@ console.log(id)
 
         fetchPointData();
     }, [id, cleanToken, api]);
+
     const handleUsePoints = async () => {
         if (pointData.point >= 120) {
             try {
@@ -67,22 +68,22 @@ console.log(id)
 
 
     return (
-        <div ref={popupRef} style={{
-            position: 'fixed',
-            bottom: '30%',
-            left: '50%',
-            transform: 'translate(-50%, 50%)',
-            width: '400px',
-            height: '400px',
-            padding: '20px',
-            borderRadius: '30px',
-            backgroundColor: '#fff',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-            zIndex: 100000
+        <div    ref={popupRef} style={{
+            position: 'absolute',
+        width: '400px',
+        height: '300px',
+        bottom: '3%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        padding: '20px',
+        borderRadius: '30px',
+        backgroundColor: '#fff',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+        zIndex: 1000
         }}>
             <div className="text-center mt-6">
                 <p className="text-center text-[24px] font-bold mb-4"><span className="text-[#56C08C]">120 그룸 포인트</span>를 사용해</p>

@@ -169,7 +169,7 @@ const Chatroom = () => {
                         })}
                     <div ref={messagesEndRef} />
                 </div>
-                <div className='fixed bottom-0 left-[670px] w-[512px] bg-white border-t p-4 flex'>
+                <div className='fixed bottom-0 left-[765px] w-[512px] bg-white border-t p-4 flex'>
                     <input
                         type='text'
                         className='flex-1 p-2 border rounded-[30px] bg-[#E7F2EC] focus:border-[#E7F2EC] outline-none'
