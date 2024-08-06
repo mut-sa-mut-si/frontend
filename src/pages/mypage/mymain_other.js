@@ -69,29 +69,27 @@ const LockedIcon = styled.img`
 `;
 
 const MymainOther = () => {
-  const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
-  const token = localStorage.getItem('jwt');
-  const cleanToken = token ? token.replace('Token: ', '') : '';
-  const [userInfo, setUserInfo] = useState(null);
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const navigate = useNavigate();
-  const { id } = useParams()
-  useEffect(() => {
-    const maindata = async () => {
-      try {
-        const response = await axios.get(`http://${api}/api/v1/members/${id}/unauthentication`, {
-         
-        });
-        setUserInfo(response.data);
-        setIsSubscribed(response.data.isSubscribed);
-        console.log(response.data); // 콘솔에 받아온 데이터 전체 출력
-      } catch (error) {
-        console.error('There was an error', error);
-      }
-    };
-    maindata();
-  }, [id, cleanToken]);
+    const api = 'default-grwm-server-serv-1ac37-25678670-9aceb4885941.kr.lb.naverncp.com:8080';
+    const token = localStorage.getItem('jwt');
+    const cleanToken = token ? token.replace('Token: ', '') : '';
+    const [userInfo, setUserInfo] = useState(null);
+    const [isSubscribed, setIsSubscribed] = useState(false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const navigate = useNavigate();
+    const { id } = useParams();
+    useEffect(() => {
+        const maindata = async () => {
+            try {
+                const response = await axios.get(`http://${api}/api/v1/members/${id}/unauthentication`);
+                setUserInfo(response.data);
+                setIsSubscribed(response.data.isSubscribed);
+                console.log(response.data); // 콘솔에 받아온 데이터 전체 출력
+            } catch (error) {
+                console.error('There was an error', error);
+            }
+        };
+        maindata();
+    }, [id, cleanToken]);
 
     console.log(userInfo);
 
@@ -105,8 +103,8 @@ const MymainOther = () => {
 
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
-            <Side />
-            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-80px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
+            <Side className='hidden sm:block' />
+            <div className='fixed top-0 left-0 sm:left-[765px] sm:w-[512px] h-[calc(100vh-3px)] w-full bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
                 <div className='flex items-center justify-between'>
                     <button onClick={() => navigate(-1)}>
                         <img src={Back} alt='Back' className='w-8 h-8' />

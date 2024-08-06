@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 // Import images
 import profile from '../../assets/img/profile.png';
 import BackButton from '../../assets/img/backButton.png';
@@ -54,11 +53,10 @@ function ChatroomList() {
         navigate(-1);
     };
 
- 
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
-            <Side />
-            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#FFFFFF] shadow-2xl rounded-[30px] flex flex-col overflow-hidden no-scrollbar z-10'>
+            <Side className='hidden sm:block' />
+            <div className='fixed top-0 left-0 sm:left-[765px] sm:w-[512px] h-[calc(100vh-3px)] w-full bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
                 <div className='p-6 h-auto'>
                     <div className='mb-4 flex'>
                         <img

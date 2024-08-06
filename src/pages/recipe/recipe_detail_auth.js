@@ -124,7 +124,7 @@ function RecipeDetailAuth() {
                 },
             });
             console.log(response.data);
-            setIsScraped(response.data.scraped);
+            // setIsScraped(true);
             setDetail(response.data);
         } catch (error) {
             console.error('There was an error', error);
@@ -135,7 +135,7 @@ function RecipeDetailAuth() {
         recipeDetail();
     }, []);
 
-    console.log(id)
+    console.log(id);
 
     const toggleScrap = async () => {
         try {
@@ -145,14 +145,16 @@ function RecipeDetailAuth() {
                         Authorization: `${cleanToken}`,
                     },
                 });
+                setIsScraped(false);
             } else {
                 await axios.post(`http://${api}/api/v1/recipes/${detail.id}/scraps`, {}, {
                     headers: {
                         Authorization: `${cleanToken}`,
                     },
                 });
+                setIsScraped(true);
             }
-            setIsScraped(!isScraped); // 스크랩 상태를 토글
+            // setIsScraped(!isScraped); // 스크랩 상태를 토글
         } catch (error) {
             console.error('There was an error toggling the scrap status', error);
         }
@@ -171,9 +173,8 @@ function RecipeDetailAuth() {
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
             {/* 배경 디자인 컴포넌트 */}
-            <Side />
-
-            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
+            <Side className='hidden sm:block' />
+            <div className='fixed top-0 left-0 sm:left-[765px] sm:w-[512px] h-[calc(100vh-3px)] w-full bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
                 <div className='flex items-center  justify-between'>
                     <button className='w-6 h-6 mr-2 mb-4'>
                         <img src={Back} alt='Back' onClick={() => navigate(-1)} />
@@ -196,28 +197,25 @@ function RecipeDetailAuth() {
                             ))}
                     </Slider>
 
-                    <div className='font-bold text-[18px] flex items-center justify-between h-12 mt-4 rounded-[10px] px-2'>
+                    <div className='font-bold text-[18px] items-center flex justify-between h-12 mt-4 rounded-[10px] px-2'>
                         {detail.member && (
                             <>
-                                <div onClick={() => handleProfileClick(detail.member.id)}>
+                                <div className='flex' onClick={() => handleProfileClick(detail.member.id)}>
                                     <img src={profile} alt='profile' className='w-12 h-12' />
-                                    <span className='mr-52'>{detail.member.name}</span>
+                                    <p className='mt-3 ml-1'>{detail.member.name}</p>
                                 </div>
                             </>
                         )}
                         {!detail.isMe && (
-
                             <button
-                            onClick={buttonClick}
-                            className='flex items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]'
+                                onClick={buttonClick}
+                                className='items-center justify-center w-20 h-12 rounded-[20px] bg-[#E7F2EC]'
                             >
-                            1:1채팅
+                                1:1채팅
                             </button>
                         )}
-                     
+                        <p className='ml-20 text-[16px] font-bold text-[#A9A9A9]'>{detail.recipeCount}개의 레시피</p>
                     </div>
-
-                    <div className='ml-20 text-[16px] font-bold text-[#A9A9A9]'>{detail.recipeCount}개의 레시피</div>
 
                     <div className='font-bold text-[15px] flex items-center justify-center w-200 min-h-40 mt-4  border bg-[#E7F2EC] rounded-[10px]'>
                         {detail.content}
@@ -245,15 +243,14 @@ function RecipeDetailAuth() {
                         <div className='ml-16 font-bold text-[18px] mt-1 mr-2'>{detail.ratingAverage}</div>
                         <FaStar size='24' color='gold' />
                         {!detail.isMe && (
-                            
-                        <button
-                            onClick={toggleScrap}
-                            className={`ml-auto right-0 border border-[#14AE63] rounded-xl p-2 w-28 h-10 ${
-                                isScraped ? 'bg-white text-[#14AE63]' : 'bg-[#14AE63] text-white '
-                            }`}
-                        >
-                            {isScraped ? '스크랩취소' : '스크랩'}
-                        </button>
+                            <button
+                                onClick={toggleScrap}
+                                className={`ml-auto right-0 border border-[#14AE63] rounded-xl p-2 w-28 h-10 ${
+                                    isScraped ? 'bg-white text-[#14AE63]' : 'bg-[#14AE63] text-white '
+                                }`}
+                            >
+                                {isScraped ? '스크랩취소' : '스크랩'}
+                            </button>
                         )}
                     </div>
 
@@ -283,7 +280,6 @@ function RecipeDetailAuth() {
                             onKeyDown={handleKeyPress}
                         />
 
-          
                         <button
                             onClick={pushReviewList}
                             className='w-28 h-16 text-white font-bold bg-[#56C08C] rounded-[30px]'

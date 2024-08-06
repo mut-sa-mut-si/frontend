@@ -38,23 +38,24 @@ function Login() {
                         localStorage.setItem('jwt', jwt);
                         console.log('JWT', jwt);
                         setHasFetched(true); // 요청 완료 상태 업데이트
-                        axios.get(`${api}/api/v1/members/check-onboard`, {
-                            headers: {
-                                'Authorization': `${cleanToken}`,
-                            }
-                        })
-                        .then((response) => {
-                            const isOnboarded = response.data;
-                            console.log('isOnboarded', response.data);
-                            if (isOnboarded) {
-                                navigate(`/logincomplete`);
-                            } else {
-                                navigate(`/onboarding`);
-                            }
-                        })
-                        .catch((error) => {
-                            console.error('There was an error!', error);
-                        });
+                        axios
+                            .get(`${api}/api/v1/members/check-onboard`, {
+                                headers: {
+                                    Authorization: `${cleanToken}`,
+                                },
+                            })
+                            .then((response) => {
+                                const isOnboarded = response.data;
+                                console.log('isOnboarded', response.data);
+                                if (isOnboarded) {
+                                    navigate(`/logincomplete`);
+                                } else {
+                                    navigate(`/onboarding`);
+                                }
+                            })
+                            .catch((error) => {
+                                console.error('There was an error!', error);
+                            });
                     }
                 })
                 .catch((error) => {
@@ -70,9 +71,8 @@ function Login() {
 
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
-            <Side />
-
-            <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#FFFFFF] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10 flex flex-col justify-center items-center relative'>
+            <Side className='hidden sm:block' />
+            <div className='fixed top-0 left-0 sm:left-[765px] sm:w-[512px] h-[calc(100vh-3px)] w-full bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
                 <img
                     src={BackButton}
                     alt='BackButton'
