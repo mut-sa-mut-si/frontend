@@ -44,6 +44,10 @@ function Main() {
         navigate(`/qna`);
     };
 
+    const handleAlarm = () => {
+        navigate(`/notifications`);
+    };
+
     return (
         <div className='relative w-screen h-screen overflow-hidden'>
             {/* 배경 디자인 컴포넌트 */}
@@ -61,7 +65,7 @@ function Main() {
                         <img src={grwmy} alt='mainIcon' />
                     </div>
 
-                    <div className='mt-[20px] ml-[7px] absolute w-[450px] h-[102px]'>
+                    <div className='mt-[20px] ml-[7px] absolute w-[450px] h-[102px]' onClick={handleAlarm}>
                         <button>
                             <img src={afterLogin} alt='mainLogin' />
                         </button>

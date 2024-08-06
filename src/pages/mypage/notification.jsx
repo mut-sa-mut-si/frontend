@@ -116,7 +116,7 @@ function Notification() {
     return (
         <div className="fixed w-screen h-screen overflow-hidden cursor-pointer">
             <Side />
-            <div name="a" className="fixed top-0 left-[670px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10">
+            <div name="a" className="fixed top-0 left-[765px] w-[512px] h-[calc(100vh-3px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] overflow-y-auto no-scrollbar z-10">
                 <div className="sticky top-0 bg-[#F9F8F8] z-20 w-full p-6">
                     <div name="b" className="flex items-center mb-6 w-full">
                         <button className="w-8 h-8 rounded-[30px]">
