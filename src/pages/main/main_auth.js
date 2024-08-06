@@ -50,9 +50,7 @@ function Main() {
             <Side />
 
             <div className='fixed top-0 left-[765px] w-[512px] h-[calc(100vh-88px)] bg-[#F9F8F8] shadow-2xl rounded-[30px] p-6 overflow-y-auto no-scrollbar z-10'>
-                <div className='flex flex-col flxed items-center justify-between'>
-                    <Footer />
-                </div>
+             
                 <div className='absolute top-0 left-0 w-full h-[340px] bg-[#24A064] rounded-[30px] p-6'>
                     <div className='text-white text-[28px] mt-8 font-base'>{maindata.profileMemberName} 님,</div>
 
@@ -85,6 +83,9 @@ function Main() {
                         <button onClick={handleQnA}>
                             <img src={qnaClickButton} className='w-20 h-20' />
                         </button>
+                    </div>
+                    <div className='flex flex-col flxed items-center justify-between'>
+                        <Footer />
                     </div>
                 </div>
             </div>

@@ -27,21 +27,21 @@ const LoginPopup = ({onClose}) => {
 
     return (
         <div    ref={popupRef} style={{
-            position: 'fixed',
-            bottom: '-20%',
-            left: '60%', // 화면의 중앙에 위치
-            transform: 'translate(-50%, -50%)', // 정확한 중앙 정렬을 위해 변경
-            width: '400px',
-            height: '300px',
-            padding: '20px',
-            borderRadius: '30px',
-            backgroundColor: '#fff',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-            zIndex: 100000 // 다른 요소들 위에 보장되도록 충분히 높은 z-index
+            position: 'absolute',
+        width: '400px',
+        height: '300px',
+        bottom: '3%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        padding: '20px',
+        borderRadius: '30px',
+        backgroundColor: '#fff',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+        zIndex: 1000
         }}>
             <div className="text-center mt-6"></div>
             <div>
